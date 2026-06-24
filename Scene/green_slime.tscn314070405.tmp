@@ -1,0 +1,154 @@
+[gd_scene load_steps=17 format=3 uid="uid://e5fxeq52m26g"]
+
+[ext_resource type="Script" uid="uid://dui63lbcfjrcn" path="res://Script/green_slime.gd" id="1_arbwv"]
+[ext_resource type="Texture2D" uid="uid://bohxtovo2hjam" path="res://Asset/sprites/slime_green.png" id="1_vqynf"]
+[ext_resource type="PackedScene" uid="uid://ddovea1xeqdam" path="res://Scene/killzone.tscn" id="2_em2wj"]
+[ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://Script/hurtbox.gd" id="3_mh1aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh1aa"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysx1p"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8y2k"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6etkp"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28jbo"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arbwv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh1aa")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysx1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8y2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6etkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28jbo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mh1aa"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgqwm"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgqwm"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_mh1aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+
+[sub_resource type="Animation" id="Animation_mgqwm"]
+resource_name = "damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hit", &"walk"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s1180"]
+_data = {
+&"RESET": SubResource("Animation_mh1aa"),
+&"damage": SubResource("Animation_mgqwm")
+}
+
+[node name="GreenSlime" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 19
+script = ExtResource("1_arbwv")
+speed = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_arbwv")
+animation = &"hit"
+autoplay = "walk"
+metadata/_edit_group_ = true
+
+[node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 16
+collision_mask = 64
+input_pickable = false
+script = ExtResource("3_mh1aa")
+metadata/_custom_type_script = "uid://bef6fd5blxnmc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hurtbox"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_mh1aa")
+debug_color = Color(0.25984162, 0.8457546, 0, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_mgqwm")
+
+[node name="Killzone" parent="." instance=ExtResource("2_em2wj")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_mgqwm")
+disabled = true
+
+[node name="LedgeDetector" type="RayCast2D" parent="."]
+position = Vector2(8, -6)
+target_position = Vector2(0, 7)
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+position = Vector2(0, -6)
+target_position = Vector2(8, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s1180")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://drrenskjt2u6v"]
+
+[ext_resource type="Texture2D" uid="uid://bvqyohnbq8vqp" path="res://Asset/sprites/platforms.png" id="1_5f8pc"]
+[ext_resource type="Script" uid="uid://c7q1uuxijeqsi" path="res://Script/iced_platform.gd" id="1_l18s7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l18s7"]
+size = Vector2(48, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f8pc"]
+size = Vector2(38, 26.5)
+
+[node name="Iced_Platform" type="AnimatableBody2D"]
+script = ExtResource("1_l18s7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5f8pc")
+region_enabled = true
+region_rect = Rect2(0, 47.94072, 48.37646, 9.065166)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l18s7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_5f8pc")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

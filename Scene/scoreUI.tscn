@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqf3q3q46bg3t"]
+
+[ext_resource type="Script" uid="uid://b4dnt82bef167" path="res://Script/UI.gd" id="1_alu6o"]
+[ext_resource type="Texture2D" uid="uid://d0yp1h25obqt5" path="res://Asset/MegaPackFree/UIBundleFree/freefantasy.png" id="1_u2k45"]
+[ext_resource type="Texture2D" uid="uid://bd1dls0kc4k24" path="res://Asset/MegaPackFree/UIBundleFree/MediavelFree.png" id="2_alu6o"]
+[ext_resource type="Texture2D" uid="uid://d3ord42civvtc" path="res://Asset/sprites/coin.png" id="3_ffxp3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gr8a"]
+texture = ExtResource("1_u2k45")
+region_rect = Rect2(138, 2, 45, 29)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n0qc8"]
+texture = ExtResource("2_alu6o")
+region_rect = Rect2(113, 1, 14, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uqgjk"]
+texture = ExtResource("2_alu6o")
+region_rect = Rect2(129, 2, 14, 13)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("scoreLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alu6o")
+scoreLabel = NodePath("screenOption/MarginContainer/HBoxContainer/scoreLabel")
+
+[node name="screenOption" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(280, 95)
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8gr8a")
+
+[node name="MarginContainer" type="MarginContainer" parent="screenOption"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="screenOption/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="pauseButton" type="Button" parent="screenOption/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_n0qc8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uqgjk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uqgjk")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="screenOption/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_ffxp3")
+region_rect = Rect2(100, 4, 8, 8)
+
+[node name="colon" type="Label" parent="screenOption/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = ": "
+
+[node name="scoreLabel" type="Label" parent="screenOption/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "0"

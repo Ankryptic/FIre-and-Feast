@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqbsoy4gs1ghh"]
+
+[ext_resource type="Texture2D" uid="uid://btu1kmveekmq4" path="res://Asset/fireball_V_1_1/FB500-1.png" id="1_n38ci"]
+[ext_resource type="Script" uid="uid://cn0limnnfy0qc" path="res://Script/fireball.gd" id="1_v6h44"]
+[ext_resource type="Texture2D" uid="uid://c83ipugg8paep" path="res://Asset/fireball_V_1_1/B500-2.PNG" id="2_nrb3v"]
+[ext_resource type="Texture2D" uid="uid://rdukest5y0i2" path="res://Asset/fireball_V_1_1/FB500-2.png" id="2_v6h44"]
+[ext_resource type="Texture2D" uid="uid://d1675k2088xig" path="res://Asset/fireball_V_1_1/FB500-3.png" id="3_cbfvj"]
+[ext_resource type="Texture2D" uid="uid://cm8mwqxl0tkpm" path="res://Asset/fireball_V_1_1/B500-3.PNG" id="3_j27dk"]
+[ext_resource type="Texture2D" uid="uid://eewixkyby1vq" path="res://Asset/fireball_V_1_1/FB500-4.png" id="4_bog0h"]
+[ext_resource type="Texture2D" uid="uid://cuq4ngolxqkop" path="res://Asset/fireball_V_1_1/B500-4.PNG" id="4_jabwm"]
+[ext_resource type="Texture2D" uid="uid://drocixf2aiqhs" path="res://Asset/fireball_V_1_1/FB500-5.png" id="5_jyxap"]
+[ext_resource type="Script" uid="uid://b2qm8k5o1vgdj" path="res://Script/hitbox.gd" id="10_nrb3v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n38ci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nrb3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j27dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jabwm")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"boom",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n38ci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v6h44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cbfvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bog0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jyxap")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrb3v"]
+radius = 150.0
+
+[node name="fireball" type="Node2D"]
+scale = Vector2(0.02, 0.02)
+script = ExtResource("1_v6h44")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n38ci")
+animation = &"boom"
+autoplay = "shoot"
+frame = 3
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 64
+collision_mask = 17
+script = ExtResource("10_nrb3v")
+metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hitbox"]
+shape = SubResource("CircleShape2D_nrb3v")
+debug_color = Color(0.9744286, 0, 0.43028787, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+position = Vector2(-150, -150)
+rect = Rect2(-10, -10, 310, 310)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

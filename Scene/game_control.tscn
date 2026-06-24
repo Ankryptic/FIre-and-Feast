@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq4i2k3s7sv0y"]
+
+[ext_resource type="Script" uid="uid://chntmr4k3p5c2" path="res://Script/game_control.gd" id="1_h6mtj"]
+
+[node name="GameControl" type="Node"]
+script = ExtResource("1_h6mtj")
+
+[node name="LevelManager" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="UI" type="CanvasLayer" parent="."]
