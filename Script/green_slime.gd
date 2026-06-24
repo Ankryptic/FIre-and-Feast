@@ -1,17 +1,16 @@
 extends CharacterBody2D
 
 #region Onready variables
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var green_slime: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var ledge_detector: RayCast2D = $LedgeDetector
-@onready var timer: Timer = $Timer
 #endregion
 
 #region Normal Variables
 var direction : float = 1.0
-@export var speed : int = 20
-@onready var green_slime: AnimatedSprite2D = $AnimatedSprite2D
+var knock_back : float = 0.0
+@export var speed : float = 40.0
 #endregion
 
 func _physics_process(delta: float) -> void:
@@ -21,22 +20,23 @@ func _physics_process(delta: float) -> void:
 	if wall_detector.is_colliding():
 		change_direction()
 	
-	print(direction)
-	velocity.x += speed * direction * delta
+	if !ledge_detector.is_colliding():
+		change_direction()
+	
+	velocity.x = speed * direction + knock_back
+	knock_back = move_toward(knock_back, 0, 500 * delta)
 	
 	move_and_slide()
 
+func change_direction() -> void:
+	wall_detector.target_position *= -1
+	direction *= -1
+	green_slime.flip_h = !green_slime.flip_h
 
 ## Plays Hit Animation and Deal with Damage
 func get_damage(hit_direction : int) -> void:
-	speed = 0
-	timer.start()
+	speed = 0.0
 	animation_player.play('damage')
-	position.x += 5 * hit_direction
-
-func change_direction() -> void:
-	direction *= -1
-	green_slime.flip_h = true
-
-func _on_timer_timeout() -> void:
-	speed = 50
+	knock_back = 100 * hit_direction
+	await get_tree().create_timer(0.8).timeout
+	speed = 40.0

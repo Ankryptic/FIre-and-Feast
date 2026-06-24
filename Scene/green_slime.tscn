@@ -56,8 +56,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh1aa"]
 size = Vector2(12, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgqwm"]
-size = Vector2(12, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mh1aa"]
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgqwm"]
 radius = 4.0
@@ -124,8 +124,8 @@ shape = SubResource("RectangleShape2D_mh1aa")
 debug_color = Color(0.25984162, 0.8457546, 0, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_mgqwm")
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_mh1aa")
 
 [node name="Killzone" parent="." instance=ExtResource("2_em2wj")]
 collision_mask = 2
@@ -136,8 +136,8 @@ shape = SubResource("CircleShape2D_mgqwm")
 disabled = true
 
 [node name="LedgeDetector" type="RayCast2D" parent="."]
-position = Vector2(8, -6)
-target_position = Vector2(0, 7)
+position = Vector2(6, -6)
+target_position = Vector2(0, 8)
 
 [node name="WallDetector" type="RayCast2D" parent="."]
 position = Vector2(0, -6)

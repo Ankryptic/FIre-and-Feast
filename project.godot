@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Brackey's Tutorials"
+config/name="Fire And Feast"
 run/main_scene="uid://bwev0exxtw037"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
