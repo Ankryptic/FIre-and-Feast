@@ -1,20 +1,15 @@
 extends AnimatableBody2D
 
-var wentUp : bool = false;
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var timer: Timer = $Timer
+var tween : Tween
+var up : Vector2 = Vector2(440.0, -299.5)
+var down : Vector2 = Vector2(440.0, -171)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player_group"):
-		timer.start()
+func _ready() -> void:
+	move_up_down()
+
+func move_up_down() -> void:
+	tween = create_tween()
+	tween.set_loops()
 	
-
-
-func _on_timer_timeout() -> void:
-	
-	if wentUp:
-		animation_player.play("down")
-		wentUp = false
-	else:
-		animation_player.play("up")
-		wentUp = true
+	tween.tween_property(self, "global_position", up, 5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", down, 5).set_ease(Tween.EASE_OUT)

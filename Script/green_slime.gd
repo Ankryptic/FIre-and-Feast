@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 
 func change_direction() -> void:
 	wall_detector.target_position *= -1
+	ledge_detector.position.x *= -1
 	direction *= -1
 	green_slime.flip_h = !green_slime.flip_h
 
