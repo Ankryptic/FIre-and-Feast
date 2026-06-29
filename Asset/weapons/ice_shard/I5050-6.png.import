@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm8mwqxl0tkpm"
-path="res://.godot/imported/B500-3.PNG-729a4baca1962e2c0e481e17a986e9f1.ctex"
+uid="uid://votu6psxetlx"
+path="res://.godot/imported/I5050-6.png-f85512ec4053db5eb462f41b5c09bf06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/fireball_V_1_1/B500-3.PNG"
-dest_files=["res://.godot/imported/B500-3.PNG-729a4baca1962e2c0e481e17a986e9f1.ctex"]
+source_file="res://Asset/weapons/ice_shard/I5050-6.png"
+dest_files=["res://.godot/imported/I5050-6.png-f85512ec4053db5eb462f41b5c09bf06.ctex"]
 
 [params]
 

@@ -5,6 +5,11 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var ledge_detector: RayCast2D = $LedgeDetector
+@onready var healthbar: TextureProgressBar = $healthbar
+#endregion
+
+#region Resource variables
+@export var stat : Stats
 #endregion
 
 #region Normal Variables
@@ -12,6 +17,11 @@ var direction : float = 1.0
 var knock_back : float = 0.0
 @export var speed : float = 40.0
 #endregion
+
+func _ready() -> void:
+	print(stat.health)
+	print(stat.max_health)
+	pass
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

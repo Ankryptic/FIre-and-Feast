@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dsd45eb3073we"]
+[gd_scene load_steps=27 format=3 uid="uid://dsd45eb3073we"]
 
 [ext_resource type="Texture2D" uid="uid://dd010tmajp0xu" path="res://Asset/sprites/knight.png" id="1_kelma"]
 [ext_resource type="Script" uid="uid://b0vutthn8ydk3" path="res://Script/player.gd" id="1_y8w33"]
+[ext_resource type="Resource" uid="uid://c8ye0hwbx3yft" path="res://MyResources/Stats.tres" id="2_xa75v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kelma"]
 atlas = ExtResource("1_kelma")
@@ -174,6 +175,7 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" groups=["player_group"]]
 collision_layer = 3
 script = ExtResource("1_y8w33")
+PlayerStat = ExtResource("2_xa75v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

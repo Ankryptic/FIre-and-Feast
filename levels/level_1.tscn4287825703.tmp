@@ -305,6 +305,7 @@ sources/0 = SubResource("TileSetAtlasSource_w51g1")
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 health = 100
+max_health = null
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="Animation" id="Animation_8f6ah"]

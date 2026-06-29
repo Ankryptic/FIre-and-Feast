@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuq4ngolxqkop"
-path="res://.godot/imported/B500-4.PNG-59d54d4e48e17861490c187ec7b0e1b8.ctex"
+uid="uid://c83ipugg8paep"
+path="res://.godot/imported/B500-2.PNG-aa2bffb58c0816824a2c8f9954583e25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/fireball_V_1_1/B500-4.PNG"
-dest_files=["res://.godot/imported/B500-4.PNG-59d54d4e48e17861490c187ec7b0e1b8.ctex"]
+source_file="res://Asset/weapons/fireball_V_1_1/B500-2.PNG"
+dest_files=["res://.godot/imported/B500-2.PNG-aa2bffb58c0816824a2c8f9954583e25.ctex"]
 
 [params]
 
