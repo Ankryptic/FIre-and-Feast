@@ -19,24 +19,30 @@ var knock_back : float = 0.0
 #endregion
 
 func _ready() -> void:
-	print(stat.health)
-	print(stat.max_health)
-	pass
+	stat.initialize()
+	healthbar.max_value = stat.max_health
+	healthbar.value = stat.health
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 	
-	if wall_detector.is_colliding():
-		change_direction()
-	
-	if !ledge_detector.is_colliding():
-		change_direction()
+	setup_gravity(delta)
+	collision_detector()
 	
 	velocity.x = speed * direction + knock_back
 	knock_back = move_toward(knock_back, 0, 500 * delta)
 	
 	move_and_slide()
+
+func setup_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+func collision_detector() -> void:
+	if wall_detector.is_colliding():
+		change_direction()
+	
+	if !ledge_detector.is_colliding():
+		change_direction()
 
 func change_direction() -> void:
 	wall_detector.target_position *= -1

@@ -1,4 +1,3 @@
-class_name GlobalManagerClass
 extends Node2D
 
 signal update_score

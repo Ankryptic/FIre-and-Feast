@@ -1,19 +1,16 @@
 class_name Stats
 extends Resource
 
-@export var health : int :
-	set(value) : healthUpdate(value)
-	
-@export var max_health : int 
+signal update_health_bar(cur_health : int, max_health : int)
 
-func _init() -> void:
-	pass
+@export var max_health : int = 100
+var health : int :
+	set(value) : 
+		health = clampi(value, 0, max_health)
+		update_health_bar.emit(health, max_health)
 
-##Update the Owner health bar
-func healthUpdate(value) -> void:
-	health = clampi(value, 0, max_health)
+#func _init() -> void:
+	#_setup_func.call_deferred()
 
-func update_heatlh_bar() -> int:
-	var health_percent := health / max_health * 100
-	print(health_percent)
-	return health_percent
+func initialize() -> void:
+	health = max_health
