@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://e5fxeq52m26g"]
+[gd_scene load_steps=27 format=3 uid="uid://e5fxeq52m26g"]
 
 [ext_resource type="Script" uid="uid://dui63lbcfjrcn" path="res://Script/green_slime.gd" id="1_arbwv"]
 [ext_resource type="Texture2D" uid="uid://bohxtovo2hjam" path="res://Asset/sprites/slime_green.png" id="1_vqynf"]
@@ -11,6 +11,22 @@ resource_local_to_scene = true
 script = ExtResource("2_mgqwm")
 max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgqwm"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1180"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fwfs"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4ttb"]
+atlas = ExtResource("1_vqynf")
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mh1aa"]
 atlas = ExtResource("1_vqynf")
@@ -34,6 +50,26 @@ region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_arbwv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgqwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1180")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fwfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4ttb")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mh1aa")
