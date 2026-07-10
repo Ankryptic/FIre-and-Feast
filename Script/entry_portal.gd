@@ -4,11 +4,10 @@ extends Node2D
 @onready var particles: AnimatedSprite2D = $particles
 
 func _ready() -> void:
-	appear()
-
-
+	visible = false
 
 func appear() -> void:
+	visible = true
 	portal.play("default")
 	await portal.animation_finished
 	

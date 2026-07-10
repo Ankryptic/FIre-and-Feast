@@ -12,6 +12,7 @@ const JUMP_VELOCITY = -300.0
 
 #region regular variables
 var active_spawn_point : Node = right_spawn_point
+var in_cutscene := false
 #endregion
 
 #region Onready variables
@@ -24,22 +25,24 @@ var active_spawn_point : Node = right_spawn_point
 
 
 func _process(_delta: float) -> void:
-	handle_projectile()
+	if !in_cutscene:
+		handle_projectile()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	add_gravity(delta)
-
-	# Handle jump.
-	handle_jump()
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("move_left", "move_right")
-	handle_movement(direction)
 	
-	# Play Animation
-	handle_animation(direction)
+	
+	## Handle the player control according to the cutscene
+	if in_cutscene:
+		pass
+	elif !in_cutscene:
+		var direction := Input.get_axis("move_left", "move_right")
+		
+		handle_movement(direction)
+		handle_jump()
+		handle_animation(direction)
+	
 	
 	move_and_slide()
 
