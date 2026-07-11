@@ -80,6 +80,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vkbwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbwm"]
+size = Vector2(29, 3)
+
 [node name="Entry" type="Node2D" unique_id=1810939661]
 script = ExtResource("1_73fyg")
 
@@ -94,3 +99,11 @@ position = Vector2(0.99999917, 0.5000005)
 scale = Vector2(0.75, 0.96875)
 sprite_frames = SubResource("SpriteFrames_ims7y")
 frame_progress = 0.25811645
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=837623890]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_vkbwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=767630247]
+position = Vector2(0.5, 12)
+shape = SubResource("RectangleShape2D_vkbwm")
