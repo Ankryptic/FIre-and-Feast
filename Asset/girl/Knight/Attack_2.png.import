@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vqjyx2ifljw0"
-path="res://.godot/imported/Medieval_character_asset_pack.png-84a72b1091d74e6df0e7f92bc5773f07.ctex"
+uid="uid://cwtcacqulovoa"
+path="res://.godot/imported/Attack_2.png-2c520dcb233132bd3104d1c50ddcbb95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/girl/Medieval_character_asset_pack.png"
-dest_files=["res://.godot/imported/Medieval_character_asset_pack.png-84a72b1091d74e6df0e7f92bc5773f07.ctex"]
+source_file="res://Asset/girl/Knight/Attack_2.png"
+dest_files=["res://.godot/imported/Attack_2.png-2c520dcb233132bd3104d1c50ddcbb95.ctex"]
 
 [params]
 

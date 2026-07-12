@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u2gqw5w87f2"
-path="res://.godot/imported/momoka_sheet.png-9e222ead6a9dc546e60a44f661ecefae.ctex"
+uid="uid://c3mqbaw7c6bri"
+path="res://.godot/imported/Run.png-54a7948054fd982ac28f3355146d5e83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/girl/momoka_sheet.png"
-dest_files=["res://.godot/imported/momoka_sheet.png-9e222ead6a9dc546e60a44f661ecefae.ctex"]
+source_file="res://Asset/girl/Knight/Run.png"
+dest_files=["res://.godot/imported/Run.png-54a7948054fd982ac28f3355146d5e83.ctex"]
 
 [params]
 
