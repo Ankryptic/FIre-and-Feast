@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d136utgf0su5g"]
 
+[ext_resource type="Script" uid="uid://c810jpcw2k1a7" path="res://Scene/girl.gd" id="1_a3t30"]
 [ext_resource type="Texture2D" uid="uid://cq0mi3iblxm8f" path="res://Asset/girl/Knight/Attack_1.png" id="2_a3t30"]
 [ext_resource type="Texture2D" uid="uid://cwtcacqulovoa" path="res://Asset/girl/Knight/Attack_2.png" id="3_ea8nk"]
 [ext_resource type="Texture2D" uid="uid://igp4u3e1ah6k" path="res://Asset/girl/Knight/Attack_3.png" id="4_6tiyb"]
@@ -418,7 +419,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkbwm"]
@@ -426,13 +427,15 @@ radius = 2.0
 height = 14.0
 
 [node name="Girl" type="CharacterBody2D" unique_id=1225388190]
+script = ExtResource("1_a3t30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=108401564]
 position = Vector2(0, -16)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_fk4ie")
-animation = &"idle"
-frame_progress = 0.7093493
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.063473254
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1250114574]
 position = Vector2(-2, -7)

@@ -1,5 +1,7 @@
 extends Node2D
 
+## This portal is for Entry
+
 @export var entry_time: int
 
 @onready var portal: AnimatedSprite2D = $portal
