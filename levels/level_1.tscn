@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://usxqjbf53qt7" path="res://Script/cut_scene_manager.gd" id="9_08mmt"]
 [ext_resource type="Script" uid="uid://fq3ubhq67qdg" path="res://Script/level_1_chapter_1.gd" id="10_5ot28"]
 [ext_resource type="PackedScene" uid="uid://d136utgf0su5g" path="res://Scene/girl.tscn" id="12_aerfg"]
+[ext_resource type="PackedScene" uid="uid://b005jf7hbt1k5" path="res://Scene/main_boss.tscn" id="13_nmsli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8jt7"]
 texture = ExtResource("1_gwceb")
@@ -305,7 +306,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_w51g1")
 
-[sub_resource type="Resource" id="Resource_aerfg"]
+[sub_resource type="Resource" id="Resource_betor"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 max_health = 40
@@ -352,18 +353,6 @@ _data = {
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ihreq"]
 distance = -148.0
 
-[sub_resource type="Resource" id="Resource_nmsli"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
-[sub_resource type="Resource" id="Resource_betor"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
 [sub_resource type="Resource" id="Resource_vjtdm"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
@@ -371,6 +360,18 @@ max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="Resource" id="Resource_bgw3c"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="Resource" id="Resource_lrvbd"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="Resource" id="Resource_oqlok"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 max_health = 40
@@ -394,7 +395,7 @@ z_index = 10
 position = Vector2(-97, 9)
 collision_layer = 2
 collision_mask = 53
-PlayerStat = SubResource("Resource_aerfg")
+PlayerStat = SubResource("Resource_betor")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=582074132]
@@ -489,42 +490,47 @@ unique_name_in_owner = true
 
 [node name="GreenSlime" parent="." unique_id=1083359386 instance=ExtResource("7_gwceb")]
 position = Vector2(198, -5)
-stat = SubResource("Resource_nmsli")
+stat = SubResource("Resource_vjtdm")
 
 [node name="GreenSlime2" parent="." unique_id=1751502542 instance=ExtResource("7_gwceb")]
 position = Vector2(787, -130)
-stat = SubResource("Resource_betor")
+stat = SubResource("Resource_bgw3c")
 
 [node name="GreenSlime3" parent="." unique_id=1703099097 instance=ExtResource("7_gwceb")]
 position = Vector2(836, -408)
-stat = SubResource("Resource_vjtdm")
+stat = SubResource("Resource_lrvbd")
 
 [node name="GreenSlime4" parent="." unique_id=787119529 instance=ExtResource("7_gwceb")]
 position = Vector2(1343, -293)
-stat = SubResource("Resource_bgw3c")
+stat = SubResource("Resource_oqlok")
 
 [node name="CutSceneManager" type="Node2D" parent="." unique_id=1546232147]
 script = ExtResource("9_08mmt")
 
-[node name="Level1Chapter1" type="Node2D" parent="CutSceneManager" unique_id=2072524060]
+[node name="SceneManager" type="Node2D" parent="CutSceneManager" unique_id=2072524060 node_paths=PackedStringArray("player", "girl")]
 script = ExtResource("10_5ot28")
+player = NodePath("../../Player")
+girl = NodePath("Girl")
 
-[node name="EntryPortal" parent="CutSceneManager/Level1Chapter1" unique_id=1810939661 instance=ExtResource("9_3sk1a")]
+[node name="EntryPortal" parent="CutSceneManager/SceneManager" unique_id=1810939661 instance=ExtResource("9_3sk1a")]
 position = Vector2(-99, 0)
 entry_time = 3
 
-[node name="Path2D" type="Path2D" parent="CutSceneManager/Level1Chapter1" unique_id=57990022]
+[node name="Path2D" type="Path2D" parent="CutSceneManager/SceneManager" unique_id=57990022]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="CutSceneManager/Level1Chapter1/Path2D" unique_id=1848878952]
+[node name="PathFollow2D" type="PathFollow2D" parent="CutSceneManager/SceneManager/Path2D" unique_id=1848878952]
 position = Vector2(228.98438, -30.368828)
 progress = 2385.29
 rotates = false
 loop = false
 
-[node name="Camera2D" type="Camera2D" parent="CutSceneManager/Level1Chapter1/Path2D/PathFollow2D" unique_id=1004073823]
+[node name="Camera2D" type="Camera2D" parent="CutSceneManager/SceneManager/Path2D/PathFollow2D" unique_id=1004073823]
 position = Vector2(1747.641, -177.936)
 zoom = Vector2(8.56, 8.56)
 metadata/_edit_lock_ = true
 
-[node name="Girl" parent="." unique_id=1225388190 instance=ExtResource("12_aerfg")]
+[node name="Girl" parent="CutSceneManager/SceneManager" unique_id=1225388190 instance=ExtResource("12_aerfg")]
 position = Vector2(1894, -160)
+
+[node name="MainBoss" parent="CutSceneManager/SceneManager" unique_id=831273967 instance=ExtResource("13_nmsli")]
+visible = false
