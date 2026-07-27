@@ -4,6 +4,6 @@ extends Area2D
 var value :int = 1
 
 func _on_body_entered(_body: Node2D) -> void:
-	GlobalManager.score += value 
+	#GlobalManager.score += value 
 	#GlobalManager.update_score.emit()
 	animation_player.play("collect")

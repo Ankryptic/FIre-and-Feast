@@ -65,8 +65,7 @@ func toggle_visibility(object : MarginContainer) -> void:
 		anim_player.play('open_' + object.name)
 
 func start_new_game() -> void:
-	get_tree().change_scene_to_packed(MainScene);
-	queue_free();
+	SceneManager.load_scene("uid://cq4i2k3s7sv0y")
 
 func exit_button_pressed() -> void:
 	get_tree().quit();

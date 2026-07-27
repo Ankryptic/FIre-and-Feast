@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BackgroundMusic="*uid://bb3rd0v8xqrak"
-GlobalManager="*uid://my2y21086tdd"
+SceneManager="*uid://cuyw2l1brywhc"
 
 [display]
 
