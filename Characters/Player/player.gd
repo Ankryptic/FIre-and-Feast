@@ -19,7 +19,7 @@ var in_cutscene := false
 
 #region Onready variables
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var projectile := preload("res://Scene/fireball.tscn")
+@onready var projectile := preload("uid://bqbsoy4gs1ghh")
 @onready var right_spawn_point: Marker2D = $RightSpawnPoint
 @onready var left_spawn_point: Marker2D = $LeftSpawnPoint
 @onready var projectiles: Node = %Projectiles

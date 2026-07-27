@@ -21,8 +21,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-BackgroundMusic="*res://Scene/background_music.tscn"
-GlobalManager="*res://Script/global.gd"
+BackgroundMusic="*uid://bb3rd0v8xqrak"
+GlobalManager="*uid://my2y21086tdd"
 
 [display]
 

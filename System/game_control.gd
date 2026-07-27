@@ -8,7 +8,6 @@ var current_level : Node2D
 @export var current_ui : Control
 
 func _ready() -> void:
-	GlobalManager.GameControl = self
 	var new_scene : PackedScene = load("uid://bwev0exxtw037")
 	update_ui(new_scene)
 
@@ -18,6 +17,8 @@ func update_ui(new_scene : PackedScene) -> void:
 		current_ui.queue_free();
 	
 	var new = new_scene.instantiate()
-	get_tree().change_scene_to_packed(new)
-	add_child(new)
+	current_ui = new
+	
+	if new:
+		ui.add_child(new)
 	

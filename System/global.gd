@@ -5,5 +5,3 @@ var score:int = 0:
 	set(value):
 		score = value
 		update_score.emit()
-
-var GameControl : Node

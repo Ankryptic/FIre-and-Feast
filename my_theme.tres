@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://d201ejjbknauw"]
+[gd_resource type="Theme" format=3 uid="uid://d201ejjbknauw"]
 
 [ext_resource type="FontFile" uid="uid://bam2ypvsp7qml" path="res://Asset/fonts/architect-s-daughter/ArchitectsDaughter.ttf" id="1_pvayc"]
 [ext_resource type="Texture2D" uid="uid://d0yp1h25obqt5" path="res://Asset/MegaPackFree/UIBundleFree/freefantasy.png" id="2_djh02"]
