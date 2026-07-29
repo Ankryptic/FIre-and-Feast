@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bwev0exxtw037"]
+[gd_scene format=3 uid="uid://bwev0exxtw037"]
 
 [ext_resource type="Texture2D" uid="uid://bd1dls0kc4k24" path="res://Asset/MegaPackFree/UIBundleFree/MediavelFree.png" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://5exsibfcg05l" path="res://Script/main_menu.gd" id="1_pvidh"]
-[ext_resource type="Script" uid="uid://cvx64hu531akl" path="res://Script/ghost_reveal.gd" id="2_hii65"]
-[ext_resource type="Script" uid="uid://d17j635ywqrfs" path="res://Script/title.gd" id="3_hii65"]
+[ext_resource type="Script" uid="uid://5exsibfcg05l" path="res://UI/MainMenu/main_menu.gd" id="1_pvidh"]
+[ext_resource type="Script" uid="uid://cvx64hu531akl" path="res://MyResources/ghost_reveal.gd" id="2_hii65"]
+[ext_resource type="Script" uid="uid://d17j635ywqrfs" path="res://UI/title.gd" id="3_hii65"]
 [ext_resource type="Texture2D" uid="uid://hkxhe80ihn8r" path="res://Asset/main_menu_bg/background_image2.png" id="3_s2f1d"]
 [ext_resource type="Theme" uid="uid://d201ejjbknauw" path="res://my_theme.tres" id="4_kqsxi"]
 [ext_resource type="Texture2D" uid="uid://d0yp1h25obqt5" path="res://Asset/MegaPackFree/UIBundleFree/freefantasy.png" id="6_hptlk"]
@@ -298,7 +298,7 @@ _data = {
 &"open_settings": SubResource("Animation_oqads")
 }
 
-[node name="Main Menu" type="Control" node_paths=PackedStringArray("menu", "settings", "resumeBtn", "newGameBtn", "settingsBtn", "exitBtn", "close_setting", "minVolBtn", "muteVolBtn", "volume_slider")]
+[node name="Main Menu" type="Control" unique_id=1800900646 node_paths=PackedStringArray("menu", "settings", "resumeBtn", "newGameBtn", "settingsBtn", "exitBtn", "close_setting", "minVolBtn", "muteVolBtn", "volume_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,7 +318,7 @@ minVolBtn = NodePath("settings/settingsVBox/settings/MarginContainer/VBoxContain
 muteVolBtn = NodePath("settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer/muteVolBtn")
 volume_slider = NodePath("settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer/HSlider")
 
-[node name="background" type="NinePatchRect" parent="."]
+[node name="background" type="NinePatchRect" parent="." unique_id=1960440242]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -328,13 +328,13 @@ grow_vertical = 2
 texture = ExtResource("3_s2f1d")
 region_rect = Rect2(-3, 4, 1570, 847)
 
-[node name="titleContainer" type="MarginContainer" parent="."]
+[node name="titleContainer" type="MarginContainer" parent="." unique_id=649529140]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 350.0
 size_flags_vertical = 4
 
-[node name="Title" type="RichTextLabel" parent="titleContainer"]
+[node name="Title" type="RichTextLabel" parent="titleContainer" unique_id=1165517385]
 custom_minimum_size = Vector2(1000, 350)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -345,7 +345,7 @@ text = "[fadeIn]Noice[/fadeIn]"
 custom_effects = [SubResource("RichTextEffect_kqsxi")]
 script = ExtResource("3_hii65")
 
-[node name="menu" type="MarginContainer" parent="."]
+[node name="menu" type="MarginContainer" parent="." unique_id=412661556]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -361,13 +361,13 @@ grow_vertical = 2
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 
-[node name="VBoxContainer" type="VBoxContainer" parent="menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="menu" unique_id=1837025335]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="resume_btn" type="Button" parent="menu/VBoxContainer"]
+[node name="resume_btn" type="Button" parent="menu/VBoxContainer" unique_id=2059673792]
 visible = false
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
@@ -375,26 +375,26 @@ size_flags_horizontal = 4
 theme_override_constants/outline_size = 34
 text = "Resume"
 
-[node name="newGame_btn" type="Button" parent="menu/VBoxContainer"]
+[node name="newGame_btn" type="Button" parent="menu/VBoxContainer" unique_id=697728088]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "New Game"
 
-[node name="setting_btn" type="Button" parent="menu/VBoxContainer"]
+[node name="setting_btn" type="Button" parent="menu/VBoxContainer" unique_id=436209303]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "settings
 "
 
-[node name="exit_btn" type="Button" parent="menu/VBoxContainer"]
+[node name="exit_btn" type="Button" parent="menu/VBoxContainer" unique_id=221478164]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Exit"
 
-[node name="settings" type="MarginContainer" parent="."]
+[node name="settings" type="MarginContainer" parent="." unique_id=539130183]
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -410,25 +410,25 @@ grow_vertical = 2
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 
-[node name="settingsVBox" type="VBoxContainer" parent="settings"]
+[node name="settingsVBox" type="VBoxContainer" parent="settings" unique_id=546705703]
 layout_mode = 2
 theme = ExtResource("4_kqsxi")
 
-[node name="Label" type="Label" parent="settings/settingsVBox"]
+[node name="Label" type="Label" parent="settings/settingsVBox" unique_id=303016257]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 30
 theme_override_font_sizes/font_size = 48
 text = "Settings"
 
-[node name="settings" type="Panel" parent="settings/settingsVBox"]
+[node name="settings" type="Panel" parent="settings/settingsVBox" unique_id=363993487]
 custom_minimum_size = Vector2(700, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_pvidh")
 
-[node name="MarginContainer" type="MarginContainer" parent="settings/settingsVBox/settings"]
+[node name="MarginContainer" type="MarginContainer" parent="settings/settingsVBox/settings" unique_id=820263375]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -445,23 +445,23 @@ theme_override_constants/margin_left = 45
 theme_override_constants/margin_right = 45
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="settings/settingsVBox/settings/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="settings/settingsVBox/settings/MarginContainer" unique_id=1505737038]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer" unique_id=1645446336]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 48
 text = "Music"
 
-[node name="settingsContainer" type="HBoxContainer" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer"]
+[node name="settingsContainer" type="HBoxContainer" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer" unique_id=80399768]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 
-[node name="muteVolBtn" type="Button" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer"]
+[node name="muteVolBtn" type="Button" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer" unique_id=646566058]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -470,7 +470,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_oqads")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_oqads")
 theme_override_styles/hover = SubResource("StyleBoxTexture_oqads")
 
-[node name="HSlider" type="HSlider" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer"]
+[node name="HSlider" type="HSlider" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer" unique_id=648256454]
 custom_minimum_size = Vector2(350, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -479,7 +479,7 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="minVolume_btn" type="Button" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer"]
+[node name="minVolume_btn" type="Button" parent="settings/settingsVBox/settings/MarginContainer/VBoxContainer/settingsContainer" unique_id=2132320344]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -488,7 +488,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_s2f1d")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2f1d")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s2f1d")
 
-[node name="MarginContainer2" type="MarginContainer" parent="settings/settingsVBox/settings"]
+[node name="MarginContainer2" type="MarginContainer" parent="settings/settingsVBox/settings" unique_id=1288799889]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -502,7 +502,7 @@ theme_override_constants/margin_top = -15
 theme_override_constants/margin_right = -35
 theme_override_constants/margin_bottom = 20
 
-[node name="close_setting_btn" type="Button" parent="settings/settingsVBox/settings/MarginContainer2"]
+[node name="close_setting_btn" type="Button" parent="settings/settingsVBox/settings/MarginContainer2" unique_id=1605374715]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -510,7 +510,5 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_hag5k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_hag5k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hag5k")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ejkra")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1582658058]
+libraries/ = SubResource("AnimationLibrary_ejkra")

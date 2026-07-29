@@ -6,6 +6,8 @@ extends Control
 @export var settings : MarginContainer
 #endregion
 
+@export var MainScene : String = "uid://bkpes4wn5yval"
+
 #region buttons
 @export var resumeBtn : Button
 @export var newGameBtn : Button
@@ -23,10 +25,6 @@ extends Control
 @export var volume_slider : HSlider
 #endregion
 
-#region music management
-var music = AudioServer.get_bus_index("Music")
-#endregion
-
 #region Array of button, hover_property and pressed_property
 var all_btn : Array[Button]
 var hover_property : Vector2 = Vector2(1.1, 1.1)
@@ -34,7 +32,6 @@ var pressed_property : Vector2 = Vector2(0.9, 0.9)
 var tween : Tween
 #endregion
 
-@export var MainScene : PackedScene = preload("uid://bkpes4wn5yval")
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
@@ -86,7 +83,8 @@ func _close_settings() -> void:
 	toggle_visibility(settings)
 
 func set_volume(value: float) -> void:
-	AudioServer.set_bus_volume_db(music, linear_to_db(value))
+	#AudioServer.set_bus_volume_db(music, linear_to_db(value))
+	AudioManager.set_volume(value)
 
 func _on_mouse_hover(button : Button) -> void:
 	_init_pivot_point(button)

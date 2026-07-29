@@ -3,7 +3,7 @@ extends Node
 
 # main game script
 
-@export var current_ui : Control
+var current_ui : Control
 
 var next_level: String = "uid://bkpes4wn5yval"
 var current_level : Node2D
@@ -12,10 +12,13 @@ var current_level : Node2D
 
 func _ready() -> void:
 	load_level(next_level)
+	
+	var bus_index = AudioServer.get_bus_index(AudioManager.curr_music)
+	print("After scene change:", AudioServer.get_bus_volume_db(bus_index))
 
 
-func load_level(next_level: String) -> void:
-	var new_scene: PackedScene = ResourceLoader.load(next_level, "PackedScene") as PackedScene
+func load_level(new_level: String) -> void:
+	var new_scene: PackedScene = ResourceLoader.load(new_level, "PackedScene") as PackedScene
 	
 	if (new_scene != null):
 		var level := new_scene.instantiate();

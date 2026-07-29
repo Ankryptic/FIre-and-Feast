@@ -15,14 +15,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Fire And Feast"
+config/tags=PackedStringArray("2d", "platformer")
 run/main_scene="uid://bwev0exxtw037"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-BackgroundMusic="*uid://bb3rd0v8xqrak"
 SceneManager="*uid://cuyw2l1brywhc"
+AudioManager="*uid://cf7px5fx6r430"
 
 [display]
 
