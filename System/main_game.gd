@@ -12,9 +12,6 @@ var current_level : Node2D
 
 func _ready() -> void:
 	load_level(next_level)
-	
-	var bus_index = AudioServer.get_bus_index(AudioManager.curr_music)
-	print("After scene change:", AudioServer.get_bus_volume_db(bus_index))
 
 
 func load_level(new_level: String) -> void:

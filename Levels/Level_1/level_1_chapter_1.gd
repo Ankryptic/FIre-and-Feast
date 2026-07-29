@@ -12,8 +12,8 @@ enum Scenes{
 
 #region characters and export variables
 @export_group("Characters")
-@export var player: Player
-@export var main_boss: CharacterBody2D
+var player: Player
+var main_boss_path: String = "uid://b005jf7hbt1k5"
 @export var girl: CharacterBody2D
 
 @export_group("")
@@ -27,7 +27,6 @@ var target_distance: float
 
 #region onready variables
 @onready var cut_scene_manager: CutSceneManager = $".."
-@onready var entry_portal: Node2D = $EntryPortal
 @onready var cam: Camera2D = $Path2D/PathFollow2D/Camera2D
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 #endregion
