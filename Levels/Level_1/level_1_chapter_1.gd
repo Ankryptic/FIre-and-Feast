@@ -10,17 +10,13 @@ enum Scenes{
 }
 
 
-#region characters and export variables
-@export_group("Characters")
-var player: Player
-var main_boss_path: String = "uid://b005jf7hbt1k5"
 @export var girl: CharacterBody2D
-
-@export_group("")
 @export var cam_speed := 10
-#endregion
 
 #region normal variables
+var player: Player
+var main_boss_path: String = "uid://b005jf7hbt1k5"
+var portal_path: String = ""
 var curr_scene: Scenes = Scenes.SCENE_1
 var target_distance: float
 #endregion

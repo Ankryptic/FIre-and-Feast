@@ -1,37 +1,37 @@
 [gd_scene format=3 uid="uid://c34yyw0lmmfud"]
 
-[ext_resource type="Texture2D" uid="uid://c7iyfvty2jx7g" path="res://Asset/portal/Portal-Sheet.png" id="1_5qjjs"]
-[ext_resource type="Script" uid="uid://l4n4n4rq2amy" path="res://Script/entry_portal.gd" id="1_73fyg"]
-[ext_resource type="Texture2D" uid="uid://crf55wg1lytar" path="res://Asset/portal/Particle Effect 1.png" id="2_m52f8"]
-[ext_resource type="Texture2D" uid="uid://deerb52h1l2ad" path="res://Asset/portal/Particle Effect 2.png" id="3_73fyg"]
-[ext_resource type="Texture2D" uid="uid://coocmk3j3lb6g" path="res://Asset/portal/Particle Effect 3.png" id="4_1v8vd"]
+[ext_resource type="Script" uid="uid://l4n4n4rq2amy" path="res://Objects/Portals/portal.gd" id="1_1e4gg"]
+[ext_resource type="Texture2D" uid="uid://c7iyfvty2jx7g" path="res://Asset/portal/Portal-Sheet.png" id="1_o3xfc"]
+[ext_resource type="Texture2D" uid="uid://crf55wg1lytar" path="res://Asset/portal/Particle Effect 1.png" id="2_1e4gg"]
+[ext_resource type="Texture2D" uid="uid://deerb52h1l2ad" path="res://Asset/portal/Particle Effect 2.png" id="3_4rpmc"]
+[ext_resource type="Texture2D" uid="uid://coocmk3j3lb6g" path="res://Asset/portal/Particle Effect 3.png" id="4_p3ikb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2k267"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xmf61"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m52f8"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73fyg"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1v8vd"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ims7y"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vhbbb"]
-atlas = ExtResource("1_5qjjs")
+atlas = ExtResource("1_o3xfc")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wb5gp"]
@@ -67,13 +67,13 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_m52f8")
+"texture": ExtResource("2_1e4gg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_73fyg")
+"texture": ExtResource("3_4rpmc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_1v8vd")
+"texture": ExtResource("4_p3ikb")
 }],
 "loop": 1,
 "name": &"default",
@@ -85,8 +85,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbwm"]
 size = Vector2(29, 3)
 
-[node name="Entry" type="Node2D" unique_id=1810939661]
-script = ExtResource("1_73fyg")
+[node name="Portal" type="Node2D" unique_id=1810939661]
+script = ExtResource("1_1e4gg")
 
 [node name="portal" type="AnimatedSprite2D" parent="." unique_id=2064596169]
 sprite_frames = SubResource("SpriteFrames_wb5gp")

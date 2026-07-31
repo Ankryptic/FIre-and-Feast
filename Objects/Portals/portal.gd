@@ -1,12 +1,16 @@
 extends Node2D
 
-## This portal is for Entry
+## Portal Script
 
-@export var entry_time: int
+var entry_time: int
+var isNormal := true
+var auto_dissappear := true
+var dissapp_time: int = 1
 
 @onready var portal: AnimatedSprite2D = $portal
 @onready var particles: AnimatedSprite2D = $particles
 @onready var static_body: StaticBody2D = $StaticBody2D
+
 
 func _ready() -> void:
 	visible = false
@@ -19,11 +23,15 @@ func appear() -> void:
 	particles.play("default")
 	var tween = create_tween()
 	tween.tween_property(particles, "modulate:a", 1.0, 0.5)
-	await get_tree().create_timer(entry_time).timeout
-	static_body.queue_free()
 	
-	await get_tree().create_timer(3).timeout
-	dissappear()
+	## Controls the static body
+	if not isNormal:
+		await get_tree().create_timer(entry_time).timeout
+		static_body.queue_free()
+	
+	if auto_dissappear:
+		await get_tree().create_timer(dissapp_time).timeout
+		dissappear()
 
 
 func dissappear() -> void:
