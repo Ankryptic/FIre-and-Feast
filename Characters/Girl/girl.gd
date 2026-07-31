@@ -58,3 +58,11 @@ func manage_state() -> void:
 			actress.play("walk")
 		States.RUN:
 			actress.play("run")
+
+
+## Controls the Character Faces to Which Direction
+func turn_to(direction: int) -> void:
+	if direction == 1:
+		actress.flip_h = false
+	elif direction == -1:
+		actress.flip_h = true

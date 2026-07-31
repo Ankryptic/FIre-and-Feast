@@ -4,7 +4,7 @@ extends Node2D
 
 var entry_time: int
 var isNormal := true
-var auto_dissappear := true
+var auto_dissapp := true
 var dissapp_time: int = 1
 
 @onready var portal: AnimatedSprite2D = $portal
@@ -29,7 +29,7 @@ func appear() -> void:
 		await get_tree().create_timer(entry_time).timeout
 		static_body.queue_free()
 	
-	if auto_dissappear:
+	if auto_dissapp:
 		await get_tree().create_timer(dissapp_time).timeout
 		dissappear()
 

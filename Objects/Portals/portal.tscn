@@ -86,6 +86,7 @@ animations = [{
 size = Vector2(29, 3)
 
 [node name="Portal" type="Node2D" unique_id=1810939661]
+scale = Vector2(0.85, 0.85)
 script = ExtResource("1_1e4gg")
 
 [node name="portal" type="AnimatedSprite2D" parent="." unique_id=2064596169]
