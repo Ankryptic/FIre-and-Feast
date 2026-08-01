@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b005jf7hbt1k5"]
 
-[ext_resource type="Script" uid="uid://mrfavbf15f2p" path="res://Script/main_boss.gd" id="1_4uvxy"]
+[ext_resource type="Script" uid="uid://mrfavbf15f2p" path="res://Enemy/Main_Boss/main_boss.gd" id="1_4uvxy"]
 [ext_resource type="Texture2D" uid="uid://bkoxpylsyfy2k" path="res://Asset/forest_bosses/3/Attack1.png" id="1_yabxn"]
 [ext_resource type="Texture2D" uid="uid://c61yleo2bia5l" path="res://Asset/forest_bosses/3/Attack3.png" id="2_4uvxy"]
 [ext_resource type="Texture2D" uid="uid://c211s0r1xle1b" path="res://Asset/forest_bosses/3/Death.png" id="3_83o03"]

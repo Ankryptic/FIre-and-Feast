@@ -50,6 +50,18 @@ func manage_current_scene(delta: float) -> void:
 			scene_3()
 
 
+## fade in animation
+func fade_in(obj: Node2D) -> void:
+	var tween = create_tween()
+	tween.tween_property(obj, "modulate:a", 1, 0.2)
+
+
+## fade out animation
+func fade_out(obj: Node2D) -> void:
+	var tween = create_tween()
+	tween.tween_property(obj, "modulate:a", 0, 0.2)
+
+
 ## set the desired location target and stores value in target_distance
 func set_target(actor: CharacterBody2D, offset: float) -> void:
 	target_distance = actor.global_position.x + offset
@@ -88,7 +100,9 @@ func main_boss_appears() -> void:
 	var new_scene = ResourceLoader.load(main_boss_path, "PackedScene") as PackedScene
 	var main_boss = new_scene.instantiate()
 	await get_tree().create_timer(2).timeout
+	main_boss.modulate.a = 0
 	main_boss.global_position = main_boss_sp.global_position
+	fade_in(main_boss)
 	entity.add_child(main_boss)
 
 
