@@ -345,6 +345,18 @@ _data = {
 &"left_right": SubResource("Animation_sagxc")
 }
 
+[sub_resource type="Resource" id="Resource_vbnv0"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="Resource" id="Resource_fhktt"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
 [sub_resource type="Resource" id="Resource_eepv7"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
@@ -352,18 +364,6 @@ max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="Resource" id="Resource_llsuh"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
-[sub_resource type="Resource" id="Resource_2e10j"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
-[sub_resource type="Resource" id="Resource_odamq"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 max_health = 40
@@ -476,19 +476,19 @@ position = Vector2(1908, -225)
 
 [node name="GreenSlime" parent="EnemyContainer" unique_id=1083359386 instance=ExtResource("7_gwceb")]
 position = Vector2(198, -5)
-stat = SubResource("Resource_eepv7")
+stat = SubResource("Resource_vbnv0")
 
 [node name="GreenSlime2" parent="EnemyContainer" unique_id=1751502542 instance=ExtResource("7_gwceb")]
 position = Vector2(787, -130)
-stat = SubResource("Resource_llsuh")
+stat = SubResource("Resource_fhktt")
 
 [node name="GreenSlime3" parent="EnemyContainer" unique_id=1703099097 instance=ExtResource("7_gwceb")]
 position = Vector2(836, -408)
-stat = SubResource("Resource_2e10j")
+stat = SubResource("Resource_eepv7")
 
 [node name="GreenSlime4" parent="EnemyContainer" unique_id=787119529 instance=ExtResource("7_gwceb")]
 position = Vector2(1343, -293)
-stat = SubResource("Resource_odamq")
+stat = SubResource("Resource_llsuh")
 
 [node name="ObjectContainer" type="Node" parent="." unique_id=929547511]
 

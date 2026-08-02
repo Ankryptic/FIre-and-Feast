@@ -1,3 +1,4 @@
+class_name MainBoss
 extends CharacterBody2D
 
 # Main Boss Script
