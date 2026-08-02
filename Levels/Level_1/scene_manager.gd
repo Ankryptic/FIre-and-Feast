@@ -19,6 +19,7 @@ var main_boss_path: String = "uid://b005jf7hbt1k5"
 var portal_path: String = "uid://c34yyw0lmmfud"
 var curr_scene: Scenes = Scenes.SCENE_1
 var target_distance: float
+var portal: Node2D
 #endregion
 
 #region onready variables
@@ -48,12 +49,16 @@ func manage_current_scene(delta: float) -> void:
 			scene_2(delta)
 		Scenes.SCENE_3:
 			scene_3()
+		Scenes.SCENE_4:
+			scene_4()
 
 
 ## fade in animation
-func fade_in(obj: Node2D) -> void:
+func fade_in(obj: Node2D) -> bool:
 	var tween = create_tween()
 	tween.tween_property(obj, "modulate:a", 1, 0.2)
+	await tween.finished
+	return true
 
 
 ## fade out animation
@@ -87,12 +92,21 @@ func walk_to(target: float, actor: CharacterBody2D) -> bool:
 ## Portal Appears
 func portal_appear() -> void:
 	var portal_scene = ResourceLoader.load(portal_path, "PackedScene") as PackedScene
-	var portal = portal_scene.instantiate()
+	portal = portal_scene.instantiate()
 	portal.global_position = portal_sp.global_position
 	object_container.add_child(portal)
 	portal.auto_dissapp = false
 	portal.z_index = -11
 	portal.appear()
+
+
+## Portal_dissapears
+func portal_diss() -> bool:
+	if portal:
+		portal.dissappear()
+		print("close")
+		return true
+	return false
 
 
 ## Main boss Appears
@@ -102,8 +116,9 @@ func main_boss_appears() -> void:
 	await get_tree().create_timer(2).timeout
 	main_boss.modulate.a = 0
 	main_boss.global_position = main_boss_sp.global_position
-	fade_in(main_boss)
 	entity.add_child(main_boss)
+	await fade_in(main_boss)
+	portal_diss()
 
 
 ## Setup the Scenes before Starting
@@ -137,6 +152,17 @@ func scene_2(_delta: float) -> void:
 
 ## Scene 3
 func scene_3() -> void:
+	if portal == null:
+		start_scene(Scenes.SCENE_4)
+		curr_scene = Scenes.SCENE_4
 	pass
+
+
+## Scene 4
+func scene_4() -> void:
+	print("scene 4 Started")
+
+
+
 
 #endregion
