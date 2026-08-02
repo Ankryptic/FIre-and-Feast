@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dcom5y3lc51ox" path="res://Asset/forest_bosses/3/Attack4.png" id="6_xleuj"]
 [ext_resource type="Texture2D" uid="uid://dyaprte4lpc0w" path="res://Asset/forest_bosses/3/Special.png" id="7_0j556"]
 [ext_resource type="Texture2D" uid="uid://doec1psh1ddaj" path="res://Asset/forest_bosses/3/Attack2.png" id="8_ubwff"]
+[ext_resource type="Script" uid="uid://buxcorahp6qbc" path="res://Components/health_component.gd" id="10_4nq4s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7xxi"]
 atlas = ExtResource("1_yabxn")
@@ -364,3 +365,8 @@ autoplay = "idle"
 position = Vector2(0, -9.5)
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CapsuleShape2D_vkbwm")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=789363713]
+unique_name_in_owner = true
+script = ExtResource("10_4nq4s")
+metadata/_custom_type_script = "uid://buxcorahp6qbc"
