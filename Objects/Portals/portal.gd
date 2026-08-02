@@ -10,10 +10,12 @@ var dissapp_time: int = 1
 @onready var portal: AnimatedSprite2D = $portal
 @onready var particles: AnimatedSprite2D = $particles
 @onready var static_body: StaticBody2D = $StaticBody2D
+@onready var static_Col: CollisionShape2D = $StaticBody2D/CollisionShape2D
 
 
 func _ready() -> void:
 	visible = false
+	static_Col.disabled = true if isNormal else false
 
 func appear() -> void:
 	visible = true

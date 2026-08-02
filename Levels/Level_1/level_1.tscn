@@ -518,4 +518,4 @@ unique_name_in_owner = true
 position = Vector2(2086, -177)
 
 [node name="MainBossSP" type="Marker2D" parent="." unique_id=2001387995]
-position = Vector2(2084, -177)
+position = Vector2(2086, -159)
