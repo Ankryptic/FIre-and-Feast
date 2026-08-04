@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ddovea1xeqdam" path="res://MyResources/killzone.tscn" id="5_5ot28"]
 [ext_resource type="PackedScene" uid="uid://f5xfsd6qghe" path="res://Objects/Coin/coin.tscn" id="6_aerfg"]
 [ext_resource type="PackedScene" uid="uid://e5fxeq52m26g" path="res://Enemy/Slime/green_slime.tscn" id="7_gwceb"]
-[ext_resource type="Script" uid="uid://usxqjbf53qt7" path="res://Levels/Level_1/cut_scene_manager.gd" id="9_08mmt"]
-[ext_resource type="Script" uid="uid://fq3ubhq67qdg" path="res://Levels/Level_1/scene_manager.gd" id="10_5ot28"]
+[ext_resource type="Script" uid="uid://usxqjbf53qt7" path="res://Levels/Level_1/scene_container.gd" id="9_08mmt"]
+[ext_resource type="Script" uid="uid://fq3ubhq67qdg" path="res://Levels/Level_1/cut_scene_manager.gd" id="10_5ot28"]
 [ext_resource type="PackedScene" uid="uid://d136utgf0su5g" path="res://Characters/Girl/girl.tscn" id="12_aerfg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8jt7"]
@@ -369,10 +369,9 @@ script = ExtResource("3_l53as")
 max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
-[node name="level_1" type="Node2D" unique_id=2053220122 node_paths=PackedStringArray("coin_container", "cut_scene_manager")]
+[node name="level_1" type="Node2D" unique_id=2053220122 node_paths=PackedStringArray("coin_container")]
 script = ExtResource("1_vbnv0")
 coin_container = NodePath("CoinContainer")
-cut_scene_manager = NodePath("CutSceneManager")
 
 [node name="World" type="Node" parent="." unique_id=1382291156]
 
@@ -492,27 +491,25 @@ stat = SubResource("Resource_llsuh")
 
 [node name="ObjectContainer" type="Node" parent="." unique_id=929547511]
 
-[node name="CutSceneManager" type="Node2D" parent="." unique_id=1546232147]
+[node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
 script = ExtResource("9_08mmt")
 
-[node name="SceneManager" type="Node2D" parent="CutSceneManager" unique_id=2072524060 node_paths=PackedStringArray("girl")]
+[node name="CutSceneManager" type="Node2D" parent="CutSceneContainer" unique_id=2072524060 node_paths=PackedStringArray("girl")]
+unique_name_in_owner = true
 script = ExtResource("10_5ot28")
 girl = NodePath("../../Entity/Girl")
 
-[node name="Path2D" type="Path2D" parent="CutSceneManager/SceneManager" unique_id=57990022]
+[node name="Path2D" type="Path2D" parent="CutSceneContainer/CutSceneManager" unique_id=57990022]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="CutSceneManager/SceneManager/Path2D" unique_id=1848878952]
+[node name="PathFollow2D" type="PathFollow2D" parent="CutSceneContainer/CutSceneManager/Path2D" unique_id=1848878952]
 position = Vector2(228.98438, -30.368828)
 progress = 2385.29
 rotates = false
 loop = false
 
-[node name="Camera2D" type="Camera2D" parent="CutSceneManager/SceneManager/Path2D/PathFollow2D" unique_id=1004073823]
+[node name="Camera2D" type="Camera2D" parent="CutSceneContainer/CutSceneManager/Path2D/PathFollow2D" unique_id=1004073823]
 position = Vector2(1768.731, -177.936)
 zoom = Vector2(8.56, 8.56)
-
-[node name="Projectiles" type="Node" parent="." unique_id=1153408368]
-unique_name_in_owner = true
 
 [node name="PortalSP" type="Marker2D" parent="." unique_id=947792942]
 position = Vector2(2086, -177)

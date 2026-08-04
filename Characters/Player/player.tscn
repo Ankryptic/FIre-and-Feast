@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsd45eb3073we"]
+[gd_scene format=3 uid="uid://dsd45eb3073we"]
 
 [ext_resource type="Texture2D" uid="uid://dd010tmajp0xu" path="res://Asset/sprites/knight.png" id="1_kelma"]
-[ext_resource type="Script" uid="uid://b0vutthn8ydk3" path="res://Script/player.gd" id="1_y8w33"]
+[ext_resource type="Script" uid="uid://b0vutthn8ydk3" path="res://Characters/Player/player.gd" id="1_y8w33"]
 [ext_resource type="Resource" uid="uid://c8ye0hwbx3yft" path="res://MyResources/Stats.tres" id="2_xa75v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kelma"]
@@ -103,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_58ae2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -111,7 +111,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivevv")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -164,7 +164,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2sr8w")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Run",
 "speed": 15.0
 }]
@@ -172,24 +172,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kelma"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" groups=["player_group"]]
+[node name="Player" type="CharacterBody2D" unique_id=116158440 groups=["player_group"]]
 collision_layer = 3
 script = ExtResource("1_y8w33")
 PlayerStat = ExtResource("2_xa75v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848707448]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_ivevv")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166225541]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_kelma")
 
-[node name="RightSpawnPoint" type="Marker2D" parent="."]
+[node name="RightSpawnPoint" type="Marker2D" parent="." unique_id=1515077541]
 position = Vector2(8, -6)
 
-[node name="LeftSpawnPoint" type="Marker2D" parent="."]
+[node name="LeftSpawnPoint" type="Marker2D" parent="." unique_id=1500293583]
 position = Vector2(-9, -6)
 rotation = 3.1415927
+
+[node name="Projectiles" type="Node" parent="." unique_id=7912119]
+unique_name_in_owner = true

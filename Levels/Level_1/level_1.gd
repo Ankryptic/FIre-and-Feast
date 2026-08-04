@@ -4,12 +4,11 @@ extends Node2D
 # Level 1 Script
 
 @export var coin_container: Node2D
-@export var cut_scene_manager: CutSceneManager
-
+@onready var cut_scene_container: SceneContainer = $CutSceneContainer
 
 func _ready() -> void:
-	cut_scene_manager.cut_scene_started.connect(cut_scene_started)
-	cut_scene_manager.start_cut_scene()
+	cut_scene_container.cut_scene_started.connect(cut_scene_started)
+	cut_scene_container.start_cut_scene()
 
 
 func cut_scene_started() -> void:

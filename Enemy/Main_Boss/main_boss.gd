@@ -10,7 +10,7 @@ enum States {
 	ATTACK,
 }
 
-@export var speed: float = 10.0
+@export var speed: float = 30.0
 @export var jump_velocity: float = 12.0
 @export var gravity_multiplier: int = 1
 
@@ -30,12 +30,12 @@ func _physics_process(delta: float) -> void:
 		change_state(States.WALK)
 		
 		if sign(velocity.x) == -1:
-			model.flip_h = true
-		else:
 			model.flip_h = false
+		else:
+			model.flip_h = true
 	
 	# Handle NPC States
-	
+	manage_state()
 	
 	move_and_slide()
 
