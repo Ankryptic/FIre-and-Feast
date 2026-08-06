@@ -19,6 +19,10 @@ func _ready() -> void:
 	load_level(next_level)
 
 
+func say_my_name() -> void:
+	print("AKKI")
+
+
 ## Load new Level
 func load_level(new_level: String) -> void:
 	# Make Sure to Load Scene When its Idle
@@ -38,12 +42,11 @@ func _init_player() -> void:
 		print("Unable to Instantiate")
 		return 
 	
-	#entity_root.add_child(player)
+	SceneManager.player = player
 
 
 ## Load Level When System is Idle
 func _deferred_load_level(new_level: String) -> void:
-	print(new_level)
 	if current_level != null:
 		current_level.queue_free()
 		current_level = null
@@ -59,6 +62,22 @@ func _deferred_load_level(new_level: String) -> void:
 	level_root.add_child(current_level)
 	
 	await get_tree().process_frame
+	
+	set_player_in_level()
+
+
+## Setting up the Player in current level
+func set_player_in_level() -> void:
+	if current_level == null:
+		print("Level_not_foound!")
+		return;
+	if player == null:
+		print("Player Not Found!")
+		return;
+	
+	entity_root.add_child(player)
+	var level_ref = level_root.get_child(0)
+	level_ref._set_player(player);
 
 
 ## Update the UI like Pause Menu, HUD

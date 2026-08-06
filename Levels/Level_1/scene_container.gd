@@ -5,11 +5,14 @@ extends Node2D
 
 signal cut_scene_started
 
+var player: Player
+
 #region @onready variables
 @onready var cut_scene_manager: Node2D = %CutSceneManager
 #endregion
 
 func start_cut_scene() -> void:
-	#player.in_cutscene = true
+	player = SceneManager.player
+	player.in_cutscene = true
 	cut_scene_started.emit()
 	cut_scene_manager._action()

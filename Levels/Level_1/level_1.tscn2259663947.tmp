@@ -516,6 +516,3 @@ position = Vector2(2086, -177)
 
 [node name="MainBossSP" type="Marker2D" parent="." unique_id=2001387995]
 position = Vector2(2086, -159)
-
-[node name="PlayerSP" type="Marker2D" parent="." unique_id=485357202]
-position = Vector2(2195, -160)

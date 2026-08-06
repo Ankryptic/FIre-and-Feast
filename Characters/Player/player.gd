@@ -3,8 +3,15 @@ extends CharacterBody2D
 
 ## This is Player Script
 
+#region Enums
+enum States {
+	IDLE,
+	WALK,
+	RUN
+}
+#endregion
+
 #region CONSTANTS
-const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 #endregion 
 
@@ -13,8 +20,10 @@ const JUMP_VELOCITY = -300.0
 #endregion
 
 #region regular variables
+var speed := 40.0
 var active_spawn_point : Node = right_spawn_point
 var in_cutscene := false
+var player_state: States = States.IDLE
 #endregion
 
 #region Onready variables
@@ -37,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 	## Handle the player control according to the cutscene
 	if in_cutscene:
-		pass
+		cutscene_movement_control()
 	elif !in_cutscene:
 		var direction := Input.get_axis("move_left", "move_right")
 		
@@ -45,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		handle_jump()
 		handle_animation(direction)
 	
-	
+	manage_state()
 	move_and_slide()
 
 
@@ -59,25 +68,58 @@ func handle_jump() -> void:
 		velocity.y = JUMP_VELOCITY
 
 
+## Control Movement by Player
 func handle_movement(direction: float) -> void:
 	if direction:
 		if direction == -1:
-			animated_sprite.flip_h = true
+			turn_to(false)
 		else:
-			animated_sprite.flip_h = false
-		velocity.x = direction * SPEED
+			turn_to()
+		velocity.x = direction * speed
 	elif direction == 0:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+
+
+## Control Movement by cutscene
+func cutscene_movement_control() -> void:
+	if velocity.x == 0:
+		change_state(States.IDLE)
+	elif abs(velocity.x) > 0:
+		change_state(States.RUN)
+		
+		if sign(velocity.x) == 1:
+			turn_to()
+		else:
+			turn_to(false)
 
 
 func handle_animation(direction : float) -> void:
 	if is_on_floor():
 		if direction == 0:
-			animated_sprite.play("Idle")
+			change_state(States.IDLE)
 		else:
-			animated_sprite.play("Run")
+			change_state(States.RUN)
 	else:
 		animated_sprite.play("Jump")
+
+
+## Changes the Player current State
+func change_state(next_state: States ) -> void:
+	if player_state == next_state:
+		return
+	else:
+		player_state = next_state
+
+
+## Manages the Current State of the Actress
+func manage_state() -> void:
+	match player_state:
+		States.IDLE:
+			animated_sprite.play("Idle")
+		States.WALK:
+			animated_sprite.play("")
+		States.RUN:
+			animated_sprite.play("Run")
 
 
 func handle_projectile() -> void:
@@ -93,3 +135,10 @@ func handle_projectile() -> void:
 		
 		melee.global_position = active_spawn_point.global_position
 		projectiles.add_child(melee)
+
+
+func turn_to(right: bool = true) -> void:
+	if right:
+		animated_sprite.flip_h = false
+	else:
+		animated_sprite.flip_h = true

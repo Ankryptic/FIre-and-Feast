@@ -10,7 +10,7 @@ enum States {
 }
 #endregion
 
-@export var speed := 20.0
+@export var speed := 40.0
 const JUMP_VELOCITY = -400.0
 
 @export var left_dir := -50.0
@@ -66,3 +66,8 @@ func turn_to(direction: int) -> void:
 		actress.flip_h = false
 	elif direction == -1:
 		actress.flip_h = true
+
+
+func _play_dead() -> void:
+	pause = true;
+	actress.play("dead")

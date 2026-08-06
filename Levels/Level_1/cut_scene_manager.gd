@@ -35,6 +35,11 @@ var portal: Node2D
 @onready var entity: Node = $"../../Entity"
 #endregion
 
+
+func _ready() -> void:
+	player = SceneManager.player
+
+
 func _physics_process(delta: float) -> void:
 	manage_current_scene(delta)
 
@@ -54,6 +59,10 @@ func manage_current_scene(delta: float) -> void:
 			scene_3()
 		Scenes.SCENE_4:
 			scene_4()
+		Scenes.SCENE_5:
+			scene_5()
+		Scenes.SCENE_6:
+			scene_6()
 
 
 ## fade in animation
@@ -107,7 +116,6 @@ func portal_appear() -> void:
 func portal_diss() -> bool:
 	if portal:
 		portal.dissappear()
-		print("close")
 		return true
 	return false
 
@@ -135,6 +143,13 @@ func start_scene(scene: Scenes) -> void:
 			main_boss_appears()
 		Scenes.SCENE_4:
 			set_target(main_boss, -122)
+		Scenes.SCENE_5:
+			main_boss.play_attack_animation(2)
+			await get_tree().create_timer(0.8).timeout
+			girl._play_dead()
+			await get_tree().create_timer(2).timeout
+			main_boss.turn_to("right")
+			set_target(player, -50)
 
 
 #region scenes
@@ -171,13 +186,14 @@ func scene_4() -> void:
 
 ## Scene 5
 func scene_5() -> void:
-	# In this scene main boss hit the girl and Player approaches towards the scene 
-	print("scene 5 Started")
-	pass
+	if(walk_to(target_distance, player)):
+		start_scene(Scenes.SCENE_6)
+		curr_scene = Scenes.SCENE_6
 
 
 ## Scene 6
 func scene_6() -> void:
+	print("Scene 6 Started")
 	pass
 
 
