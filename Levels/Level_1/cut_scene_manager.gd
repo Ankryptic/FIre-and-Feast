@@ -9,6 +9,8 @@ enum Scenes{
 	SCENE_4,
 	SCENE_5,
 	SCENE_6,
+	SCENE_7,
+	SCENE_8,
 }
 
 
@@ -30,6 +32,7 @@ var portal: Node2D
 @onready var cam: Camera2D = $Path2D/PathFollow2D/Camera2D
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
 @onready var portal_sp: Marker2D = $"../../PortalSP"
+@onready var portal_sp_2: Marker2D = $"../../PortalSP2"
 @onready var main_boss_sp: Marker2D = $"../../MainBossSP"
 @onready var object_container: Node = $"../../ObjectContainer"
 @onready var entity: Node = $"../../Entity"
@@ -63,6 +66,8 @@ func manage_current_scene(delta: float) -> void:
 			scene_5()
 		Scenes.SCENE_6:
 			scene_6()
+		Scenes.SCENE_7:
+			scene_7()
 
 
 ## fade in animation
@@ -102,12 +107,12 @@ func walk_to(target: float, actor: CharacterBody2D) -> bool:
 
 
 ## Portal Appears
-func portal_appear() -> void:
+func portal_appear(portal_location: Marker2D, auto: bool = false) -> void:
 	var portal_scene = ResourceLoader.load(portal_path, "PackedScene") as PackedScene
 	portal = portal_scene.instantiate()
-	portal.global_position = portal_sp.global_position
+	portal.global_position = portal_location.global_position
 	object_container.add_child(portal)
-	portal.auto_dissapp = false
+	portal.auto_dissapp = auto
 	portal.z_index = -11
 	portal.appear()
 
@@ -118,6 +123,11 @@ func portal_diss() -> bool:
 		portal.dissappear()
 		return true
 	return false
+
+
+func dissappear_character(character: CharacterBody2D) -> void:
+	var tween = create_tween()
+	tween.tween_property(character, "modulate:a", 0, 0.2)
 
 
 ## Main boss Appears
@@ -149,7 +159,13 @@ func start_scene(scene: Scenes) -> void:
 			girl._play_dead()
 			await get_tree().create_timer(2).timeout
 			main_boss.turn_to("right")
-			set_target(player, -50)
+		Scenes.SCENE_6:
+			portal_appear(portal_sp_2)
+			await get_tree().create_timer(3).timeout
+			dissappear_character(player)
+			await get_tree().create_timer(2).timeout
+			portal_diss()
+		
 
 
 #region scenes
@@ -163,7 +179,7 @@ func scene_1(_delta: float) -> void:
 ## Scene 2
 func scene_2(_delta: float) -> void:
 	if walk_to(target_distance, girl):
-		portal_appear()
+		portal_appear(portal_sp)
 		girl.turn_to(1);
 		start_scene(Scenes.SCENE_3)
 		curr_scene = Scenes.SCENE_3
@@ -186,17 +202,21 @@ func scene_4() -> void:
 
 ## Scene 5
 func scene_5() -> void:
-	if(walk_to(target_distance, player)):
+	if(walk_to(portal_sp_2.global_position.x, player)):
 		start_scene(Scenes.SCENE_6)
 		curr_scene = Scenes.SCENE_6
 
 
 ## Scene 6
 func scene_6() -> void:
-	print("Scene 6 Started")
+	if portal == null:
+		start_scene(Scenes.SCENE_7)
+		curr_scene = Scenes.SCENE_7
+
+
+func scene_7() -> void:
+	print("Scene 7 Started")
 	pass
-
-
 
 
 #endregion

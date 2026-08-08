@@ -509,10 +509,13 @@ loop = false
 
 [node name="Camera2D" type="Camera2D" parent="CutSceneContainer/CutSceneManager/Path2D/PathFollow2D" unique_id=1004073823]
 position = Vector2(1768.731, -177.936)
-zoom = Vector2(8.56, 8.56)
+zoom = Vector2(3.995, 3.995)
 
 [node name="PortalSP" type="Marker2D" parent="." unique_id=947792942]
 position = Vector2(2086, -177)
+
+[node name="PortalSP2" type="Marker2D" parent="." unique_id=1296194428]
+position = Vector2(2036, -177)
 
 [node name="MainBossSP" type="Marker2D" parent="." unique_id=2001387995]
 position = Vector2(2086, -159)
