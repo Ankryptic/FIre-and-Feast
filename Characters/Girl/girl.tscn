@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d136utgf0su5g"]
 
-[ext_resource type="Script" uid="uid://c810jpcw2k1a7" path="res://Scene/girl.gd" id="1_a3t30"]
+[ext_resource type="Script" uid="uid://c810jpcw2k1a7" path="res://Characters/Girl/girl.gd" id="1_a3t30"]
 [ext_resource type="Texture2D" uid="uid://cq0mi3iblxm8f" path="res://Asset/girl/Knight/Attack_1.png" id="2_a3t30"]
 [ext_resource type="Texture2D" uid="uid://cwtcacqulovoa" path="res://Asset/girl/Knight/Attack_2.png" id="3_ea8nk"]
 [ext_resource type="Texture2D" uid="uid://igp4u3e1ah6k" path="res://Asset/girl/Knight/Attack_3.png" id="4_6tiyb"]
@@ -440,3 +440,4 @@ frame_progress = 0.063473254
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1250114574]
 position = Vector2(-2, -7)
 shape = SubResource("CapsuleShape2D_vkbwm")
+disabled = true

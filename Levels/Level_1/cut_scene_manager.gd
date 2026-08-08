@@ -31,8 +31,9 @@ var portal: Node2D
 @onready var cut_scene_container: SceneContainer = $".."
 @onready var cam: Camera2D = $Path2D/PathFollow2D/Camera2D
 @onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
-@onready var portal_sp: Marker2D = $"../../PortalSP"
-@onready var portal_sp_2: Marker2D = $"../../PortalSP2"
+@onready var portal_sp: Marker2D = $MarkerContainer/PortalSP
+@onready var portal_sp_2: Marker2D = $MarkerContainer/PortalSP2
+@onready var portal_sp_3: Marker2D = $MarkerContainer/PortalSP3
 @onready var main_boss_sp: Marker2D = $"../../MainBossSP"
 @onready var object_container: Node = $"../../ObjectContainer"
 @onready var entity: Node = $"../../Entity"
@@ -68,6 +69,8 @@ func manage_current_scene(delta: float) -> void:
 			scene_6()
 		Scenes.SCENE_7:
 			scene_7()
+		Scenes.SCENE_8:
+			scene_8()
 
 
 ## fade in animation
@@ -165,7 +168,15 @@ func start_scene(scene: Scenes) -> void:
 			dissappear_character(player)
 			await get_tree().create_timer(2).timeout
 			portal_diss()
-		
+		Scenes.SCENE_7:
+			portal_appear(portal_sp_3)
+		Scenes.SCENE_8:
+			await get_tree().create_timer(1).timeout
+			dissappear_character(girl)
+			dissappear_character(main_boss)
+			await get_tree().create_timer(2)
+			portal_diss()
+
 
 
 #region scenes
@@ -215,8 +226,12 @@ func scene_6() -> void:
 
 
 func scene_7() -> void:
-	print("Scene 7 Started")
-	pass
+	if(walk_to(girl.global_position.x, main_boss)):
+		start_scene(Scenes.SCENE_8)
+		curr_scene = Scenes.SCENE_8
 
+
+func scene_8() -> void:
+	print("Scene 8 Strated")
 
 #endregion
