@@ -10,7 +10,7 @@ enum States {
 }
 #endregion
 
-@export var speed := 40.0
+@export var speed := 20.0
 const JUMP_VELOCITY = -400.0
 
 @export var left_dir := -50.0

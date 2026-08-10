@@ -11,6 +11,7 @@ enum Scenes{
 	SCENE_6,
 	SCENE_7,
 	SCENE_8,
+	SCENE_9,
 }
 
 
@@ -25,6 +26,7 @@ var portal_path: String = "uid://c34yyw0lmmfud"
 var curr_scene: Scenes = Scenes.SCENE_1
 var target_distance: float
 var portal: Node2D
+var scene_running: bool = false
 #endregion
 
 #region onready variables
@@ -34,9 +36,11 @@ var portal: Node2D
 @onready var portal_sp: Marker2D = $MarkerContainer/PortalSP
 @onready var portal_sp_2: Marker2D = $MarkerContainer/PortalSP2
 @onready var portal_sp_3: Marker2D = $MarkerContainer/PortalSP3
+@onready var portal_sp_4: Marker2D = $MarkerContainer/PortalSP4
 @onready var main_boss_sp: Marker2D = $"../../MainBossSP"
 @onready var object_container: Node = $"../../ObjectContainer"
 @onready var entity: Node = $"../../Entity"
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 #endregion
 
 
@@ -45,6 +49,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if scene_running:
+		return
+	
 	manage_current_scene(delta)
 
 
@@ -71,6 +78,8 @@ func manage_current_scene(delta: float) -> void:
 			scene_7()
 		Scenes.SCENE_8:
 			scene_8()
+		Scenes.SCENE_9:
+			scene_9()
 
 
 ## fade in animation
@@ -110,11 +119,15 @@ func walk_to(target: float, actor: CharacterBody2D) -> bool:
 
 
 ## Portal Appears
-func portal_appear(portal_location: Marker2D, auto: bool = false) -> void:
+func portal_appear(portal_location: Marker2D, auto: bool = false, normal: bool = true, entry_time: int = 0) -> void:
+	print("Appearing")
 	var portal_scene = ResourceLoader.load(portal_path, "PackedScene") as PackedScene
 	portal = portal_scene.instantiate()
 	portal.global_position = portal_location.global_position
 	object_container.add_child(portal)
+	portal.isNormal = normal
+	if !portal.isNormal:
+		portal.entry_time = entry_time
 	portal.auto_dissapp = auto
 	portal.z_index = -11
 	portal.appear()
@@ -128,10 +141,14 @@ func portal_diss() -> bool:
 	return false
 
 
+## Can be Used for dissappearing CharacterBody2D
 func dissappear_character(character: CharacterBody2D) -> void:
 	var tween = create_tween()
 	tween.tween_property(character, "modulate:a", 0, 0.2)
 
+
+func camera_switch_to(camera: Camera2D, status: bool) -> void:
+	camera.enabled = status
 
 ## Main boss Appears
 func main_boss_appears() -> void:
@@ -155,7 +172,7 @@ func start_scene(scene: Scenes) -> void:
 		Scenes.SCENE_3:
 			main_boss_appears()
 		Scenes.SCENE_4:
-			set_target(main_boss, -122)
+			set_target(main_boss, -125)
 		Scenes.SCENE_5:
 			main_boss.play_attack_animation(2)
 			await get_tree().create_timer(0.8).timeout
@@ -164,7 +181,7 @@ func start_scene(scene: Scenes) -> void:
 			main_boss.turn_to("right")
 		Scenes.SCENE_6:
 			portal_appear(portal_sp_2)
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(2).timeout
 			dissappear_character(player)
 			await get_tree().create_timer(2).timeout
 			portal_diss()
@@ -174,8 +191,13 @@ func start_scene(scene: Scenes) -> void:
 			await get_tree().create_timer(1).timeout
 			dissappear_character(girl)
 			dissappear_character(main_boss)
-			await get_tree().create_timer(2)
+			await get_tree().create_timer(2).timeout
 			portal_diss()
+			animation_player.play("fade_in")
+		Scenes.SCENE_9:
+			portal_appear(portal_sp_4, true, false, 3)
+			await get_tree().create_timer(2).timeout
+			create_tween().tween_property(player, "modulate:a", 1, 0.2)
 
 
 
@@ -232,6 +254,29 @@ func scene_7() -> void:
 
 
 func scene_8() -> void:
-	print("Scene 8 Strated")
+	if scene_running:
+		return
+	
+	scene_running = true
+	await animation_player.animation_finished
+	player.active_gravity = false
+	player.global_position = portal_sp_4.global_position
+	camera_switch_to(cam, false)
+	player.activate_camera()
+	await get_tree().create_timer(3).timeout
+	animation_player.play_backwards("fade_in")
+	await animation_player.animation_finished
+	start_scene(Scenes.SCENE_9)
+	curr_scene = Scenes.SCENE_9
+
+
+
+func scene_9() -> void:
+	scene_running = false
+	await get_tree().create_timer(2).timeout
+	player.active_gravity = true
+	portal_diss()
+	queue_free()
+
 
 #endregion

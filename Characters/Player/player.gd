@@ -24,6 +24,7 @@ var speed := 40.0
 var active_spawn_point : Node = right_spawn_point
 var in_cutscene := false
 var player_state: States = States.IDLE
+var active_gravity: bool = true
 #endregion
 
 #region Onready variables
@@ -32,6 +33,7 @@ var player_state: States = States.IDLE
 @onready var right_spawn_point: Marker2D = $RightSpawnPoint
 @onready var left_spawn_point: Marker2D = $LeftSpawnPoint
 @onready var projectiles: Node = %Projectiles
+@onready var camera_2d: Camera2D = $Camera2D
 #endregion
 
 
@@ -41,7 +43,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	add_gravity(delta)
+	add_gravity(delta, active_gravity)
 	
 	
 	## Handle the player control according to the cutscene
@@ -58,7 +60,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func add_gravity(delta: float) -> void:
+func add_gravity(delta: float, active_gravity: bool) -> void:
+	if not active_gravity:
+		return
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -142,3 +147,7 @@ func turn_to(right: bool = true) -> void:
 		animated_sprite.flip_h = false
 	else:
 		animated_sprite.flip_h = true
+
+
+func activate_camera(status: bool = true) -> void:
+	camera_2d.enabled = status

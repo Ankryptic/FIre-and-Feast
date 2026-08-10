@@ -11,7 +11,7 @@ enum States {
 	ATTACK_2,
 }
 
-@export var speed: float = 40.0
+@export var speed: float = 30.0
 @export var jump_velocity: float = 12.0
 @export var gravity_multiplier: int = 1
 

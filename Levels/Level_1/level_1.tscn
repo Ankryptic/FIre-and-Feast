@@ -369,6 +369,83 @@ script = ExtResource("3_l53as")
 max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
+[sub_resource type="Animation" id="Animation_vbnv0"]
+resource_name = "CutScenePlayer"
+length = 6.5666666
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CutSceneManager/Path2D/PathFollow2D/Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1740.0156, -173.63116), Vector2(1786.946, -173.631)]
+}
+
+[sub_resource type="Animation" id="Animation_fhktt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%CutSceneManager/Path2D/PathFollow2D/Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1740.0156, -173.63116)]
+}
+
+[sub_resource type="Animation" id="Animation_eepv7"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eepv7"]
+_data = {
+&"CutScenePlayer": SubResource("Animation_vbnv0"),
+&"RESET": SubResource("Animation_fhktt"),
+&"fade_in": SubResource("Animation_eepv7")
+}
+
 [node name="level_1" type="Node2D" unique_id=2053220122 node_paths=PackedStringArray("coin_container")]
 script = ExtResource("1_vbnv0")
 coin_container = NodePath("CoinContainer")
@@ -494,6 +571,20 @@ stat = SubResource("Resource_llsuh")
 [node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
 script = ExtResource("9_08mmt")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CutSceneContainer" unique_id=680628482]
+libraries/ = SubResource("AnimationLibrary_eepv7")
+autoplay = &"CutScenePlayer"
+
+[node name="Fade" type="CanvasLayer" parent="CutSceneContainer" unique_id=160663326]
+
+[node name="ColorRect" type="ColorRect" parent="CutSceneContainer/Fade" unique_id=1463249024]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="CutSceneManager" type="Node2D" parent="CutSceneContainer" unique_id=2072524060 node_paths=PackedStringArray("girl")]
 unique_name_in_owner = true
 script = ExtResource("10_5ot28")
@@ -508,8 +599,8 @@ rotates = false
 loop = false
 
 [node name="Camera2D" type="Camera2D" parent="CutSceneContainer/CutSceneManager/Path2D/PathFollow2D" unique_id=1004073823]
-position = Vector2(1768.731, -177.936)
-zoom = Vector2(3.995, 3.995)
+position = Vector2(1740.0156, -173.63116)
+zoom = Vector2(10, 10)
 
 [node name="MarkerContainer" type="Node" parent="CutSceneContainer/CutSceneManager" unique_id=796441745]
 
@@ -521,6 +612,9 @@ position = Vector2(2043, -177)
 
 [node name="PortalSP3" type="Marker2D" parent="CutSceneContainer/CutSceneManager/MarkerContainer" unique_id=782460124]
 position = Vector2(1944, -174)
+
+[node name="PortalSP4" type="Marker2D" parent="CutSceneContainer/CutSceneManager/MarkerContainer" unique_id=342264626]
+position = Vector2(-104.711945, 29.832724)
 
 [node name="MainBossSP" type="Marker2D" parent="." unique_id=2001387995]
 position = Vector2(2086, -159)
