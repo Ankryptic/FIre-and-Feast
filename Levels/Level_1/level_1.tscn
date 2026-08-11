@@ -568,12 +568,13 @@ stat = SubResource("Resource_llsuh")
 
 [node name="ObjectContainer" type="Node" parent="." unique_id=929547511]
 
-[node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
-script = ExtResource("9_08mmt")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CutSceneContainer" unique_id=680628482]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=680628482]
+root_node = NodePath("../CutSceneContainer")
 libraries/ = SubResource("AnimationLibrary_eepv7")
 autoplay = &"CutScenePlayer"
+
+[node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
+script = ExtResource("9_08mmt")
 
 [node name="Fade" type="CanvasLayer" parent="CutSceneContainer" unique_id=160663326]
 

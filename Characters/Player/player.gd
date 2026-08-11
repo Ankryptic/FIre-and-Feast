@@ -19,6 +19,8 @@ const JUMP_VELOCITY = -300.0
 @export var PlayerStat : Stats
 #endregion
 
+const RUN_SPEED := 80
+
 #region regular variables
 var speed := 40.0
 var active_spawn_point : Node = right_spawn_point
@@ -80,9 +82,9 @@ func handle_movement(direction: float) -> void:
 			turn_to(false)
 		else:
 			turn_to()
-		velocity.x = direction * speed
+		velocity.x = direction * RUN_SPEED
 	elif direction == 0:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, RUN_SPEED)
 
 
 ## Control Movement by cutscene

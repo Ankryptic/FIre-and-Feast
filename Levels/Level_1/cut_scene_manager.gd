@@ -2,6 +2,8 @@ extends Node2D
 
 # Level 1 Cut Scene Manager
 
+signal cut_scene_finished
+
 enum Scenes{
 	SCENE_1,
 	SCENE_2,
@@ -40,7 +42,7 @@ var scene_running: bool = false
 @onready var main_boss_sp: Marker2D = $"../../MainBossSP"
 @onready var object_container: Node = $"../../ObjectContainer"
 @onready var entity: Node = $"../../Entity"
-@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 #endregion
 
 
@@ -120,7 +122,6 @@ func walk_to(target: float, actor: CharacterBody2D) -> bool:
 
 ## Portal Appears
 func portal_appear(portal_location: Marker2D, auto: bool = false, normal: bool = true, entry_time: int = 0) -> void:
-	print("Appearing")
 	var portal_scene = ResourceLoader.load(portal_path, "PackedScene") as PackedScene
 	portal = portal_scene.instantiate()
 	portal.global_position = portal_location.global_position
@@ -183,7 +184,7 @@ func start_scene(scene: Scenes) -> void:
 			portal_appear(portal_sp_2)
 			await get_tree().create_timer(2).timeout
 			dissappear_character(player)
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(1).timeout
 			portal_diss()
 		Scenes.SCENE_7:
 			portal_appear(portal_sp_3)
@@ -198,7 +199,8 @@ func start_scene(scene: Scenes) -> void:
 			portal_appear(portal_sp_4, true, false, 3)
 			await get_tree().create_timer(2).timeout
 			create_tween().tween_property(player, "modulate:a", 1, 0.2)
-
+			player.active_gravity = true
+			scene_running = false
 
 
 #region scenes
@@ -270,12 +272,10 @@ func scene_8() -> void:
 	curr_scene = Scenes.SCENE_9
 
 
-
 func scene_9() -> void:
-	scene_running = false
 	await get_tree().create_timer(2).timeout
-	player.active_gravity = true
 	portal_diss()
+	cut_scene_finished.emit()
 	queue_free()
 
 

@@ -200,4 +200,4 @@ unique_name_in_owner = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1069213269]
 position = Vector2(0, -40)
 enabled = false
-zoom = Vector2(8, 8)
+zoom = Vector2(5, 5)
