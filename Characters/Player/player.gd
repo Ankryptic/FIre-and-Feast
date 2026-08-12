@@ -38,6 +38,8 @@ var active_gravity: bool = true
 @onready var camera_2d: Camera2D = $Camera2D
 #endregion
 
+func _ready() -> void:
+	set_camera_limit()
 
 func _process(_delta: float) -> void:
 	if !in_cutscene:
@@ -153,3 +155,9 @@ func turn_to(right: bool = true) -> void:
 
 func activate_camera(status: bool = true) -> void:
 	camera_2d.enabled = status
+
+
+func set_camera_limit() -> void:
+	camera_2d.limit_left = -250
+	camera_2d.limit_bottom = 200
+	camera_2d.limit_right = 2236
