@@ -38,4 +38,16 @@ func _load_game() -> void:
 		file.close()
 		
 		save_data = SaveNewData.new()
+		print(saved_data)
 		save_data.player_location = saved_data.player_location
+
+
+func _reset_game() -> void:
+	if not FileAccess.file_exists(file_path):
+		return
+	
+	var file := FileAccess.open(file_path, FileAccess.WRITE)
+	save_data = SaveNewData.new()
+	
+	file.store_string(JSON.stringify(save_data))
+	file.close()
