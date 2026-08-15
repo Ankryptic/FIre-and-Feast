@@ -1,3 +1,4 @@
+class_name CutsceneManager
 extends Node2D
 
 # Level 1 Cut Scene Manager
@@ -15,7 +16,6 @@ enum Scenes{
 	SCENE_8,
 	SCENE_9,
 }
-
 
 @export var girl: CharacterBody2D
 @export var cam_speed := 10
@@ -58,7 +58,19 @@ func _physics_process(delta: float) -> void:
 
 
 func _action() -> void:
-	start_scene(Scenes.SCENE_1)
+	if is_cut_scene_finished():
+		skip_cutscene()
+	else: 
+		start_scene(Scenes.SCENE_1)
+
+
+## Checks for if cut_scene is finished
+func is_cut_scene_finished() -> bool:
+	var level_id = cut_scene_container.level_id
+	var level_state = SaveLoad.save_data.level_state.get(\
+	str(level_id), {})
+	
+	return level_state.get("cutscene_finished", false)
 
 
 ## Manage the Current Scene 
@@ -276,7 +288,17 @@ func scene_9() -> void:
 	await get_tree().create_timer(2).timeout
 	portal_diss()
 	cut_scene_finished.emit()
+	SaveLoad.save_data.player_location = player.global_position
 	queue_free()
 
+
+func skip_cutscene() -> void:
+	camera_switch_to(cam, false)
+	player.activate_camera()
+	player.global_position = SaveLoad.save_data.player_location
+	print(player.global_position)
+	player.modulate.a = 1
+	cut_scene_finished.emit()
+	queue_free()
 
 #endregion

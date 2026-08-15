@@ -5,11 +5,11 @@ extends Node2D
 
 signal cut_scene_started
 
+@export var level_id: int
+
 var player: Player
 
-#region @onready variables
 @onready var cut_scene_manager: Node2D = %CutSceneManager
-#endregion
 
 
 func _ready() -> void:
@@ -25,4 +25,11 @@ func start_cut_scene() -> void:
 
 func cut_scene_finish() -> void:
 	player.in_cutscene = false
-	pass
+	
+	# Save level state and player location after cutscene finished
+	SaveLoad.save_data.player_location = player.global_position
+	SaveLoad.save_data.current_level = level_id
+	SaveLoad.save_data.level_state = {
+		str(level_id): {"cutscene_finished": true}
+	}
+	SaveLoad._save_game()

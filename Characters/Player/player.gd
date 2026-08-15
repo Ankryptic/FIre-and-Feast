@@ -16,6 +16,7 @@ const JUMP_VELOCITY = -300.0
 #endregion 
 
 #region Export variables
+@export var camera_2d: Camera2D
 @export var PlayerStat : Stats
 #endregion
 
@@ -35,7 +36,6 @@ var active_gravity: bool = true
 @onready var right_spawn_point: Marker2D = $RightSpawnPoint
 @onready var left_spawn_point: Marker2D = $LeftSpawnPoint
 @onready var projectiles: Node = %Projectiles
-@onready var camera_2d: Camera2D = $Camera2D
 #endregion
 
 func _ready() -> void:
@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	add_gravity(delta, active_gravity)
+	add_gravity(delta)
 	
 	
 	## Handle the player control according to the cutscene
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func add_gravity(delta: float, active_gravity: bool) -> void:
+func add_gravity(delta: float) -> void:
 	if not active_gravity:
 		return
 	
@@ -154,7 +154,10 @@ func turn_to(right: bool = true) -> void:
 
 
 func activate_camera(status: bool = true) -> void:
-	camera_2d.enabled = status
+	if camera_2d != null:
+		camera_2d.enabled = status
+	else:
+		push_error("Camera not found ", camera_2d)
 
 
 func set_camera_limit() -> void:

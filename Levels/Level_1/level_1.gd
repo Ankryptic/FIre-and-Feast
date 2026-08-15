@@ -19,6 +19,7 @@ func _set_player(player_ref: Player) -> void:
 
 
 func cut_scene_started() -> void:
+	_set_player(SceneManager.player)
 	coin_container.visible = false
 
 

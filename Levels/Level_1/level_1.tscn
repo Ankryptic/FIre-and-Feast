@@ -575,6 +575,7 @@ autoplay = &"CutScenePlayer"
 
 [node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
 script = ExtResource("9_08mmt")
+level_id = 1
 
 [node name="Fade" type="CanvasLayer" parent="CutSceneContainer" unique_id=160663326]
 

@@ -3,11 +3,11 @@ extends Node
 
 # main game script
 
-var current_ui : Control
-
+var current_ui: Control
 var player_path: String = "uid://dsd45eb3073we"
 var next_level: String = "uid://bkpes4wn5yval"
-var current_level : Node2D
+var current_level: int
+var current_level_scene: Node2D
 var player: Player
 
 @onready var level_root: Node2D = $World/LevelRoot
@@ -15,7 +15,6 @@ var player: Player
 
 func _ready() -> void:
 	_init_player();
-	
 	load_level(next_level)
 
 
@@ -47,9 +46,10 @@ func _init_player() -> void:
 
 ## Load Level When System is Idle
 func _deferred_load_level(new_level: String) -> void:
-	if current_level != null:
-		current_level.queue_free()
-		current_level = null
+	# Check for Save level data
+	if current_level_scene != null:
+		current_level_scene.queue_free()
+		current_level_scene = null
 	
 	await get_tree().process_frame
 	
@@ -58,8 +58,8 @@ func _deferred_load_level(new_level: String) -> void:
 	if level == null:
 		print("Level Not Found: %d" % new_level)
 	
-	current_level = level.instantiate()
-	level_root.add_child(current_level)
+	current_level_scene = level.instantiate()
+	level_root.add_child(current_level_scene)
 	
 	await get_tree().process_frame
 	
@@ -76,8 +76,6 @@ func set_player_in_level() -> void:
 		return;
 	
 	entity_root.add_child(player)
-	var level_ref = level_root.get_child(0)
-	level_ref._set_player(player);
 
 
 ## Update the UI like Pause Menu, HUD

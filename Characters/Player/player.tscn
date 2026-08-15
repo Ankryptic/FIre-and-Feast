@@ -172,9 +172,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kelma"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" unique_id=116158440 groups=["player_group"]]
+[node name="Player" type="CharacterBody2D" unique_id=116158440 node_paths=PackedStringArray("camera_2d") groups=["player_group"]]
 collision_layer = 3
 script = ExtResource("1_y8w33")
+camera_2d = NodePath("Camera2D")
 PlayerStat = ExtResource("2_xa75v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=848707448]
