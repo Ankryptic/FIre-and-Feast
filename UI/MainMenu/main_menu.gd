@@ -1,6 +1,10 @@
 class_name MainMenu
 extends Control
 
+# TODO - show Resume button if data exist, Reset game mechanics
+
+
+
 #region menu container
 @export var menu : MarginContainer
 @export var settings : MarginContainer
@@ -36,6 +40,7 @@ var tween : Tween
 
 
 func _ready() -> void:
+	resumeBtn.pressed.connect(resume_game)
 	newGameBtn.pressed.connect(start_new_game);
 	exitBtn.pressed.connect(exit_button_pressed);
 	muteVolBtn.pressed.connect(muteBtn_pressed);
@@ -44,9 +49,13 @@ func _ready() -> void:
 	volume_slider.value_changed.connect(set_volume)
 	settingsBtn.pressed.connect(_open_settings)
 	
-	##Closing button
+	## Closing button
 	close_setting.pressed.connect(_close_settings)
 	
+	# Show Resume button if data exist
+	if SaveLoad.is_data_exist():
+		resumeBtn.visible = true
+		
 	# Array of All Buttons
 	all_btn = [resumeBtn, newGameBtn, settingsBtn, exitBtn, close_setting]
 	for button in all_btn:
@@ -61,7 +70,11 @@ func toggle_visibility(object : MarginContainer) -> void:
 	else:
 		anim_player.play('open_' + object.name)
 
+func resume_game() -> void:
+	SceneManager.load_scene("uid://cq4i2k3s7sv0y")
+
 func start_new_game() -> void:
+	SaveLoad._reset_game()
 	SceneManager.load_scene("uid://cq4i2k3s7sv0y")
 
 func exit_button_pressed() -> void:
