@@ -10,6 +10,12 @@ var direction: int = 1
 var stop: bool = false
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+
+
+func _ready() -> void:
+	visible_on_screen.visible = true
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -28,10 +34,12 @@ func boom() -> void:
 	anim.play("boom")
 
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == 'boom':
 		queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
