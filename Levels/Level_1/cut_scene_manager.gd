@@ -296,6 +296,7 @@ func scene_9() -> void:
 
 
 func skip_cutscene() -> void:
+	girl.queue_free()
 	camera_switch_to(cam, false)
 	player.activate_camera()
 	player.global_position.x = SaveLoad.save_data.player_location["x"]
