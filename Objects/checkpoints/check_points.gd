@@ -13,4 +13,5 @@ func _on_body_entered(body: Node2D) -> void:
 	}
 	
 	SaveLoad._save_game()
+	print("Checkpoint")
 	queue_free()

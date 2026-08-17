@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drrenskjt2u6v" path="res://Objects/Platform/iced_platform.tscn" id="4_08mmt"]
 [ext_resource type="PackedScene" uid="uid://ddovea1xeqdam" path="res://MyResources/killzone.tscn" id="5_5ot28"]
 [ext_resource type="PackedScene" uid="uid://f5xfsd6qghe" path="res://Objects/Coin/coin.tscn" id="6_aerfg"]
+[ext_resource type="PackedScene" uid="uid://dstexb5jd2g0m" path="res://Objects/checkpoints/check_points.tscn" id="7_fhktt"]
 [ext_resource type="PackedScene" uid="uid://e5fxeq52m26g" path="res://Enemy/Slime/green_slime.tscn" id="7_gwceb"]
 [ext_resource type="Script" uid="uid://usxqjbf53qt7" path="res://Levels/Level_1/scene_container.gd" id="9_08mmt"]
 [ext_resource type="Script" uid="uid://fq3ubhq67qdg" path="res://Levels/Level_1/cut_scene_manager.gd" id="10_5ot28"]
@@ -345,12 +346,6 @@ _data = {
 &"left_right": SubResource("Animation_sagxc")
 }
 
-[sub_resource type="Resource" id="Resource_vbnv0"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
 [sub_resource type="Resource" id="Resource_fhktt"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
@@ -364,6 +359,12 @@ max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="Resource" id="Resource_llsuh"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="Resource" id="Resource_2e10j"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 max_health = 40
@@ -492,6 +493,23 @@ autoplay = &"left_right"
 position = Vector2(440, -171)
 collision_mask = 2
 
+[node name="CheckpointContainer" type="Node" parent="." unique_id=1111499434]
+
+[node name="CheckPoints" parent="CheckpointContainer" unique_id=1725670912 instance=ExtResource("7_fhktt")]
+position = Vector2(696, 65)
+
+[node name="CheckPoints2" parent="CheckpointContainer" unique_id=1513509436 instance=ExtResource("7_fhktt")]
+position = Vector2(952, -96)
+
+[node name="CheckPoints3" parent="CheckpointContainer" unique_id=416089273 instance=ExtResource("7_fhktt")]
+position = Vector2(488, -176)
+
+[node name="CheckPoints4" parent="CheckpointContainer" unique_id=1635071014 instance=ExtResource("7_fhktt")]
+position = Vector2(696, -351)
+
+[node name="CheckPoints5" parent="CheckpointContainer" unique_id=916096450 instance=ExtResource("7_fhktt")]
+position = Vector2(1048, -336)
+
 [node name="CoinContainer" type="Node2D" parent="." unique_id=1268533804]
 
 [node name="Coin" parent="CoinContainer" unique_id=1827299460 instance=ExtResource("6_aerfg")]
@@ -552,19 +570,19 @@ position = Vector2(1908, -225)
 
 [node name="GreenSlime" parent="EnemyContainer" unique_id=1083359386 instance=ExtResource("7_gwceb")]
 position = Vector2(198, -5)
-stat = SubResource("Resource_vbnv0")
+stat = SubResource("Resource_fhktt")
 
 [node name="GreenSlime2" parent="EnemyContainer" unique_id=1751502542 instance=ExtResource("7_gwceb")]
 position = Vector2(787, -130)
-stat = SubResource("Resource_fhktt")
+stat = SubResource("Resource_eepv7")
 
 [node name="GreenSlime3" parent="EnemyContainer" unique_id=1703099097 instance=ExtResource("7_gwceb")]
 position = Vector2(836, -408)
-stat = SubResource("Resource_eepv7")
+stat = SubResource("Resource_llsuh")
 
 [node name="GreenSlime4" parent="EnemyContainer" unique_id=787119529 instance=ExtResource("7_gwceb")]
 position = Vector2(1343, -293)
-stat = SubResource("Resource_llsuh")
+stat = SubResource("Resource_2e10j")
 
 [node name="ObjectContainer" type="Node" parent="." unique_id=929547511]
 
@@ -578,6 +596,7 @@ script = ExtResource("9_08mmt")
 level_id = 1
 
 [node name="Fade" type="CanvasLayer" parent="CutSceneContainer" unique_id=160663326]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CutSceneContainer/Fade" unique_id=1463249024]
 anchors_preset = 15
