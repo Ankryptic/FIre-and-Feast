@@ -69,7 +69,6 @@ func is_cut_scene_finished() -> bool:
 	var level_id = cut_scene_container.level_id
 	var level_state = SaveLoad.save_data.level_state.get(\
 	str(level_id), {})
-	print(SaveLoad.save_data["level_state"])
 	
 	return level_state.get("cutscene_finished", false)
 
@@ -301,7 +300,6 @@ func skip_cutscene() -> void:
 	player.activate_camera()
 	player.global_position.x = SaveLoad.save_data.player_location["x"]
 	player.global_position.y = SaveLoad.save_data.player_location["y"]
-	print(player.global_position)
 	player.modulate.a = 1
 	cut_scene_finished.emit()
 	queue_free()

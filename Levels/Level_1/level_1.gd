@@ -6,10 +6,11 @@ extends Node2D
 @export var coin_container: Node2D
 @onready var cut_scene_container: SceneContainer = $CutSceneContainer
 @onready var player_sp: Marker2D = $PlayerSP
-@onready var cut_scene_manager: Node2D = %CutSceneManager
+@onready var cut_scene_manager: CutsceneManager = %CutSceneManager
 
 func _ready() -> void:
 	cut_scene_container.cut_scene_started.connect(cut_scene_started)
+	cut_scene_manager.cut_scene_finished.connect(cut_scene_ended)
 	cut_scene_container.start_cut_scene()
 
 
@@ -24,4 +25,5 @@ func cut_scene_started() -> void:
 
 
 func cut_scene_ended() -> void:
+	print("Cut Scene Ended")
 	coin_container.visible = true

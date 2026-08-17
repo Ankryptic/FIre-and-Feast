@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dstexb5jd2g0m"]
+
+[ext_resource type="Script" uid="uid://cv8ye7utc480q" path="res://Objects/checkpoints/check_points.gd" id="1_c5fu5"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vkbwm"]
+a = Vector2(0, -9)
+b = Vector2(0, 17)
+
+[node name="CheckPoints" type="Area2D" unique_id=1725670912]
+script = ExtResource("1_c5fu5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1310010734]
+position = Vector2(0, -17)
+shape = SubResource("SegmentShape2D_vkbwm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
