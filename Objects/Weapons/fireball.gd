@@ -34,8 +34,6 @@ func boom() -> void:
 	anim.play("boom")
 
 
-
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == 'boom':
 		queue_free()
