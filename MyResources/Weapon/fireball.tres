@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://ctrytoq536735"]
+
+[ext_resource type="Script" uid="uid://cnjstda56hudp" path="res://weapon.gd" id="1_3appf"]
+[ext_resource type="Texture2D" uid="uid://eewixkyby1vq" path="res://Asset/weapons/fireball_V_1_1/FB500-4.png" id="2_s5w1m"]
+
+[resource]
+script = ExtResource("1_3appf")
+Name = "FireBall"
+texture = ExtResource("2_s5w1m")
+Damage = 20
+metadata/_custom_type_script = "uid://cnjstda56hudp"

@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://rnufcqrkp6ka"]
 
+[ext_resource type="Script" uid="uid://bujt64kbp7h7" path="res://UI/player_hud/player_hud.gd" id="1_f2qjp"]
 [ext_resource type="Texture2D" uid="uid://dd010tmajp0xu" path="res://Asset/sprites/knight.png" id="1_up2bn"]
 [ext_resource type="Texture2D" uid="uid://d0yp1h25obqt5" path="res://Asset/MegaPackFree/UIBundleFree/freefantasy.png" id="2_sngi2"]
 [ext_resource type="Theme" uid="uid://d201ejjbknauw" path="res://my_theme.tres" id="3_f27v4"]
 [ext_resource type="Texture2D" uid="uid://d3ord42civvtc" path="res://Asset/sprites/coin.png" id="3_xrpln"]
+[ext_resource type="Texture2D" uid="uid://bxbat5nxbflne" path="res://Asset/weapons/NinjaStar/ninja_stars.png" id="5_fsg37"]
+[ext_resource type="Script" uid="uid://87ek8q0q330i" path="res://UI/player_hud/weaponbutton.gd" id="5_tn3kb"]
+[ext_resource type="Resource" uid="uid://b1mlawsvvbw2k" path="res://MyResources/Weapon/ninja_star.tres" id="7_x0gp0"]
+[ext_resource type="Texture2D" uid="uid://eewixkyby1vq" path="res://Asset/weapons/fireball_V_1_1/FB500-4.png" id="8_bl6xa"]
+[ext_resource type="Resource" uid="uid://ctrytoq536735" path="res://MyResources/Weapon/fireball.tres" id="9_f2qjp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkbwm"]
 atlas = ExtResource("1_up2bn")
@@ -40,6 +46,18 @@ region_rect = Rect2(49, 178, 14, 13)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my5r8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knsg7"]
+bg_color = Color(0.19434926, 0.19434929, 0.19434917, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.007843138, 0.019607844, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f27v4"]
+atlas = ExtResource("5_fsg37")
+region = Rect2(2, 2, 32, 32)
+
 [node name="PlayerHUD" type="Control" unique_id=951153378]
 layout_mode = 3
 anchors_preset = 15
@@ -47,11 +65,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f2qjp")
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthCoinCon" type="VBoxContainer" parent="." unique_id=1079533108]
 layout_mode = 1
 offset_right = 300.0
-offset_bottom = 154.0
+offset_bottom = 180.0
 theme_override_constants/separation = 30
 
 [node name="HealthContainer" type="HBoxContainer" parent="HealthCoinCon" unique_id=1340463480]
@@ -117,3 +137,39 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_vkbwm")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mgrxk")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vkbwm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_my5r8")
+
+[node name="WeaponCon" type="GridContainer" parent="." unique_id=901246794]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 5
+
+[node name="Button" type="Button" parent="WeaponCon" unique_id=602657903]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_knsg7")
+toggle_mode = true
+icon = SubResource("AtlasTexture_f27v4")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_tn3kb")
+weapon = ExtResource("7_x0gp0")
+
+[node name="Button2" type="Button" parent="WeaponCon" unique_id=366134522]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_knsg7")
+toggle_mode = true
+icon = ExtResource("8_bl6xa")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_tn3kb")
+weapon = ExtResource("9_f2qjp")

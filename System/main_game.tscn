@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cq4i2k3s7sv0y"]
 
 [ext_resource type="Script" uid="uid://chntmr4k3p5c2" path="res://System/main_game.gd" id="1_wbjt5"]
+[ext_resource type="PackedScene" uid="uid://rnufcqrkp6ka" path="res://UI/player_hud/player_hud.tscn" id="2_pyonu"]
 
 [node name="MainGame" type="Node" unique_id=540701847]
-process_mode = 1
 script = ExtResource("1_wbjt5")
 
 [node name="System" type="Node" parent="." unique_id=1297986751]
@@ -18,3 +18,6 @@ position = Vector2(0, -1)
 [node name="UI" type="CanvasLayer" parent="." unique_id=1970037138]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=663784147]
+layer = 100
+
+[node name="PlayerHUD" parent="HUD" unique_id=951153378 instance=ExtResource("2_pyonu")]

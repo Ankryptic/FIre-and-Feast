@@ -1,8 +1,6 @@
 class_name MainMenu
 extends Control
 
-# TODO - show Resume button if data exist, Reset game mechanics
-
 
 
 #region menu container
