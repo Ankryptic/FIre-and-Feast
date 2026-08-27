@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://b1mlawsvvbw2k"]
 
-[ext_resource type="Script" uid="uid://cnjstda56hudp" path="res://weapon.gd" id="1_m4yu4"]
+[ext_resource type="Script" uid="uid://cnjstda56hudp" path="res://MyResources/weapon.gd" id="1_m4yu4"]
 [ext_resource type="Texture2D" uid="uid://bxbat5nxbflne" path="res://Asset/weapons/NinjaStar/ninja_stars.png" id="2_mrr20"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f27v4"]

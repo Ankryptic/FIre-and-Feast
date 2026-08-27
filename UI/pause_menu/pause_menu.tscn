@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://1kxul3q2y36"]
+
+[ext_resource type="Theme" uid="uid://d201ejjbknauw" path="res://my_theme.tres" id="1_2n0y6"]
+[ext_resource type="Texture2D" uid="uid://d0yp1h25obqt5" path="res://Asset/MegaPackFree/UIBundleFree/freefantasy.png" id="1_bsi2c"]
+[ext_resource type="Script" uid="uid://bkubo5vywlejc" path="res://UI/pause_menu/pause_menu.gd" id="2_mc6od"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2n0y6"]
+texture = ExtResource("1_bsi2c")
+region_rect = Rect2(138, 2, 45, 29)
+
+[node name="PauseMenu" type="Control" unique_id=1256696566]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(707, 404)
+theme = ExtResource("1_2n0y6")
+script = ExtResource("2_mc6od")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=603681565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.1882353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1838649420]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueBtn" type="Button" parent="VBoxContainer" unique_id=1830257576]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2n0y6")
+text = "Continue"
+
+[node name="SettingsBtn" type="Button" parent="VBoxContainer" unique_id=773197109]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2n0y6")
+text = "Settings"
+
+[node name="HelpBtn" type="Button" parent="VBoxContainer" unique_id=124259162]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2n0y6")
+text = "Help"
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer" unique_id=906872518]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2n0y6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2n0y6")
+text = "Quit"
