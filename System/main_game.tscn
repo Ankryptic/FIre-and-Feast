@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://1kxul3q2y36" path="res://UI/pause_menu/pause_menu.tscn" id="2_isajq"]
 [ext_resource type="PackedScene" uid="uid://rnufcqrkp6ka" path="res://UI/player_hud/player_hud.tscn" id="2_pyonu"]
 
-[node name="MainGame" type="Node" unique_id=540701847]
+[node name="MainGame" type="Node" unique_id=540701847 node_paths=PackedStringArray("pause_menu", "player_hud")]
 script = ExtResource("1_wbjt5")
+pause_menu = NodePath("PauseMenu")
+player_hud = NodePath("HUD")
 
 [node name="System" type="Node" parent="." unique_id=1297986751]
 
@@ -17,7 +19,9 @@ position = Vector2(0, -1)
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=1800304527]
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=1970037138]
+process_mode = 3
 layer = 101
+visible = false
 
 [node name="PauseMenu" parent="PauseMenu" unique_id=1256696566 instance=ExtResource("2_isajq")]
 

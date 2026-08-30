@@ -2,11 +2,12 @@ class_name PauseMenu
 extends Control
 
 @export var hover_property: Vector2 = Vector2(1.1, 1.1)
-
 @export var continue_btn: Button 
 @export var settings_btn: Button 
 @export var help_btn: Button
 @export var quit_btn: Button 
+
+var main_menu_path: String = "uid://bwev0exxtw037"
 
 
 func _ready() -> void:
@@ -23,7 +24,9 @@ func _ready() -> void:
 
 
 func _on_continue_button_pressed() -> void:
-	pass
+	get_parent().visible = false
+	get_tree().paused = false
+
 
 func _on_setting_button_pressed() -> void:
 	pass
@@ -31,8 +34,10 @@ func _on_setting_button_pressed() -> void:
 func _on_help_button_pressed() -> void:
 	pass
 
+
+## Change MainGame to MainMenu
 func _on_Quit_button_pressed() -> void:
-	pass
+	SceneManager.load_scene(main_menu_path)
 
 
 #region Hover Effect

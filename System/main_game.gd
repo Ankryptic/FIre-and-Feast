@@ -3,7 +3,9 @@ extends Node
 
 # main game script
 
-var current_ui: Control
+@export var pause_menu: CanvasLayer
+@export var player_hud: CanvasLayer
+
 var player_path: String = "uid://dsd45eb3073we"
 var next_level: String = "uid://bkpes4wn5yval"
 var current_level: int
@@ -16,10 +18,26 @@ var player: Player
 func _ready() -> void:
 	_init_player();
 	load_level(next_level)
+	
+	pause_menu.visible = false
+	get_tree().paused = false
 
 
-func say_my_name() -> void:
-	print("AKKI")
+func _process(_delta) -> void:
+	
+	toggle_pause_menu()
+	pass
+
+
+## Pause Menu Control
+func toggle_pause_menu() -> void:
+	if Input.is_action_just_pressed("togglePause"):
+		if pause_menu.visible == true:
+			pause_menu.visible = false
+			get_tree().paused = false
+		else:
+			pause_menu.visible = true
+			get_tree().paused = true
 
 
 ## Load new Level
@@ -76,12 +94,3 @@ func set_player_in_level() -> void:
 		return;
 	
 	entity_root.add_child(player)
-
-
-## Update the UI like Pause Menu, HUD
-func update_ui(new_scene : PackedScene) -> void:
-	if current_ui != null:
-		current_ui.queue_free();
-	
-	var new = new_scene.instantiate()
-	current_ui = new

@@ -120,6 +120,7 @@ text = "99999"
 
 [node name="PauseBtnContainer" type="MarginContainer" parent="." unique_id=14530822]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

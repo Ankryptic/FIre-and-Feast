@@ -299,6 +299,7 @@ _data = {
 }
 
 [node name="Main Menu" type="Control" unique_id=1800900646 node_paths=PackedStringArray("menu", "settings", "resumeBtn", "newGameBtn", "settingsBtn", "exitBtn", "close_setting", "minVolBtn", "muteVolBtn", "volume_slider")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
