@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq4i2k3s7sv0y"]
 
 [ext_resource type="Script" uid="uid://chntmr4k3p5c2" path="res://System/main_game.gd" id="1_wbjt5"]
+[ext_resource type="PackedScene" uid="uid://1kxul3q2y36" path="res://UI/pause_menu/pause_menu.tscn" id="2_isajq"]
 [ext_resource type="PackedScene" uid="uid://rnufcqrkp6ka" path="res://UI/player_hud/player_hud.tscn" id="2_pyonu"]
 
 [node name="MainGame" type="Node" unique_id=540701847]
@@ -15,7 +16,10 @@ position = Vector2(0, -1)
 
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=1800304527]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1970037138]
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=1970037138]
+layer = 101
+
+[node name="PauseMenu" parent="PauseMenu" unique_id=1256696566 instance=ExtResource("2_isajq")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=663784147]
 layer = 100
