@@ -1,16 +1,20 @@
 class_name MainGame
 extends Node
 
+signal health_Changed(curr_health: float, max_health: float)
+
 # main game script
 
-@export var pause_menu: CanvasLayer
-@export var player_hud: CanvasLayer
+@export var pause_menu_canvas: CanvasLayer
+@export var player_hud_canvas: CanvasLayer
+@export var player_hud: Control
 
 var player_path: String = "uid://dsd45eb3073we"
 var next_level: String = "uid://bkpes4wn5yval"
 var current_level: int
 var current_level_scene: Node2D
 var player: Player
+var player_health_component: HealthComponent
 
 @onready var level_root: Node2D = $World/LevelRoot
 @onready var entity_root: Node2D = $World/EntityRoot
@@ -19,7 +23,7 @@ func _ready() -> void:
 	_init_player();
 	load_level(next_level)
 	
-	pause_menu.visible = false
+	pause_menu_canvas.visible = false
 	get_tree().paused = false
 
 
@@ -32,11 +36,11 @@ func _process(_delta) -> void:
 ## Pause Menu Control
 func toggle_pause_menu() -> void:
 	if Input.is_action_just_pressed("togglePause"):
-		if pause_menu.visible == true:
-			pause_menu.visible = false
+		if pause_menu_canvas.visible == true:
+			pause_menu_canvas.visible = false
 			get_tree().paused = false
 		else:
-			pause_menu.visible = true
+			pause_menu_canvas.visible = true
 			get_tree().paused = true
 
 
@@ -59,6 +63,8 @@ func _init_player() -> void:
 		print("Unable to Instantiate")
 		return 
 	
+	player_health_component = player.get_node("HealthComponent") as HealthComponent
+	player_health_component.health_changed.connect(update_health_in_hud)
 	SceneManager.player = player
 
 
@@ -94,3 +100,7 @@ func set_player_in_level() -> void:
 		return;
 	
 	entity_root.add_child(player)
+
+
+func update_health_in_hud(curr_health: float, max_health: float) -> void:
+	health_Changed.emit(curr_health, max_health)

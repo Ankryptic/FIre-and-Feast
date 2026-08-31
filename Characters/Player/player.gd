@@ -18,6 +18,7 @@ const JUMP_VELOCITY = -300.0
 #region Export variables
 @export var camera_2d: Camera2D
 @export var PlayerStat : Stats
+@export var health_component: HealthComponent
 #endregion
 
 const RUN_SPEED := 80
@@ -41,10 +42,14 @@ var active_gravity: bool = true
 func _ready() -> void:
 	set_camera_limit()
 
+
 func _process(_delta: float) -> void:
 	if !in_cutscene:
 		handle_projectile()
-
+	
+	if Input.is_action_just_pressed("take_damage"):
+		health_component.damage(10)
+ 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	add_gravity(delta)

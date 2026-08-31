@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://1kxul3q2y36" path="res://UI/pause_menu/pause_menu.tscn" id="2_isajq"]
 [ext_resource type="PackedScene" uid="uid://rnufcqrkp6ka" path="res://UI/player_hud/player_hud.tscn" id="2_pyonu"]
 
-[node name="MainGame" type="Node" unique_id=540701847 node_paths=PackedStringArray("pause_menu", "player_hud")]
+[node name="MainGame" type="Node" unique_id=540701847 node_paths=PackedStringArray("pause_menu_canvas", "player_hud_canvas", "player_hud")]
 script = ExtResource("1_wbjt5")
-pause_menu = NodePath("PauseMenu")
-player_hud = NodePath("HUD")
+pause_menu_canvas = NodePath("PauseMenu")
+player_hud_canvas = NodePath("HUD")
+player_hud = NodePath("HUD/PlayerHUD")
 
 [node name="System" type="Node" parent="." unique_id=1297986751]
 
@@ -28,4 +29,5 @@ visible = false
 [node name="HUD" type="CanvasLayer" parent="." unique_id=663784147]
 layer = 100
 
-[node name="PlayerHUD" parent="HUD" unique_id=951153378 instance=ExtResource("2_pyonu")]
+[node name="PlayerHUD" parent="HUD" unique_id=951153378 node_paths=PackedStringArray("main_game") instance=ExtResource("2_pyonu")]
+main_game = NodePath("../..")

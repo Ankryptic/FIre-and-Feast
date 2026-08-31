@@ -1,6 +1,11 @@
 class_name PauseMenu
 extends Control
 
+# TODO - Add Setting Menu
+# TODO - Add Help Menu
+# TODO - 
+
+
 @export var hover_property: Vector2 = Vector2(1.1, 1.1)
 @export var continue_btn: Button 
 @export var settings_btn: Button 
