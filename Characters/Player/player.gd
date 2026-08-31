@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 ## This is Player Script
 
+signal coin_changed(amount: int)
+
 #region Enums
 enum States {
 	IDLE,
@@ -29,6 +31,7 @@ var active_spawn_point : Node = right_spawn_point
 var in_cutscene := false
 var player_state: States = States.IDLE
 var active_gravity: bool = true
+var coin_collected: int = 0
 #endregion
 
 #region Onready variables
@@ -169,3 +172,8 @@ func set_camera_limit() -> void:
 	camera_2d.limit_left = -250
 	camera_2d.limit_bottom = 200
 	camera_2d.limit_right = 2236
+
+
+func _emit_coin_Changed() -> void:
+	coin_collected += 1
+	coin_changed.emit(coin_collected)

@@ -2,6 +2,7 @@ class_name MainGame
 extends Node
 
 signal health_Changed(curr_health: float, max_health: float)
+signal coin_changed(amount: int)
 
 # main game script
 
@@ -65,6 +66,8 @@ func _init_player() -> void:
 	
 	player_health_component = player.get_node("HealthComponent") as HealthComponent
 	player_health_component.health_changed.connect(update_health_in_hud)
+	
+	player.coin_changed.connect(_emit_coin_changed)
 	SceneManager.player = player
 
 
@@ -101,6 +104,11 @@ func set_player_in_level() -> void:
 	
 	entity_root.add_child(player)
 
-
+## Connects player health component to HUD Health bar
 func update_health_in_hud(curr_health: float, max_health: float) -> void:
 	health_Changed.emit(curr_health, max_health)
+
+
+## Connects player Coin Collection in HUD
+func _emit_coin_changed(amount: int) -> void:
+	coin_changed.emit(amount)

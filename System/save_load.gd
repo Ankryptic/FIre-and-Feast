@@ -19,8 +19,10 @@ func _save_game() -> void:
 	
 	var data_to_save := {
 		"player_location": save_data.player_location,
+		"player_health": save_data.player_health,
 		"current_level": save_data.current_level,
 		"level_state": save_data.level_state,
+		"coin_collected": save_data.coin_collected
 	}
 	
 	var json_var := JSON.stringify(data_to_save)
@@ -39,8 +41,10 @@ func _load_game() -> void:
 		
 		save_data = SaveNewData.new()
 		save_data.player_location = saved_data["player_location"]
+		save_data.player_health = saved_data["player_health"]
 		save_data.current_level = saved_data["current_level"]
 		save_data.level_state = saved_data["level_state"]
+		save_data.coin_collected = saved_data["coin_collected"]
 
 
 ## Function to reset game data
@@ -48,12 +52,15 @@ func _reset_game() -> void:
 	if not FileAccess.file_exists(file_path):
 		return
 	
+	## Created an empty box
 	save_data = SaveNewData.new()
 	
 	var data_to_save = {
 		"player_location": save_data["player_location"],
+		"player_health": save_data["player_health"],
 		"current_level": save_data["current_level"],
-		"level_state":  save_data["level_state"]
+		"level_state":  save_data["level_state"],
+		"coin_collected": save_data["coin_collected"]
 	}
 	
 	var file := FileAccess.open(file_path, FileAccess.WRITE)

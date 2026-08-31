@@ -1,8 +1,6 @@
 class_name PlayerHud
 extends Control
 
-# TODO - Update Player Health bar
-# TODO - Update Coins
 # TODO - Fetch Collected saved Coins
 # TODO - 
 
@@ -15,14 +13,28 @@ extends Control
 
 func _ready() -> void:
 	visible = true;
+	_init_coin_counter()
+	_init_health_bar()
 	main_game.health_Changed.connect(update_health_bar)
+	main_game.coin_changed.connect(update_coin_collection)
 
 
 func _process(_delta: float) -> void:
 	pass
 
 
+func _init_coin_counter() -> void:
+	label.text = str(0)
+
+func _init_health_bar() -> void:
+	if SaveLoad.is_data_exist():
+		print(SaveLoad.save_data.player_health)
+
+
 func update_health_bar(curr_heath: float, max_health: float) -> void:
 	player_health_bar.max_value = max_health;
 	player_health_bar.value = curr_heath
-	
+
+
+func update_coin_collection(amount: int) -> void:
+	label.text = str(amount)
