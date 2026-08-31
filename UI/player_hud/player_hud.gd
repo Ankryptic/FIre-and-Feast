@@ -26,9 +26,18 @@ func _process(_delta: float) -> void:
 func _init_coin_counter() -> void:
 	label.text = str(0)
 
+
 func _init_health_bar() -> void:
 	if SaveLoad.is_data_exist():
-		print(SaveLoad.save_data.player_health)
+		var max_value = SaveLoad.save_data.player_health["max_health"]
+		var curr_value = SaveLoad.save_data.player_health['current_health']
+		
+		player_health_bar.max_value = max_value
+		player_health_bar.value = curr_value
+	
+	else:
+		player_health_bar.max_value = 100.0
+		player_health_bar.value = 100.0
 
 
 func update_health_bar(curr_heath: float, max_health: float) -> void:

@@ -40,11 +40,11 @@ func _load_game() -> void:
 		file.close()
 		
 		save_data = SaveNewData.new()
-		save_data.player_location = saved_data["player_location"]
-		save_data.player_health = saved_data["player_health"]
-		save_data.current_level = saved_data["current_level"]
-		save_data.level_state = saved_data["level_state"]
-		save_data.coin_collected = saved_data["coin_collected"]
+		save_data.player_location = saved_data.get("player_location", {})
+		save_data.player_health = saved_data.get("player_health", {})
+		save_data.current_level = saved_data.get("current_level", 1)
+		save_data.level_state = saved_data.get("level_state", {})
+		save_data.coin_collected = saved_data.get("coin_collected", [])
 
 
 ## Function to reset game data
