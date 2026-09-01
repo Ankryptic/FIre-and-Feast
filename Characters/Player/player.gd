@@ -173,6 +173,21 @@ func set_camera_limit() -> void:
 	camera_2d.limit_bottom = 200
 	camera_2d.limit_right = 2236
 
+## Get the Player saved data
+func _get_saved_data() -> void:
+	global_position.x = SaveLoad.save_data.player_location["x"]
+	global_position.y = SaveLoad.save_data.player_location["y"]
+	health_component.curr_health = SaveLoad.save_data.player_health.get("current_heatlh", 100)
+	health_component.max_health = SaveLoad.save_data.player_health.get("current_heatlh", 100)
+
+
+## Set the Player data in the save files
+func _set_saved_data() -> void:
+	SaveLoad.save_data.player_location = {
+		"x": global_position.x,
+		"y": global_position.y
+	}
+
 
 func _emit_coin_Changed() -> void:
 	coin_collected += 1

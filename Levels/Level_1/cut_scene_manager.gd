@@ -299,8 +299,7 @@ func skip_cutscene() -> void:
 	girl.queue_free()
 	camera_switch_to(cam, false)
 	player.activate_camera()
-	player.global_position.x = SaveLoad.save_data.player_location["x"]
-	player.global_position.y = SaveLoad.save_data.player_location["y"]
+	player._get_saved_data()
 	player.modulate.a = 1
 	cut_scene_finished.emit()
 	queue_free()

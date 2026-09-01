@@ -29,9 +29,7 @@ func _ready() -> void:
 
 
 func _process(_delta) -> void:
-	
 	toggle_pause_menu()
-	pass
 
 
 ## Pause Menu Control

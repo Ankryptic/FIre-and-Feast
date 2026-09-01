@@ -11,10 +11,12 @@ var save_data: SaveNewData = SaveNewData.new()
 
 func _ready() -> void:
 	_load_game()
+	print(save_data.player_health)
 
 
 ## Function to save game
 func _save_game() -> void:
+	print("saving....")
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	
 	var data_to_save := {
@@ -22,7 +24,8 @@ func _save_game() -> void:
 		"player_health": save_data.player_health,
 		"current_level": save_data.current_level,
 		"level_state": save_data.level_state,
-		"coin_collected": save_data.coin_collected
+		"coin_collected": save_data.coin_collected,
+		"current_checkpoint": save_data.current_checkpoint
 	}
 	
 	var json_var := JSON.stringify(data_to_save)
@@ -45,6 +48,7 @@ func _load_game() -> void:
 		save_data.current_level = saved_data.get("current_level", 1)
 		save_data.level_state = saved_data.get("level_state", {})
 		save_data.coin_collected = saved_data.get("coin_collected", [])
+		save_data.current_checkpoint = saved_data.get("current_checkpoint", "")
 
 
 ## Function to reset game data
@@ -60,7 +64,8 @@ func _reset_game() -> void:
 		"player_health": save_data["player_health"],
 		"current_level": save_data["current_level"],
 		"level_state":  save_data["level_state"],
-		"coin_collected": save_data["coin_collected"]
+		"coin_collected": save_data["coin_collected"],
+		"current_checkpoint": save_data["current_checkpoint"]
 	}
 	
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
