@@ -11,12 +11,10 @@ var save_data: SaveNewData = SaveNewData.new()
 
 func _ready() -> void:
 	_load_game()
-	print(save_data.player_health)
 
 
 ## Function to save game
 func _save_game() -> void:
-	print("saving....")
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	
 	var data_to_save := {

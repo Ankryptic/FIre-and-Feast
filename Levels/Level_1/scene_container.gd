@@ -27,7 +27,7 @@ func cut_scene_finish() -> void:
 	player.in_cutscene = false
 	
 	# Save level state and player location after cutscene finished
-	player._set_saved_data()
+	player._set_player_location_to_file()
 	SaveLoad.save_data.current_level = level_id
 	SaveLoad.save_data.level_state = {
 		str(level_id): {"cutscene_finished": true}
