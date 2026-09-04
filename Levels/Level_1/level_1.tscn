@@ -637,6 +637,9 @@ position = Vector2(1944, -174)
 [node name="PortalSP4" type="Marker2D" parent="CutSceneContainer/CutSceneManager/MarkerContainer" unique_id=342264626]
 position = Vector2(-104.711945, 29.832724)
 
+[node name="Node2D" type="Node2D" parent="CutSceneContainer/CutSceneManager/MarkerContainer/PortalSP4" unique_id=549992699]
+position = Vector2(10, 60)
+
 [node name="MainBossSP" type="Marker2D" parent="." unique_id=2001387995]
 position = Vector2(2086, -159)
 

@@ -12,6 +12,7 @@ func _ready() -> void:
 	cut_scene_container.cut_scene_started.connect(cut_scene_started)
 	cut_scene_manager.cut_scene_finished.connect(cut_scene_ended)
 	cut_scene_container.start_cut_scene()
+	place_coin_in_level()
 
 
 ## Set the Player Reference in the Current Level
@@ -27,3 +28,8 @@ func cut_scene_started() -> void:
 func cut_scene_ended() -> void:
 	print("Cut Scene Ended")
 	coin_container.visible = true
+
+
+func place_coin_in_level() -> void:
+	for coin in coin_container.get_children():
+		print(coin.name)

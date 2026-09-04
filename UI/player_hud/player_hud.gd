@@ -29,8 +29,8 @@ func _init_coin_counter() -> void:
 
 func _init_health_bar() -> void:
 	if SaveLoad.is_data_exist():
-		var max_value = SaveLoad.save_data.player_health["max_health"]
-		var curr_value = SaveLoad.save_data.player_health['current_health']
+		var max_value = SaveLoad.save_data.player_health.get("max_health", 100)
+		var curr_value = SaveLoad.save_data.player_health.get('current_health', 100)
 		
 		player_health_bar.max_value = max_value
 		player_health_bar.value = curr_value

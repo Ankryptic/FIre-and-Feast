@@ -54,6 +54,8 @@ func _physics_process(delta: float) -> void:
 	if scene_running:
 		return
 	
+	handle_manual_cutsene_skip()
+	
 	manage_current_scene(delta)
 
 
@@ -304,4 +306,12 @@ func skip_cutscene() -> void:
 	cut_scene_finished.emit()
 	queue_free()
 
+
+func handle_manual_cutsene_skip() -> void:
+	if Input.is_action_just_pressed("skip_cutscene"):
+		SaveLoad.save_data.player_location = {
+			"x": 10.0,
+			"y": 60.0
+		}
+		skip_cutscene()
 #endregion
