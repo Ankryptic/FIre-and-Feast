@@ -19,10 +19,6 @@ func _ready() -> void:
 	main_game.coin_changed.connect(update_coin_collection)
 
 
-func _process(_delta: float) -> void:
-	pass
-
-
 func _init_coin_counter() -> void:
 	label.text = str(0)
 

@@ -32,6 +32,7 @@ var in_cutscene := false
 var player_state: States = States.IDLE
 var active_gravity: bool = true
 var coin_collected: int = 0
+var coin_collection: Array = []
 #endregion
 
 #region Onready variables
@@ -53,6 +54,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("take_damage"):
 		health_component.damage(10)
  
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	add_gravity(delta)
@@ -194,6 +196,7 @@ func _set_player_health_to_file() -> void:
 		"current_health": health_component.curr_health,
 		"max_health": health_component.max_health
 	}
+
 
 func _emit_coin_Changed() -> void:
 	coin_collected += 1

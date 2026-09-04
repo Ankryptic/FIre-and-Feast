@@ -21,6 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 	body._set_player_health_to_file()
 	
 	SaveLoad.save_data.current_checkpoint = name
+	SaveLoad.save_data.coin_collected = body.coin_collection
 	
 	SaveLoad._save_game()
 	print("Checkpoint")

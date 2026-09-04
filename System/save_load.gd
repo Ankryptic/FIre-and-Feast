@@ -11,10 +11,12 @@ var save_data: SaveNewData = SaveNewData.new()
 
 func _ready() -> void:
 	_load_game()
-
+	#print(save_data.coin_collected)
 
 ## Function to save game
 func _save_game() -> void:
+	print("Saving....")
+	
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	
 	var data_to_save := {
@@ -23,7 +25,7 @@ func _save_game() -> void:
 		"current_level": save_data.current_level,
 		"level_state": save_data.level_state,
 		"coin_collected": save_data.coin_collected,
-		"current_checkpoint": save_data.current_checkpoint
+		"current_checkpoint": save_data.current_checkpoint,
 	}
 	
 	var json_var := JSON.stringify(data_to_save)

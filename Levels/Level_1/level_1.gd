@@ -31,5 +31,10 @@ func cut_scene_ended() -> void:
 
 
 func place_coin_in_level() -> void:
-	for coin in coin_container.get_children():
-		print(coin.name)
+	#for coin in coin_container.get_children():
+	var coin_collected: Array = SaveLoad.save_data.coin_collected
+	
+	if not coin_collected.is_empty():
+		for coin in coin_container.get_children():
+			if coin_collected.has(coin.name):
+				coin.queue_free()

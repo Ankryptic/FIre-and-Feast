@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://f5xfsd6qghe"]
+[gd_scene format=3 uid="uid://f5xfsd6qghe"]
 
-[ext_resource type="Script" uid="uid://cxh3ql8hlrdm6" path="res://Script/coin.gd" id="1_5e757"]
+[ext_resource type="Script" uid="uid://cxh3ql8hlrdm6" path="res://Objects/Coin/coin.gd" id="1_5e757"]
 [ext_resource type="Texture2D" uid="uid://d3ord42civvtc" path="res://Asset/sprites/coin.png" id="1_wqyjo"]
 [ext_resource type="AudioStream" uid="uid://doiqwbx7jaywh" path="res://Asset/sounds/coin.wav" id="3_1g4lx"]
 
@@ -91,7 +91,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mcjca")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 10.0
 }]
@@ -197,25 +197,23 @@ _data = {
 &"collect": SubResource("Animation_1g4lx")
 }
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" unique_id=142113737]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_5e757")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1656796030]
 sprite_frames = SubResource("SpriteFrames_d6513")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671363781]
 shape = SubResource("CircleShape2D_1g4lx")
 
-[node name="pickupSound" type="AudioStreamPlayer2D" parent="."]
+[node name="pickupSound" type="AudioStreamPlayer2D" parent="." unique_id=878422979]
 stream = ExtResource("3_1g4lx")
 bus = &"SFX"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_71t1m")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=372852312]
+libraries/ = SubResource("AnimationLibrary_71t1m")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
