@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b0vutthn8ydk3" path="res://Characters/Player/player.gd" id="1_y8w33"]
 [ext_resource type="Resource" uid="uid://c8ye0hwbx3yft" path="res://MyResources/Stats.tres" id="2_xa75v"]
 [ext_resource type="Script" uid="uid://buxcorahp6qbc" path="res://Components/health_component.gd" id="4_bqsbk"]
+[ext_resource type="Script" uid="uid://6ihqfyqfu6mg" path="res://Components/weapon_component.gd" id="5_xf5fp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kelma"]
 atlas = ExtResource("1_kelma")
@@ -208,3 +209,6 @@ zoom = Vector2(5, 5)
 [node name="HealthComponent" type="Node" parent="." unique_id=1938830132]
 script = ExtResource("4_bqsbk")
 metadata/_custom_type_script = "uid://buxcorahp6qbc"
+
+[node name="WeaponComponent" type="Node" parent="." unique_id=1897210903]
+script = ExtResource("5_xf5fp")

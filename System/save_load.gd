@@ -11,11 +11,9 @@ var save_data: SaveNewData = SaveNewData.new()
 
 func _ready() -> void:
 	_load_game()
-	#print(save_data.coin_collected)
 
 ## Function to save game
 func _save_game() -> void:
-	print("Saving....")
 	
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	
