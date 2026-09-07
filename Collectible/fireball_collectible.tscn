@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dhv7w15kg645a"]
+
+[ext_resource type="Script" uid="uid://t7ghcwfm7syr" path="res://Collectible/fireball_collectible.gd" id="1_vxhxw"]
+[ext_resource type="Resource" uid="uid://ctrytoq536735" path="res://MyResources/Weapon/fireball.tres" id="2_4roei"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkbwm"]
+radius = 150.0
+
+[node name="FireBallCollect" type="Area2D" unique_id=1858632631]
+script = ExtResource("1_vxhxw")
+item = ExtResource("2_4roei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=211996703]
+shape = SubResource("CircleShape2D_vkbwm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=425102033]

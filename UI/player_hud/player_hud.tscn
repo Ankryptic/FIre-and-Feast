@@ -6,8 +6,6 @@
 [ext_resource type="Theme" uid="uid://d201ejjbknauw" path="res://my_theme.tres" id="3_f27v4"]
 [ext_resource type="Texture2D" uid="uid://d3ord42civvtc" path="res://Asset/sprites/coin.png" id="3_xrpln"]
 [ext_resource type="Script" uid="uid://87ek8q0q330i" path="res://UI/player_hud/weaponbutton.gd" id="5_tn3kb"]
-[ext_resource type="Resource" uid="uid://b1mlawsvvbw2k" path="res://MyResources/Weapon/ninja_star.tres" id="7_x0gp0"]
-[ext_resource type="Resource" uid="uid://ctrytoq536735" path="res://MyResources/Weapon/fireball.tres" id="8_bl6xa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkbwm"]
 atlas = ExtResource("1_up2bn")
@@ -154,7 +152,6 @@ toggle_mode = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_tn3kb")
-weapon = ExtResource("7_x0gp0")
 
 [node name="WeaponSlot2" type="Button" parent="WeaponCon" unique_id=366134522]
 custom_minimum_size = Vector2(100, 100)
@@ -164,4 +161,3 @@ toggle_mode = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("5_tn3kb")
-weapon = ExtResource("8_bl6xa")

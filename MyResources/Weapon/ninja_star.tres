@@ -9,7 +9,8 @@ region = Rect2(2, 2, 32, 32)
 
 [resource]
 script = ExtResource("1_m4yu4")
-Name = "Ninja Star"
+name = "ninja star"
 texture = SubResource("AtlasTexture_f27v4")
-Damage = 10
+damage = 10
+uid = "uid://myd00rcqvh7s"
 metadata/_custom_type_script = "uid://cnjstda56hudp"

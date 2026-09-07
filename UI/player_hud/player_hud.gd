@@ -2,7 +2,7 @@ class_name PlayerHud
 extends Control
 
 # TODO - Collect Weapon
-# TODO - Make Weapon switch UI
+# TODO - 
 
 @export var main_game: MainGame
 
@@ -10,7 +10,6 @@ var active_weapon: Button:
 	set(value):
 		active_weapon = value
 		active_weapon.button_pressed = true
-
 
 @onready var player_health_bar: ProgressBar = $HealthCoinCon/HealthContainer/PlayerHealthBar
 @onready var weapon_con: GridContainer = $WeaponCon
@@ -51,7 +50,7 @@ func _init_health_bar() -> void:
 
 
 func _init_weapon() -> void:
-	if weapon_slot_1.weapon:
+	if weapon_slot_1.can_equip:
 		active_weapon = weapon_slot_1
 	
 	return
@@ -70,7 +69,7 @@ func switch_weapon() -> void:
 	for weapon in weapon_con.get_children():
 		if active_weapon == weapon:
 			continue
-		if weapon.weapon:
+		if weapon.can_equip:
 			active_weapon.button_pressed = false
 			active_weapon = weapon
 			return

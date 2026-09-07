@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6vtmoml6tixh"]
+
+[ext_resource type="Script" uid="uid://cpxhfyld7vl6h" path="res://Collectible/ninja_collectible.gd" id="1_6a208"]
+[ext_resource type="Resource" uid="uid://b1mlawsvvbw2k" path="res://MyResources/Weapon/ninja_star.tres" id="2_od53t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6a208"]
+radius = 15.0
+
+[node name="NinjaCollect" type="Area2D" unique_id=1564978468]
+script = ExtResource("1_6a208")
+item = ExtResource("2_od53t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1078338213]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1624979550]
+shape = SubResource("CircleShape2D_6a208")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=599461336]
+zoom = Vector2(5, 5)

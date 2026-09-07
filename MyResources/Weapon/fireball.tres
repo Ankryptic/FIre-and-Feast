@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_3appf")
-Name = "FireBall"
+name = "fireball"
 texture = ExtResource("2_s5w1m")
-Damage = 20
+damage = 20
+uid = "uid://bqbsoy4gs1ghh"
 metadata/_custom_type_script = "uid://cnjstda56hudp"

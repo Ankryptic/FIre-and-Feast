@@ -1,8 +1,10 @@
 class_name Weapon
 extends Resource
 
-@export var Name: String
+@export var name: String
 @export var texture: Texture2D
 
-@export var Damage: int
-@export var CoolDown: int
+@export var damage: int
+@export var coolDown: int
+
+@export var uid: String
