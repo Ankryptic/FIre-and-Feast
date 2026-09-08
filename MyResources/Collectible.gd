@@ -13,5 +13,5 @@ func _ready() -> void:
 func _on_player_enters(body: Player) -> void:
 	var weapon_con = body.get_node("WeaponComponent")
 	weapon_con.weapons.push_back(item)
-	weapon_con._print_weapon()
+	weapon_con._emit_weapon_collected()
 	queue_free()

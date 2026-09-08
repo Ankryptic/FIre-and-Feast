@@ -6,10 +6,15 @@ extends Control
 
 @export var main_game: MainGame
 
+var weapon_collection: Array[Weapon] = []
 var active_weapon: Button:
 	set(value):
+		if active_weapon != null:
+			active_weapon.button_pressed = false
+	
 		active_weapon = value
 		active_weapon.button_pressed = true
+
 
 @onready var player_health_bar: ProgressBar = $HealthCoinCon/HealthContainer/PlayerHealthBar
 @onready var weapon_con: GridContainer = $WeaponCon
@@ -25,6 +30,7 @@ func _ready() -> void:
 	_init_weapon()
 	main_game.health_Changed.connect(update_health_bar)
 	main_game.coin_changed.connect(update_coin_collection)
+	main_game.update_weapon_collection.connect(add_weapon_in_collection);
 
 
 func _process(_delta: float) -> void:
@@ -64,6 +70,27 @@ func update_health_bar(curr_heath: float, max_health: float) -> void:
 func update_coin_collection(amount: int) -> void:
 	label.text = str(amount)
 
+
+func add_weapon_in_collection(weapons: Array[Weapon]) -> void:
+	weapon_collection = weapons
+	update_weapons_in_ui()
+
+
+func update_weapons_in_ui() -> void:
+	for idx in weapon_collection.size():
+		var slot = weapon_con.get_child(idx)
+		var icon = weapon_collection[idx].texture
+		slot.icon = icon
+		active_weapon = slot
+	pass
+
+
+func set_active_button(value: Button) -> void:
+	if active_weapon != null:
+		active_weapon.button_pressed = false
+	
+	active_weapon = value
+	active_weapon.button_pressed = true
 
 func switch_weapon() -> void:
 	for weapon in weapon_con.get_children():

@@ -7,5 +7,5 @@ extends Collectible
 
 func _ready() -> void:
 	super._ready()
-	#scale = Vector2(0.02, 0.02)
+	scale = Vector2(0.3, 0.3)
 	sprite_2d.texture = item.texture

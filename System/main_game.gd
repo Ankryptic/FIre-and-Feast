@@ -3,6 +3,8 @@ extends Node
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
+signal update_weapon_collection(weapons: Array[Weapon])
+
 
 # main game script
 
@@ -16,6 +18,7 @@ var current_level: int
 var current_level_scene: Node2D
 var player: Player
 var player_health_component: HealthComponent
+var player_weappon_component: WeaponComponent
 
 @onready var level_root: Node2D = $World/LevelRoot
 @onready var entity_root: Node2D = $World/EntityRoot
@@ -62,8 +65,12 @@ func _init_player() -> void:
 		print("Unable to Instantiate")
 		return 
 	
+	# Making Signal connection b/w player and main
 	player_health_component = player.get_node("HealthComponent") as HealthComponent
+	player_weappon_component = player.get_node("WeaponComponent") as WeaponComponent
+	
 	player_health_component.health_changed.connect(update_health_in_hud)
+	player_weappon_component.weapon_collected.connect(update_weapon_in_hud)
 	
 	player.coin_changed.connect(_emit_coin_changed)
 	SceneManager.player = player
@@ -106,6 +113,9 @@ func set_player_in_level() -> void:
 func update_health_in_hud(curr_health: float, max_health: float) -> void:
 	health_Changed.emit(curr_health, max_health)
 
+## Connects player weapon component to HUD weapon collection
+func update_weapon_in_hud(weapons: Array[Weapon]) -> void:
+	update_weapon_collection.emit(weapons)
 
 ## Connects player Coin Collection in HUD
 func _emit_coin_changed(amount: int) -> void:

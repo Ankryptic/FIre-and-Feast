@@ -7,6 +7,8 @@
 radius = 150.0
 
 [node name="FireBallCollect" type="Area2D" unique_id=1858632631]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_vxhxw")
 item = ExtResource("2_4roei")
 
