@@ -17,6 +17,11 @@ func _save_game() -> void:
 	
 	var file := FileAccess.open(file_path, FileAccess.WRITE)
 	
+	var weapon_path: Array[String] = []
+	
+	for weapon in save_data.weapon_collection:
+		weapon_path.append(weapon.resource_path)
+	
 	var data_to_save := {
 		"player_location": save_data.player_location,
 		"player_health": save_data.player_health,
@@ -24,6 +29,7 @@ func _save_game() -> void:
 		"level_state": save_data.level_state,
 		"coin_collected": save_data.coin_collected,
 		"current_checkpoint": save_data.current_checkpoint,
+		"weapon_collection": weapon_path,
 	}
 	
 	var json_var := JSON.stringify(data_to_save)
@@ -47,6 +53,7 @@ func _load_game() -> void:
 		save_data.level_state = saved_data.get("level_state", {})
 		save_data.coin_collected = saved_data.get("coin_collected", [])
 		save_data.current_checkpoint = saved_data.get("current_checkpoint", "")
+		_load_weapon_collection(saved_data)
 
 
 ## Function to reset game data
@@ -77,3 +84,13 @@ func is_data_exist() -> bool:
 		return true
 	
 	return false
+
+
+func _load_weapon_collection(saved_data: Dictionary) -> void:
+	save_data.weapon_collection.clear()
+	
+	for weapon_path in saved_data.get("weapon_collection", []):
+		var weapon: Weapon = load(weapon_path)
+		
+		if(weapon):
+			save_data.weapon_collection.append(weapon)

@@ -16,9 +16,10 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	#var coin_collection: Array[String]
 	
-	# Save Player Position and Player Health
+	# Save Player Position, Health, Weapon Collection
 	body._set_player_location_to_file()
 	body._set_player_health_to_file()
+	body._set_weapon_collection()
 	
 	SaveLoad.save_data.current_checkpoint = name
 	SaveLoad.save_data.coin_collected = body.coin_collection

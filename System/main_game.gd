@@ -4,6 +4,7 @@ extends Node
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
 signal update_weapon_collection(weapons: Array[Weapon])
+signal active_weapon_changed(uid: String)
 
 
 # main game script
@@ -29,6 +30,9 @@ func _ready() -> void:
 	
 	pause_menu_canvas.visible = false
 	get_tree().paused = false
+	SceneManager.main_game = self
+	
+	player_hud.active_weapon_changed.connect(_emit_weapon_changed)
 
 
 func _process(_delta) -> void:
@@ -120,3 +124,7 @@ func update_weapon_in_hud(weapons: Array[Weapon]) -> void:
 ## Connects player Coin Collection in HUD
 func _emit_coin_changed(amount: int) -> void:
 	coin_changed.emit(amount)
+
+## Pass Weapon Selected by Player
+func _emit_weapon_changed(uid: String) -> void:
+	active_weapon_changed.emit(uid)

@@ -37,10 +37,10 @@ var coin_collection: Array = []
 
 #region Onready variables
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var projectile := preload("uid://bqbsoy4gs1ghh")
 @onready var right_spawn_point: Marker2D = $RightSpawnPoint
 @onready var left_spawn_point: Marker2D = $LeftSpawnPoint
 @onready var projectiles: Node = %Projectiles
+@onready var weapon_component: WeaponComponent = $WeaponComponent
 #endregion
 
 func _ready() -> void:
@@ -143,7 +143,10 @@ func manage_state() -> void:
 
 func handle_projectile() -> void:
 	if Input.is_action_just_pressed("shoot"):
-		var melee = projectile.instantiate();
+		if weapon_component.weapon_on_hand == null:
+			return
+		
+		var melee = weapon_component.weapon_on_hand.instantiate();
 		
 		if animated_sprite.flip_h:
 			active_spawn_point = left_spawn_point
@@ -196,6 +199,10 @@ func _set_player_health_to_file() -> void:
 		"current_health": health_component.curr_health,
 		"max_health": health_component.max_health
 	}
+
+
+func _set_weapon_collection() -> void:
+	SaveLoad.save_data.weapon_collection = weapon_component.weapons
 
 
 func _emit_coin_Changed() -> void:

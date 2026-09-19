@@ -1,8 +1,10 @@
 class_name PlayerHud
 extends Control
 
-# TODO - Collect Weapon
-# TODO - 
+# TODO - Pass Active Weapon to the Player
+# TODO - Save The Weapon
+
+signal active_weapon_changed(uid: String)
 
 @export var main_game: MainGame
 
@@ -92,7 +94,9 @@ func set_active_button(value: Button) -> void:
 	active_weapon = value
 	active_weapon.button_pressed = true
 
+
 func switch_weapon() -> void:
+	print("Changing initiated")
 	for weapon in weapon_con.get_children():
 		if active_weapon == weapon:
 			continue
