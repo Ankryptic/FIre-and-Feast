@@ -4,7 +4,7 @@ extends Node
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
 signal update_weapon_collection(weapons: Array[Weapon])
-signal active_weapon_changed(uid: String)
+signal active_weapon_changed(res: Weapon)
 
 
 # main game script
@@ -126,5 +126,5 @@ func _emit_coin_changed(amount: int) -> void:
 	coin_changed.emit(amount)
 
 ## Pass Weapon Selected by Player
-func _emit_weapon_changed(uid: String) -> void:
-	active_weapon_changed.emit(uid)
+func _emit_weapon_changed(res: Weapon) -> void:
+	active_weapon_changed.emit(res)

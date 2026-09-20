@@ -4,7 +4,7 @@ extends Control
 # TODO - Pass Active Weapon to the Player
 # TODO - 
 
-signal active_weapon_changed(uid: String)
+signal active_weapon_changed(res: Weapon)
 
 @export var main_game: MainGame
 
@@ -101,4 +101,5 @@ func switch_weapon() -> void:
 		weapon_idx += 1 
 	
 	active_weapon = weapon_con.get_child(weapon_idx)
+	active_weapon_changed.emit(weapon_collection[weapon_idx])
 	return
