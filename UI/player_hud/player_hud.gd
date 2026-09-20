@@ -2,13 +2,14 @@ class_name PlayerHud
 extends Control
 
 # TODO - Pass Active Weapon to the Player
-# TODO - Save The Weapon
+# TODO - 
 
 signal active_weapon_changed(uid: String)
 
 @export var main_game: MainGame
 
 var weapon_collection: Array[Weapon] = []
+var weapon_idx: int
 var active_weapon: Button:
 	set(value):
 		if active_weapon != null:
@@ -29,10 +30,11 @@ func _ready() -> void:
 	visible = true;
 	_init_coin_counter()
 	_init_health_bar()
-	_init_weapon()
+	#_init_weapon()
 	main_game.health_Changed.connect(update_health_bar)
 	main_game.coin_changed.connect(update_coin_collection)
 	main_game.update_weapon_collection.connect(add_weapon_in_collection);
+	
 
 
 func _process(_delta: float) -> void:
@@ -57,11 +59,11 @@ func _init_health_bar() -> void:
 		player_health_bar.value = 100.0
 
 
-func _init_weapon() -> void:
-	if weapon_slot_1.can_equip:
-		active_weapon = weapon_slot_1
-	
-	return
+#func _init_weapon() -> void:
+	#if weapon_slot_1.can_equip:
+		#active_weapon = weapon_slot_1
+	#
+	#return
 
 
 func update_health_bar(curr_heath: float, max_health: float) -> void:
@@ -84,23 +86,19 @@ func update_weapons_in_ui() -> void:
 		var icon = weapon_collection[idx].texture
 		slot.icon = icon
 		active_weapon = slot
-	pass
-
-
-func set_active_button(value: Button) -> void:
-	if active_weapon != null:
-		active_weapon.button_pressed = false
-	
-	active_weapon = value
-	active_weapon.button_pressed = true
+		
+		# Update weapon Index for Switching weapon
+		weapon_idx = idx
 
 
 func switch_weapon() -> void:
-	print("Changing initiated")
-	for weapon in weapon_con.get_children():
-		if active_weapon == weapon:
-			continue
-		if weapon.can_equip:
-			active_weapon.button_pressed = false
-			active_weapon = weapon
-			return
+	if weapon_collection.size() <= 1:
+		return;
+	
+	if weapon_idx == (weapon_con.get_children().size() - 1):
+		weapon_idx = 0
+	else:
+		weapon_idx += 1 
+	
+	active_weapon = weapon_con.get_child(weapon_idx)
+	return
