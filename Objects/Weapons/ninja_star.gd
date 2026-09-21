@@ -7,10 +7,13 @@ extends Node2D
 
 @onready var star: Sprite2D = $Star
 @onready var blood_splash: AnimatedSprite2D = $BloodSplash
+@onready var visible_on_screen: VisibleOnScreenNotifier2D = $Star/VisibleOnScreenNotifier2D
 
 func _ready() -> void:
 	star.visible = true
 	blood_splash.visible = false
+	visible_on_screen.visible = true
+	
 
 
 func _process(delta: float) -> void:
@@ -24,11 +27,12 @@ func boom() -> void:
 	blood_splash.play("green_blood")
 
 
-func _on_blood_splash_animation_finished() -> void:
-	if blood_splash.animation == "green_blood":
-		print("finished")
-		queue_free()
+#func _on_blood_splash_animation_finished() -> void:
+	#if blood_splash.animation == "green_blood":
+		#print("finished")
+		#queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("Queue Free")
 	queue_free()

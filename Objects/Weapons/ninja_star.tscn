@@ -226,6 +226,7 @@ animations = [{
 
 [node name="NinjaStar" type="Node2D" unique_id=107554600]
 script = ExtResource("1_yxm4w")
+speed = 120.0
 
 [node name="Star" type="Sprite2D" parent="." unique_id=247358035]
 scale = Vector2(0.2, 0.2)
@@ -240,6 +241,10 @@ metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Star/Hitbox" unique_id=1987418564]
 shape = SubResource("CircleShape2D_5mwnj")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Star" unique_id=350320897]
+scale = Vector2(4.9999995, 4.9999995)
+rect = Rect2(-4, -4, 8, 8)
+
 [node name="BloodSplash" type="AnimatedSprite2D" parent="." unique_id=117992353]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_vkbwm")
@@ -247,11 +252,5 @@ animation = &"purple_blood"
 frame = 9
 frame_progress = 1.0
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=350320897]
-rect = Rect2(-4, -4, 8, 8)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=481024262]
-zoom = Vector2(37.505, 37.505)
-
+[connection signal="screen_exited" from="Star/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="animation_finished" from="BloodSplash" to="." method="_on_blood_splash_animation_finished"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
