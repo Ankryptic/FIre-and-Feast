@@ -12,7 +12,7 @@ func hit() -> void:
 
 
 func on_hurtbox_enter(area : Hurtbox) -> void:
-	#print('hurtBox -> ' ,area.name)
+	print('hurtBox -> ' ,area.name)
 	area.update_hit_direction(owner.direction)
 	hit()
 

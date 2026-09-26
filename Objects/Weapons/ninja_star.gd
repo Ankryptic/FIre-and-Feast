@@ -2,7 +2,8 @@ class_name NinjaStar
 extends Node2D
 
 @export var direction: int = 1
-@export var speed: float = 60
+@export var speed: float = 120
+@export var damage: int = 5
 @export var rotation_speed: float = 10
 
 @onready var star: Sprite2D = $Star
@@ -23,8 +24,10 @@ func _process(delta: float) -> void:
 
 func boom() -> void:
 	star.visible = false
+	blood_splash.global_position = star.global_position
 	blood_splash.visible = true
 	blood_splash.play("green_blood")
+	print("playing")
 
 
 func _on_blood_splash_animation_finished() -> void:
