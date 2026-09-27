@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://e5fxeq52m26g"]
+[gd_scene format=3 uid="uid://e5fxeq52m26g"]
 
-[ext_resource type="Script" uid="uid://dui63lbcfjrcn" path="res://Script/green_slime.gd" id="1_arbwv"]
+[ext_resource type="Script" uid="uid://dui63lbcfjrcn" path="res://Enemy/Slime/green_slime.gd" id="1_arbwv"]
 [ext_resource type="Texture2D" uid="uid://bohxtovo2hjam" path="res://Asset/sprites/slime_green.png" id="1_vqynf"]
-[ext_resource type="PackedScene" uid="uid://ddovea1xeqdam" path="res://Scene/killzone.tscn" id="2_em2wj"]
 [ext_resource type="Script" uid="uid://cfv20hcyas01o" path="res://MyResources/stats.gd" id="2_mgqwm"]
-[ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://Script/hurtbox.gd" id="3_mh1aa"]
+[ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://MyResources/hurtbox.gd" id="3_mh1aa"]
 
 [sub_resource type="Resource" id="Resource_mgqwm"]
 resource_local_to_scene = true
@@ -66,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"dead",
 "speed": 5.0
 }, {
@@ -74,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mh1aa")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hit",
 "speed": 1.0
 }, {
@@ -91,7 +90,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_28jbo")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -101,9 +100,6 @@ size = Vector2(12, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh1aa"]
 radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mgqwm"]
-radius = 4.0
 
 [sub_resource type="Animation" id="Animation_mh1aa"]
 length = 0.001
@@ -160,61 +156,51 @@ gradient = SubResource("Gradient_3fwfs")
 width = 14
 height = 2
 
-[node name="GreenSlime" type="CharacterBody2D"]
+[node name="GreenSlime" type="CharacterBody2D" unique_id=2121952271]
 collision_layer = 4
 collision_mask = 19
 script = ExtResource("1_arbwv")
 stat = SubResource("Resource_mgqwm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1096525784]
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_arbwv")
 animation = &"hit"
 autoplay = "walk"
 metadata/_edit_group_ = true
 
-[node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D"]
+[node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D" unique_id=1451987101]
 collision_layer = 16
 collision_mask = 64
 input_pickable = false
 script = ExtResource("3_mh1aa")
 metadata/_custom_type_script = "uid://bef6fd5blxnmc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Hurtbox" unique_id=1635822804]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_mh1aa")
 debug_color = Color(0.25984162, 0.8457546, 0, 0.41960785)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609864450]
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_mh1aa")
 
-[node name="Killzone" parent="." instance=ExtResource("2_em2wj")]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_mgqwm")
-disabled = true
-
-[node name="LedgeDetector" type="RayCast2D" parent="."]
+[node name="LedgeDetector" type="RayCast2D" parent="." unique_id=1819696127]
 position = Vector2(6, -6)
 target_position = Vector2(0, 8)
 
-[node name="WallDetector" type="RayCast2D" parent="."]
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=29446632]
 position = Vector2(0, -6)
 target_position = Vector2(9, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_s1180")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1176932789]
+libraries/ = SubResource("AnimationLibrary_s1180")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1625575309]
 wait_time = 0.5
 one_shot = true
 
-[node name="healthbar" type="TextureProgressBar" parent="."]
+[node name="healthbar" type="TextureProgressBar" parent="." unique_id=81453310]
 custom_minimum_size = Vector2(15, 3)
 offset_left = -8.0
 offset_top = -19.0

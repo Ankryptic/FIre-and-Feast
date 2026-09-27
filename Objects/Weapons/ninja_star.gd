@@ -52,7 +52,6 @@ func collide_to_wall() -> void:
 
 func _on_blood_splash_animation_finished() -> void:
 	if blood_splash.animation == "green_blood":
-		print("Booming")
 		queue_free()
 
 

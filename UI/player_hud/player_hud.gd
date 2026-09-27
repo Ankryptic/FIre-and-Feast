@@ -1,8 +1,6 @@
 class_name PlayerHud
 extends Control
 
-# TODO - Pass Active Weapon to the Player
-# TODO - 
 
 signal active_weapon_changed(res: Weapon)
 

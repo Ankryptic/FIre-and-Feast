@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+# Green Slime Script
+
 #region Onready variables
 @onready var green_slime: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -7,6 +9,7 @@ extends CharacterBody2D
 @onready var ledge_detector: RayCast2D = $LedgeDetector
 @onready var healthbar: TextureProgressBar = $healthbar
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var hurtbox: Hurtbox = $AnimatedSprite2D/Hurtbox
 #endregion
 
 #region Resource variables
@@ -75,6 +78,7 @@ func update_heath_bar(cur_health: int , _max_health: int) -> void:
 	healthbar.value = cur_health
 
 func play_dead() -> void:
+	hurtbox.set_deferred("monitorable", false)
 	isDead = true
 	speed = 0
 	velocity = Vector2.ZERO
