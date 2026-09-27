@@ -28,8 +28,14 @@ func _physics_process(delta: float) -> void:
 	if !stop:
 		position.x += direction * SPEED * delta 
 
-
+## Animate when collides with enemy
 func boom() -> void:
+	stop = true
+	anim.play("boom")
+
+
+## Animate when collide with wall or static objects
+func collide_to_wall() -> void:
 	stop = true
 	anim.play("boom")
 
