@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ddn5q2gulvoju"]
+
+[ext_resource type="Script" uid="uid://cwtdsxv88dish" path="res://exit_gate.gd" id="1_q24x2"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mgrxk"]
+b = Vector2(0, -50)
+
+[node name="ExitGate" type="Area2D" unique_id=417376230]
+script = ExtResource("1_q24x2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2034690472]
+shape = SubResource("SegmentShape2D_mgrxk")
+debug_color = Color(0.99742216, 0, 0.17616406, 0.41960785)
