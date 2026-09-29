@@ -15,6 +15,10 @@ var dissapp_time: int = 1
 
 func _ready() -> void:
 	visible = false
+	call_deferred("_set_static_collision")
+
+
+func _set_static_collision() -> void:
 	static_Col.disabled = true if isNormal else false
 
 func appear() -> void:

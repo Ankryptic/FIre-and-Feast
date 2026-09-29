@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://fq3ubhq67qdg" path="res://Levels/Level_1/cut_scene_manager.gd" id="10_5ot28"]
 [ext_resource type="Script" uid="uid://pj882kfjk2e7" path="res://Levels/Level_1/collectible_con.gd" id="11_eepv7"]
 [ext_resource type="PackedScene" uid="uid://d136utgf0su5g" path="res://Characters/Girl/girl.tscn" id="12_aerfg"]
+[ext_resource type="PackedScene" uid="uid://ddn5q2gulvoju" path="res://Objects/ExitGate/exit_gate.tscn" id="14_llsuh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8jt7"]
 texture = ExtResource("1_gwceb")
@@ -347,12 +348,6 @@ _data = {
 &"left_right": SubResource("Animation_sagxc")
 }
 
-[sub_resource type="Resource" id="Resource_eepv7"]
-resource_local_to_scene = true
-script = ExtResource("3_l53as")
-max_health = 40
-metadata/_custom_type_script = "uid://cfv20hcyas01o"
-
 [sub_resource type="Resource" id="Resource_llsuh"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
@@ -366,6 +361,12 @@ max_health = 40
 metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="Resource" id="Resource_odamq"]
+resource_local_to_scene = true
+script = ExtResource("3_l53as")
+max_health = 40
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
+
+[sub_resource type="Resource" id="Resource_byskb"]
 resource_local_to_scene = true
 script = ExtResource("3_l53as")
 max_health = 40
@@ -571,19 +572,19 @@ position = Vector2(1908, -225)
 
 [node name="GreenSlime" parent="EnemyContainer" unique_id=1083359386 instance=ExtResource("7_gwceb")]
 position = Vector2(198, -5)
-stat = SubResource("Resource_eepv7")
+stat = SubResource("Resource_llsuh")
 
 [node name="GreenSlime2" parent="EnemyContainer" unique_id=1751502542 instance=ExtResource("7_gwceb")]
 position = Vector2(787, -130)
-stat = SubResource("Resource_llsuh")
+stat = SubResource("Resource_2e10j")
 
 [node name="GreenSlime3" parent="EnemyContainer" unique_id=1703099097 instance=ExtResource("7_gwceb")]
 position = Vector2(836, -408)
-stat = SubResource("Resource_2e10j")
+stat = SubResource("Resource_odamq")
 
 [node name="GreenSlime4" parent="EnemyContainer" unique_id=787119529 instance=ExtResource("7_gwceb")]
 position = Vector2(1343, -293)
-stat = SubResource("Resource_odamq")
+stat = SubResource("Resource_byskb")
 
 [node name="ObjectContainer" type="Node" parent="." unique_id=929547511]
 
@@ -652,3 +653,10 @@ position = Vector2(2086, -159)
 
 [node name="PlayerSP" type="Marker2D" parent="." unique_id=485357202]
 position = Vector2(2195, -160)
+
+[node name="ExitGate" parent="." unique_id=417376230 node_paths=PackedStringArray("gate_position") instance=ExtResource("14_llsuh")]
+position = Vector2(2065, -161)
+gate_position = NodePath("ExitPortalSP")
+
+[node name="ExitPortalSP" type="Marker2D" parent="ExitGate" unique_id=117080700]
+position = Vector2(111.01465, -28.734161)
