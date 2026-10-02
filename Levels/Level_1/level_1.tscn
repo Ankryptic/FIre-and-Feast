@@ -659,4 +659,4 @@ position = Vector2(2065, -161)
 gate_position = NodePath("ExitPortalSP")
 
 [node name="ExitPortalSP" type="Marker2D" parent="ExitGate" unique_id=117080700]
-position = Vector2(111.01465, -28.734161)
+position = Vector2(111, -16)

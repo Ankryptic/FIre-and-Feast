@@ -175,6 +175,7 @@ animations = [{
 radius = 5.0
 
 [node name="Player" type="CharacterBody2D" unique_id=116158440 node_paths=PackedStringArray("camera_2d", "health_component") groups=["player_group"]]
+z_index = 50
 collision_layer = 3
 script = ExtResource("1_y8w33")
 camera_2d = NodePath("Camera2D")

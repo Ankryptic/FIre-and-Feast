@@ -26,5 +26,5 @@ func spawn_portal() -> void:
 	object_container.add_child(portal_scene);
 	
 	portal_scene.global_position = gate_position.global_position
-	
+	portal_scene.auto_dissapp = false
 	portal_scene.appear()
