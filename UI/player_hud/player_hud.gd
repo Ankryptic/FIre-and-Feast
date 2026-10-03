@@ -1,7 +1,6 @@
 class_name PlayerHud
 extends Control
 
-
 signal active_weapon_changed(res: Weapon)
 
 @export var main_game: MainGame

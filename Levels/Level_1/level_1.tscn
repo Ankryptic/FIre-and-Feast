@@ -442,11 +442,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_c0yvh"]
+resource_name = "move_towards_portal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ObjectContainer:script")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eepv7"]
 _data = {
 &"CutScenePlayer": SubResource("Animation_vbnv0"),
 &"RESET": SubResource("Animation_fhktt"),
-&"fade_in": SubResource("Animation_eepv7")
+&"fade_in": SubResource("Animation_eepv7"),
+&"move_towards_portal": SubResource("Animation_c0yvh")
 }
 
 [node name="level_1" type="Node2D" unique_id=2053220122 node_paths=PackedStringArray("coin_container")]

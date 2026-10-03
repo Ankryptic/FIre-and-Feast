@@ -89,6 +89,7 @@ func handle_jump() -> void:
 
 ## Control Movement by Player
 func handle_movement(direction: float) -> void:
+	print(direction)
 	if direction:
 		if direction == -1:
 			turn_to(false)
