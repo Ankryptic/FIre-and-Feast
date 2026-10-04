@@ -1,7 +1,7 @@
 class_name WeaponComponent
 extends Node
 
-#TODO - Update weapon in HUD
+#TODO - Update picked Weapon on checkpoint to the savedFiles
 #TODO - Fuck Shreeraj
 
 var main_game: MainGame
