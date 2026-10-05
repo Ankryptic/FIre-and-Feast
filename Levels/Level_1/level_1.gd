@@ -3,12 +3,16 @@ extends Node2D
 
 # Level 1 Script
 
+var main_game: MainGame
+
 @export var coin_container: Node2D
 @onready var cut_scene_container: SceneContainer = $CutSceneContainer
 @onready var player_sp: Marker2D = $PlayerSP
 @onready var cut_scene_manager: CutsceneManager = %CutSceneManager
 
 func _ready() -> void:
+	main_game = get_parent().get_parent().get_parent()
+	
 	cut_scene_container.cut_scene_started.connect(cut_scene_started)
 	cut_scene_manager.cut_scene_finished.connect(cut_scene_ended)
 	cut_scene_container.start_cut_scene()
@@ -35,6 +39,7 @@ func place_coin_in_level() -> void:
 	var coin_collected: Array = SaveLoad.save_data.coin_collected
 	
 	if not coin_collected.is_empty():
+		main_game.update_player_coin_collection(coin_collected)
 		for coin in coin_container.get_children():
 			if coin_collected.has(coin.name):
 				coin.queue_free()

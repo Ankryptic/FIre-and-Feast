@@ -1,11 +1,13 @@
 class_name MainGame
 extends Node
 
+# TODO: Fix coin amount in HUD from Saved Files
+# BUG: Coin is saving before hitting the checkpoint
+
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
 signal update_weapon_collection(weapons: Array[Weapon])
 signal active_weapon_changed(res: Weapon)
-
 
 # main game script
 
@@ -101,7 +103,6 @@ func _deferred_load_level(new_level: String) -> void:
 	
 	set_player_in_level()
 
-
 ## Setting up the Player in current level
 func set_player_in_level() -> void:
 	if current_level == null:
@@ -112,7 +113,7 @@ func set_player_in_level() -> void:
 		return;
 	
 	entity_root.add_child(player)
-
+	
 ## Connects player health component to HUD Health bar
 func update_health_in_hud(curr_health: float, max_health: float) -> void:
 	health_Changed.emit(curr_health, max_health)
@@ -128,3 +129,12 @@ func _emit_coin_changed(amount: int) -> void:
 ## Pass Weapon Selected by Player
 func _emit_weapon_changed(res: Weapon) -> void:
 	active_weapon_changed.emit(res)
+
+
+func update_player_coin_collection(coins: Array) -> void:
+	print("Triggered")
+	if player == null:
+		print("No Player Found");
+	
+	print("Coins set: ", coins)
+	player.coin_collection = coins
