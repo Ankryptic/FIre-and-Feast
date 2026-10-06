@@ -1,7 +1,7 @@
 class_name MainGame
 extends Node
 
-# TODO: Fix coin amount in HUD from Saved Files
+# TODO: 
 # BUG: Coin is saving before hitting the checkpoint
 
 signal health_Changed(curr_health: float, max_health: float)
@@ -138,3 +138,4 @@ func update_player_coin_collection(coins: Array) -> void:
 	
 	print("Coins set: ", coins)
 	player.coin_collection = coins
+	coin_changed.emit(coins.size())
