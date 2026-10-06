@@ -40,5 +40,7 @@ func _init_weapon() -> void:
 
 
 func _init_weapon_on_hand() -> void:
-	if weapons[1]:
-		_set_Active_weapon(weapons[1])
+	if weapons:
+		_set_Active_weapon(weapons[weapons.size() - 1])
+	
+	return;
