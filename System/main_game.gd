@@ -1,8 +1,7 @@
 class_name MainGame
 extends Node
 
-# TODO: 
-# BUG: Coin is saving before hitting the checkpoint
+# TODO: Fix coin count resume
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
@@ -132,10 +131,9 @@ func _emit_weapon_changed(res: Weapon) -> void:
 
 
 func update_player_coin_collection(coins: Array) -> void:
-	print("Triggered")
 	if player == null:
-		print("No Player Found");
+		printerr("No Player Found");
 	
-	print("Coins set: ", coins)
 	player.coin_collection = coins
+	player.coin_collected = coins.size()
 	coin_changed.emit(coins.size())
