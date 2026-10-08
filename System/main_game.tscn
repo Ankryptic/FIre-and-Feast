@@ -4,6 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://1kxul3q2y36" path="res://UI/pause_menu/pause_menu.tscn" id="2_isajq"]
 [ext_resource type="PackedScene" uid="uid://rnufcqrkp6ka" path="res://UI/player_hud/player_hud.tscn" id="2_pyonu"]
 
+[sub_resource type="Animation" id="Animation_isajq"]
+resource_name = "exit_walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2t5xv"]
+_data = {
+&"exit_walk": SubResource("Animation_isajq")
+}
+
 [node name="MainGame" type="Node" unique_id=540701847 node_paths=PackedStringArray("pause_menu_canvas", "player_hud_canvas", "player_hud")]
 script = ExtResource("1_wbjt5")
 pause_menu_canvas = NodePath("PauseMenu")
@@ -31,3 +39,17 @@ layer = 100
 
 [node name="PlayerHUD" parent="HUD" unique_id=951153378 node_paths=PackedStringArray("main_game") instance=ExtResource("2_pyonu")]
 main_game = NodePath("../..")
+
+[node name="FadeIn_Out" type="CanvasLayer" parent="." unique_id=497940586]
+
+[node name="ColorRect" type="ColorRect" parent="FadeIn_Out" unique_id=809800989]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GlobalAnimationPlayer" type="AnimationPlayer" parent="." unique_id=729268183]
+libraries/ = SubResource("AnimationLibrary_2t5xv")

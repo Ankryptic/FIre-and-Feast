@@ -444,18 +444,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_c0yvh"]
 resource_name = "move_towards_portal"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ObjectContainer:script")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eepv7"]
 _data = {
@@ -613,11 +601,6 @@ position = Vector2(117, 86)
 [node name="FireballMarker" type="Marker2D" parent="CollectibleComponent" unique_id=704880040]
 position = Vector2(99, -41)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=680628482]
-root_node = NodePath("../CutSceneContainer")
-libraries/ = SubResource("AnimationLibrary_eepv7")
-autoplay = &"CutScenePlayer"
-
 [node name="CutSceneContainer" type="Node2D" parent="." unique_id=1546232147]
 script = ExtResource("9_08mmt")
 level_id = 1
@@ -676,3 +659,8 @@ gate_position = NodePath("ExitPortalSP")
 
 [node name="ExitPortalSP" type="Marker2D" parent="ExitGate" unique_id=117080700]
 position = Vector2(111, -16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=680628482]
+root_node = NodePath("../CutSceneContainer")
+libraries/ = SubResource("AnimationLibrary_eepv7")
+autoplay = &"CutScenePlayer"

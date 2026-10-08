@@ -4,14 +4,18 @@ extends Node2D
 # Level 1 Script
 
 var main_game: MainGame
+var player: Player
 
 @export var coin_container: Node2D
 @onready var cut_scene_container: SceneContainer = $CutSceneContainer
 @onready var player_sp: Marker2D = $PlayerSP
 @onready var cut_scene_manager: CutsceneManager = %CutSceneManager
+@onready var animation_player: AnimationPlayer = $AnimationPlayer 
+
 
 func _ready() -> void:
 	main_game = get_parent().get_parent().get_parent()
+	player = SceneManager.player
 	
 	cut_scene_container.cut_scene_started.connect(cut_scene_started)
 	cut_scene_manager.cut_scene_finished.connect(cut_scene_ended)

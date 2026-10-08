@@ -7,11 +7,16 @@ extends Area2D
 
 const PORTAL_UID: String = "uid://c34yyw0lmmfud"
 
+var main_game: MainGame
+var global_animation_player: AnimationPlayer
+
 @export var gate_position: Marker2D
 @onready var coll_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	body_entered.connect(open_portal_for_exit)
+	main_game = SceneManager.main_game
+	global_animation_player = main_game.get_node("GlobalAnimationPlayer")
 
 
 func open_portal_for_exit(body: Player) -> void:
@@ -36,3 +41,15 @@ func spawn_portal() -> void:
 	portal_scene.auto_dissapp = false
 	portal_scene.appear()
 	coll_shape.disabled = true;
+	
+	if not global_animation_player:
+		printerr("GlobalAnimationPlayer not found");
+		return;
+	
+	if not main_game:
+		printerr("MainGame Node not found");
+		return;
+	
+	main_game.setup_animation_player()
+	global_animation_player.play("exit_walk")
+	print("Playing: ", global_animation_player.current_animation)
