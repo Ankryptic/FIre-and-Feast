@@ -143,7 +143,7 @@ func update_player_coin_collection(coins: Array) -> void:
 	coin_changed.emit(coins.size())
 
 
-func setup_animation_player() -> void:
+func setup_animation_player(positions: Dictionary) -> void:
 	if not player:
 		printerr("Player not Found")
 		return;
@@ -151,6 +151,7 @@ func setup_animation_player() -> void:
 	if not current_level_scene:
 		printerr("Level not found")
 		return;
+	
 	
 	var exit_animation: Animation = global_animation_player.get_animation("exit_walk");
 	
@@ -166,6 +167,12 @@ func setup_animation_player() -> void:
 		NodePath(str(player_loc) + ':position')
 	)
 	
+	if not positions['portal']:
+		printerr('Portal Distance is not given');
+		return;
+	
+	var portal_dist: float = positions['portal'].x
+	
 	exit_animation.track_insert_key(
 		track_index, 
 		0.0,
@@ -175,17 +182,9 @@ func setup_animation_player() -> void:
 	exit_animation.track_insert_key(
 		track_index,
 		2.0,
-		Vector2(player.position.x + 50, player.position.y) 
+		Vector2(portal_dist, player.position.y) 
 	)
 	
 	exit_animation.length = 2.0
-	
-	print("Animation Root: ", animation_root.get_path())
-	print("Player Path: ", player_loc)
-	print("Track Path: ", exit_animation.track_get_path(track_index))
-	print("Animation Length: ", exit_animation.length)
-	print("Key Count: ", exit_animation.track_get_key_count(track_index))
-	print("Player Position: ", player.position)
-	print("Track Count: ", exit_animation.get_track_count())
 	
 	global_animation_player.clear_caches()

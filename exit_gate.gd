@@ -50,6 +50,10 @@ func spawn_portal() -> void:
 		printerr("MainGame Node not found");
 		return;
 	
-	main_game.setup_animation_player()
+	var positions: Dictionary = {
+		'portal': gate_position.global_position
+	}
+	
+	main_game.setup_animation_player(positions)
 	global_animation_player.play("exit_walk")
 	print("Playing: ", global_animation_player.current_animation)
