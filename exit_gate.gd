@@ -9,6 +9,7 @@ const PORTAL_UID: String = "uid://c34yyw0lmmfud"
 
 var main_game: MainGame
 var global_animation_player: AnimationPlayer
+var player: Player
 
 @export var gate_position: Marker2D
 @onready var coll_shape: CollisionShape2D = $CollisionShape2D
@@ -26,10 +27,10 @@ func open_portal_for_exit(body: Player) -> void:
 	body.in_cutscene = true;
 	body.velocity.x = 0;
 	
-	call_deferred("spawn_portal");
+	call_deferred("spawn_portal", body);
 
 
-func spawn_portal() -> void:
+func spawn_portal(body: Player) -> void:
 	var instance = ResourceLoader.load(PORTAL_UID, "PackedScene") as PackedScene
 	var portal_scene = instance.instantiate()
 	
@@ -55,5 +56,18 @@ func spawn_portal() -> void:
 	}
 	
 	main_game.setup_animation_player(positions)
+	
+	if not is_instance_valid(body):
+		printerr('Player not found')
+	
 	global_animation_player.play("exit_walk")
-	print("Playing: ", global_animation_player.current_animation)
+	#body.animated_sprite.play("Run")
+	body.change_state(body.States.RUN)
+	
+	while true:
+		var animation_finished: StringName = await global_animation_player.animation_finished
+		
+		if animation_finished == &"walk_out":
+			body.change_state(body.States.IDLE)
+			print("Reached at portal")
+			break;

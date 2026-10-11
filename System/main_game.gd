@@ -144,16 +144,20 @@ func update_player_coin_collection(coins: Array) -> void:
 
 
 func setup_animation_player(positions: Dictionary) -> void:
-	if not player:
+	if not is_instance_valid(player):
 		printerr("Player not Found")
 		return;
 	
-	if not current_level_scene:
+	if not is_instance_valid(current_level_scene):
 		printerr("Level not found")
 		return;
 	
 	
 	var exit_animation: Animation = global_animation_player.get_animation("exit_walk");
+	
+	# Remove old track so they aren't duplicate
+	for i in range(exit_animation.get_track_count() - 1, -1, -1):
+		exit_animation.remove_track(i)
 	
 	var animation_root = global_animation_player.get_node(global_animation_player.get_root())
 	
@@ -167,7 +171,7 @@ func setup_animation_player(positions: Dictionary) -> void:
 		NodePath(str(player_loc) + ':position')
 	)
 	
-	if not positions['portal']:
+	if not positions.has('portal') or positions['portal'] == null:
 		printerr('Portal Distance is not given');
 		return;
 	

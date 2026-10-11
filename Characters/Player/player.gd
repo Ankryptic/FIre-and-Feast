@@ -124,6 +124,7 @@ func handle_animation(direction : float) -> void:
 
 ## Changes the Player current State
 func change_state(next_state: States ) -> void:
+	print(next_state)
 	if player_state == next_state:
 		return
 	else:
