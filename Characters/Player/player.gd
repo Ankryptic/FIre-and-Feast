@@ -29,6 +29,7 @@ const RUN_SPEED := 80
 var speed := 40.0
 var active_spawn_point : Node = right_spawn_point
 var in_cutscene := false
+var pause_movement: bool = false
 var player_state: States = States.IDLE
 var active_gravity: bool = true
 var coin_collected: int = 0
@@ -101,6 +102,9 @@ func handle_movement(direction: float) -> void:
 
 ## Control Movement by cutscene
 func cutscene_movement_control() -> void:
+	if pause_movement:
+		return;
+	
 	if velocity.x == 0:
 		change_state(States.IDLE)
 	elif abs(velocity.x) > 0:
@@ -124,7 +128,6 @@ func handle_animation(direction : float) -> void:
 
 ## Changes the Player current State
 func change_state(next_state: States ) -> void:
-	print(next_state)
 	if player_state == next_state:
 		return
 	else:

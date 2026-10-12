@@ -27,6 +27,10 @@ func open_portal_for_exit(body: Player) -> void:
 	body.in_cutscene = true;
 	body.velocity.x = 0;
 	
+	# Block the cutscene_movement_control method in the player to prevent 
+	# overriding the aniamtion
+	body.pause_movement = true
+	
 	call_deferred("spawn_portal", body);
 
 
@@ -61,13 +65,11 @@ func spawn_portal(body: Player) -> void:
 		printerr('Player not found')
 	
 	global_animation_player.play("exit_walk")
-	#body.animated_sprite.play("Run")
 	body.change_state(body.States.RUN)
 	
 	while true:
 		var animation_finished: StringName = await global_animation_player.animation_finished
 		
-		if animation_finished == &"walk_out":
+		if animation_finished == &"exit_walk":
 			body.change_state(body.States.IDLE)
-			print("Reached at portal")
 			break;
