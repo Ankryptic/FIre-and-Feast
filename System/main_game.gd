@@ -28,6 +28,7 @@ var player_weappon_component: WeaponComponent
 @onready var global_animation_player: AnimationPlayer = $GlobalAnimationPlayer
 
 func _ready() -> void:
+	global_animation_player.play("fade_in")
 	_init_player();
 	load_level(next_level)
 	
