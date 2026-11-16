@@ -156,6 +156,10 @@ func setup_animation_player(positions: Dictionary) -> void:
 	
 	var exit_animation: Animation = global_animation_player.get_animation("exit_walk");
 	
+	if (exit_animation == null):
+		printerr("Exit animation not found.")
+		return;
+	
 	# Remove old track so they aren't duplicate
 	for i in range(exit_animation.get_track_count() - 1, -1, -1):
 		exit_animation.remove_track(i)
@@ -166,7 +170,7 @@ func setup_animation_player(positions: Dictionary) -> void:
 	var player_loc := animation_root.get_path_to(player);
 	
 	var track_index := exit_animation.add_track(Animation.TYPE_VALUE)
-	
+	 
 	exit_animation.track_set_path(
 		track_index,
 		NodePath(str(player_loc) + ':position')
@@ -190,6 +194,43 @@ func setup_animation_player(positions: Dictionary) -> void:
 		Vector2(portal_dist, player.position.y) 
 	)
 	
-	exit_animation.length = 2.0
+	exit_animation.track_insert_key(
+		track_index,
+		2.0,
+		Vector2.ZERO
+	)
+	
+	# Create Modulate track
+	var modulate_track: int = exit_animation.add_track(Animation.TYPE_VALUE);
+	
+	# Set track path to player's modulate property
+	exit_animation.track_set_path(
+		modulate_track,
+		NodePath(str(player_loc) + ":modulate")
+	)
+	
+	# Starting color
+	exit_animation.track_insert_key(
+		modulate_track,
+		0.0,
+		Color.WHITE
+	)
+	
+	# Starts fading after reaching the portal
+	exit_animation.track_insert_key(
+		modulate_track,
+		2.0,
+		Color.WHITE
+	)
+	
+	# fully transparent
+	exit_animation.track_insert_key(
+		modulate_track,
+		3.0,
+		Color(1, 1, 1, 0)
+	)
+	
+	# Animation duration
+	exit_animation.length = 3.0
 	
 	global_animation_player.clear_caches()
