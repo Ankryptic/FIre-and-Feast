@@ -144,6 +144,52 @@ func update_player_coin_collection(coins: Array) -> void:
 	coin_changed.emit(coins.size())
 
 
+func setup_fading_animation(loc) -> void:
+	var fades_away: Animation = global_animation_player.get_animation("player_fades_away");
+	
+	if (fades_away == null): 
+		printerr("Player Fades Aways animation not found");
+		return
+	
+	# Removes old tracks so they aren't duplicates
+	for i in range(fades_away.get_track_count() - 1, -1, -1):
+		fades_away.remove_track(i);
+	
+	var player_loc = loc;
+	
+	# Create Modulate track
+	var modulate_track: int = fades_away.add_track(Animation.TYPE_VALUE);
+	
+	# Set track path to player's modulate property
+	fades_away.track_set_path(
+		modulate_track,
+		NodePath(str(player_loc) + ":modulate")
+	)
+	
+	# Starting color
+	fades_away.track_insert_key(
+		modulate_track,
+		0.0,
+		Color.WHITE
+	)
+	
+	## Starts fading after reaching the portal
+	#fades_away.track_insert_key(
+		#modulate_track,
+		#2.0,
+		#Color.WHITE
+	#)
+	
+	# fully transparent
+	fades_away.track_insert_key(
+		modulate_track,
+		1.0,
+		Color(1, 1, 1, 0)
+	)
+	
+	fades_away.length = 1.0
+
+
 func setup_animation_player(positions: Dictionary) -> void:
 	if not is_instance_valid(player):
 		printerr("Player not Found")
@@ -193,44 +239,10 @@ func setup_animation_player(positions: Dictionary) -> void:
 		2.0,
 		Vector2(portal_dist, player.position.y) 
 	)
-	
-	exit_animation.track_insert_key(
-		track_index,
-		2.0,
-		Vector2.ZERO
-	)
-	
-	# Create Modulate track
-	var modulate_track: int = exit_animation.add_track(Animation.TYPE_VALUE);
-	
-	# Set track path to player's modulate property
-	exit_animation.track_set_path(
-		modulate_track,
-		NodePath(str(player_loc) + ":modulate")
-	)
-	
-	# Starting color
-	exit_animation.track_insert_key(
-		modulate_track,
-		0.0,
-		Color.WHITE
-	)
-	
-	# Starts fading after reaching the portal
-	exit_animation.track_insert_key(
-		modulate_track,
-		2.0,
-		Color.WHITE
-	)
-	
-	# fully transparent
-	exit_animation.track_insert_key(
-		modulate_track,
-		3.0,
-		Color(1, 1, 1, 0)
-	)
+
+	setup_fading_animation(player_loc);
 	
 	# Animation duration
-	exit_animation.length = 3.0
+	exit_animation.length = 2.0
 	
 	global_animation_player.clear_caches()

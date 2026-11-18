@@ -62,11 +62,15 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_a8v5g"]
+resource_name = "player_fades_away"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2t5xv"]
 _data = {
 &"RESET": SubResource("Animation_2t5xv"),
 &"exit_walk": SubResource("Animation_isajq"),
-&"fade_in": SubResource("Animation_aots6")
+&"fade_in": SubResource("Animation_aots6"),
+&"player_fades_away": SubResource("Animation_a8v5g")
 }
 
 [node name="MainGame" type="Node" unique_id=540701847 node_paths=PackedStringArray("pause_menu_canvas", "player_hud_canvas", "player_hud")]

@@ -72,4 +72,5 @@ func spawn_portal(body: Player) -> void:
 		
 		if animation_finished == &"exit_walk":
 			body.change_state(body.States.IDLE)
+			global_animation_player.play("player_fades_away");
 			break;
