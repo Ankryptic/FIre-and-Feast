@@ -74,4 +74,5 @@ func spawn_portal(body: Player) -> void:
 			
 		elif animation_finished == &"player_fades_away":
 			SaveLoad.save_data.current_level = main_game.next_level + 1;
+			SaveLoad._save_game();
 			main_game._init_level();

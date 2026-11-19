@@ -46,6 +46,8 @@ var coin_collection: Array = []
 
 func _ready() -> void:
 	set_camera_limit()
+	var saved_coin: int = SaveLoad.save_data.coin_collected.size();
+	print("Coin Collected: ", saved_coin);
 
 
 func _process(_delta: float) -> void:
