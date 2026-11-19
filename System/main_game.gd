@@ -20,7 +20,7 @@ signal active_weapon_changed(res: Weapon)
 }
 
 var player_path: String = "uid://dsd45eb3073we"
-var next_level: String 
+var next_level: int
 var current_level: int
 var current_level_scene: Node2D
 var player: Player
@@ -92,10 +92,11 @@ func _init_player() -> void:
 func _init_level() -> void:
 	var saved_level = SaveLoad.save_data.current_level
 	if saved_level == null:
-		next_level = level_num.get(1, 1);
+		next_level = saved_level
 
-	next_level = level_num[saved_level]
-	load_level(next_level)
+	next_level = saved_level
+	print(next_level)
+	load_level(level_num[next_level])
 
 
 ## Load Level When System is Idle
