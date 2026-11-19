@@ -2,21 +2,25 @@ class_name MainGame
 extends Node
 
 # TODO: Give Enemy HitBox
-# TODO: Animate Player Exit
+# TODO: Change Level
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
 signal update_weapon_collection(weapons: Array[Weapon])
 signal active_weapon_changed(res: Weapon)
 
-# main game script
-
 @export var pause_menu_canvas: CanvasLayer
 @export var player_hud_canvas: CanvasLayer
 @export var player_hud: Control
+@export var level_num: Dictionary = {
+	1: "uid://bkpes4wn5yval",
+	2: "uid://c6r8xw5f4nw2d",
+	3: "uid://cjds5c1g0ok02",
+	4: "uid://dnl1hs4qjo6fs",
+}
 
 var player_path: String = "uid://dsd45eb3073we"
-var next_level: String = "uid://bkpes4wn5yval"
+var next_level: String 
 var current_level: int
 var current_level_scene: Node2D
 var player: Player
@@ -30,7 +34,7 @@ var player_weappon_component: WeaponComponent
 func _ready() -> void:
 	global_animation_player.play("fade_in")
 	_init_player();
-	load_level(next_level)
+	_init_level();
 	
 	pause_menu_canvas.visible = false
 	get_tree().paused = false
@@ -82,6 +86,16 @@ func _init_player() -> void:
 	
 	player.coin_changed.connect(_emit_coin_changed)
 	SceneManager.player = player
+
+
+# Setup: Which level to play
+func _init_level() -> void:
+	var saved_level = SaveLoad.save_data.current_level
+	if saved_level == null:
+		next_level = level_num.get(1, 1);
+
+	next_level = level_num[saved_level]
+	load_level(next_level)
 
 
 ## Load Level When System is Idle

@@ -3,8 +3,6 @@ extends Area2D
 
 # Exit Gate for Player to Next level
 
-# TODO: Move Player to the exit portal using AnimationPlayer or tween
-
 const PORTAL_UID: String = "uid://c34yyw0lmmfud"
 
 var main_game: MainGame
