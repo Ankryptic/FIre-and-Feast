@@ -7,7 +7,7 @@ func _ready() -> void:
 	
  
 
-func on_hurtbox_enter(area : Hurtbox) -> void:
+func on_hurtbox_enter(area : Area2D) -> void:
 	#print('hurtBox -> ' ,area.name)
 	area.update_hit_direction(owner.direction)
 	owner.boom()

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bohxtovo2hjam" path="res://Asset/sprites/slime_green.png" id="1_vqynf"]
 [ext_resource type="Script" uid="uid://cfv20hcyas01o" path="res://MyResources/stats.gd" id="2_mgqwm"]
 [ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://MyResources/hurtbox.gd" id="3_mh1aa"]
+[ext_resource type="Script" uid="uid://t2h3wlp0qtus" path="res://MyResources/enemy_hitbox.gd" id="5_fnqck"]
 
 [sub_resource type="Resource" id="Resource_mgqwm"]
 resource_local_to_scene = true
@@ -98,6 +99,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mh1aa"]
 size = Vector2(12, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5r8"]
+size = Vector2(12, 12)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh1aa"]
 radius = 5.0
 
@@ -170,8 +174,8 @@ autoplay = "walk"
 metadata/_edit_group_ = true
 
 [node name="Hurtbox" type="Area2D" parent="AnimatedSprite2D" unique_id=1451987101]
-collision_layer = 16
-collision_mask = 64
+collision_layer = 8
+collision_mask = 16
 input_pickable = false
 script = ExtResource("3_mh1aa")
 metadata/_custom_type_script = "uid://bef6fd5blxnmc"
@@ -180,6 +184,18 @@ metadata/_custom_type_script = "uid://bef6fd5blxnmc"
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_mh1aa")
 debug_color = Color(0.25984162, 0.8457546, 0, 0.41960785)
+
+[node name="EnemyHitBox" type="Area2D" parent="AnimatedSprite2D" unique_id=731284274]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_fnqck")
+metadata/_custom_type_script = "uid://t2h3wlp0qtus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/EnemyHitBox" unique_id=2111971152]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_my5r8")
+debug_color = Color(0.99469596, 0, 0.22534701, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609864450]
 position = Vector2(0, -6)

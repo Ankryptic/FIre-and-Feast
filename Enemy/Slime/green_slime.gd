@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 #region Resource variables
 @export var stat : Stats
+@export var damage: int = 10
 #endregion
 
 #region Normal Variables
