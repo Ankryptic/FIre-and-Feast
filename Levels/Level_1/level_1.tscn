@@ -503,6 +503,7 @@ collision_mask = 2
 
 [node name="CheckPoints" parent="CheckpointContainer" unique_id=1725670912 instance=ExtResource("7_fhktt")]
 position = Vector2(696, 65)
+collision_mask = 2
 
 [node name="CheckPoints2" parent="CheckpointContainer" unique_id=1513509436 instance=ExtResource("7_fhktt")]
 position = Vector2(952, -96)

@@ -32,8 +32,8 @@ var in_cutscene := false
 var pause_movement: bool = false
 var player_state: States = States.IDLE
 var active_gravity: bool = true
-var coin_collected: int = 0
 var coin_collection: Array = []
+var coin_value: int 
 #endregion
 
 #region Onready variables
@@ -46,8 +46,8 @@ var coin_collection: Array = []
 
 func _ready() -> void:
 	set_camera_limit()
-	var saved_coin: int = SaveLoad.save_data.coin_collected.size();
-	print("Coin Collected: ", saved_coin);
+	coin_value = SaveLoad.save_data.coin_collected.size();
+	print("Coin Value: ", coin_value);
 
 
 func _process(_delta: float) -> void:
@@ -212,5 +212,5 @@ func _set_weapon_collection() -> void:
 
 
 func _emit_coin_Changed() -> void:
-	coin_collected += 1
-	coin_changed.emit(coin_collected)
+	coin_value += 1
+	coin_changed.emit(coin_value)

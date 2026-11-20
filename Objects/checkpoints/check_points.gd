@@ -23,7 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	SaveLoad.save_data.current_checkpoint = name
 	SaveLoad.save_data.coin_collected = body.coin_collection
-	
+	SaveLoad.save_data.coin_value = body.coin_value
 	SaveLoad._save_game()
 	print("Checkpoint")
 	queue_free()

@@ -28,6 +28,7 @@ func _save_game() -> void:
 		"current_level": save_data.current_level,
 		"level_state": save_data.level_state,
 		"coin_collected": save_data.coin_collected,
+		"coin_value": save_data.coin_value,
 		"current_checkpoint": save_data.current_checkpoint,
 		"weapon_collection": weapon_path,
 	}
@@ -52,6 +53,7 @@ func _load_game() -> void:
 		save_data.current_level = saved_data.get("current_level", 1)
 		save_data.level_state = saved_data.get("level_state", {})
 		save_data.coin_collected = saved_data.get("coin_collected", [])
+		save_data.coin_value = saved_data.get("coin_value", 0)
 		save_data.current_checkpoint = saved_data.get("current_checkpoint", "")
 		_load_weapon_collection(saved_data)
 
@@ -70,6 +72,7 @@ func _reset_game() -> void:
 		"current_level": save_data["current_level"],
 		"level_state":  save_data["level_state"],
 		"coin_collected": save_data["coin_collected"],
+		"coin_value": save_data["coin_value"],
 		"current_checkpoint": save_data["current_checkpoint"]
 	}
 	

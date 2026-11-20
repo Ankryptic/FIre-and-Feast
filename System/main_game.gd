@@ -1,8 +1,6 @@
 class_name MainGame
 extends Node
 
-# TODO: Give Enemy HitBox
-# TODO: Give Player Hurtbox
 # TODO: Add new var in save_load : coin_Value
 # TODO: Update Player coin value from player script
 
@@ -87,6 +85,7 @@ func _init_player() -> void:
 	player_weappon_component.weapon_collected.connect(update_weapon_in_hud)
 	
 	player.coin_changed.connect(_emit_coin_changed)
+	update_player_coin_value()
 	SceneManager.player = player
 
 
@@ -152,13 +151,14 @@ func _emit_weapon_changed(res: Weapon) -> void:
 	active_weapon_changed.emit(res)
 
 
-func update_player_coin_collection(coins: Array) -> void:
+func update_player_coin_value() -> void:
 	if player == null:
 		printerr("No Player Found");
 	
-	player.coin_collection = coins
-	player.coin_collected = coins.size()
-	coin_changed.emit(coins.size())
+	var coins: int = SaveLoad.save_data.coin_value
+	
+	player.coin_value = coins
+	coin_changed.emit(coins)
 
 
 func setup_fading_animation(loc) -> void:

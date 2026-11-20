@@ -43,7 +43,6 @@ func place_coin_in_level() -> void:
 	var coin_collected: Array = SaveLoad.save_data.coin_collected
 	
 	if not coin_collected.is_empty():
-		main_game.update_player_coin_collection(coin_collected)
 		for coin in coin_container.get_children():
 			if coin_collected.has(coin.name):
 				coin.queue_free()

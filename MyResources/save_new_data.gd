@@ -6,5 +6,6 @@ class_name SaveNewData
 @export var current_level: int = 1
 @export var level_state: Dictionary 
 @export var coin_collected: Array = []
+@export var coin_value: int = 0
 @export var current_checkpoint: String
 @export var weapon_collection: Array[Weapon] = []
