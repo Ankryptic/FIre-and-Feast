@@ -1,8 +1,7 @@
 class_name MainGame
 extends Node
 
-# TODO: Add new var in save_load : coin_Value
-# TODO: Update Player coin value from player script
+# TODO: Delete coin collected data after level changing
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)

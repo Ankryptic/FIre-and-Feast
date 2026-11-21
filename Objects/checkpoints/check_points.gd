@@ -3,6 +3,9 @@ extends Area2D
 
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
+func _ready() -> void:
+	set_collision_mask_value(2, true)
+
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player_group"):
 		return
