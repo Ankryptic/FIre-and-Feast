@@ -1,7 +1,7 @@
 class_name MainGame
 extends Node
 
-# TODO: Delete coin collected data after level changing
+# TODO: Setup player in level 2
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
