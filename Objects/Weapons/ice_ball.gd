@@ -1,0 +1,49 @@
+class_name FireBall
+extends Node2D
+
+# This is fireball script controls the direction, and spawn point  of fireball 
+
+@export var SPEED: float = 160.0
+@export var damage: int = 10
+
+var direction: int = 1
+var stop: bool = false
+
+@onready var body: AnimatedSprite2D = $IceShardBody
+@onready var visible_on_screen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+
+
+func _ready() -> void:
+	visible_on_screen.visible = true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
+	
+	if direction > 0:
+		body.flip_h = false
+	elif direction < 0:
+		body.flip_h = true
+	
+	if !stop:
+		position.x += direction * SPEED * delta 
+
+## Animate when collides with enemy
+func boom() -> void:
+	stop = true
+	body.play("boom")
+
+
+## Animate when collide with wall or static objects
+func collide_to_wall() -> void:
+	stop = true
+	body.play("boom")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if body.animation == 'boom':
+		queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

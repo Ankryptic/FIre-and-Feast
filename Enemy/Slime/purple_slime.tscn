@@ -2,9 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cdyeowrnytrkv" path="res://Enemy/Slime/purple_slime.gd" id="1_5xdvw"]
 [ext_resource type="Texture2D" uid="uid://c3ct42qlekxl5" path="res://Asset/sprites/slime_purple.png" id="1_t38nr"]
-[ext_resource type="Resource" uid="uid://c8ye0hwbx3yft" path="res://MyResources/Stats.tres" id="2_f7nbo"]
+[ext_resource type="Script" uid="uid://cfv20hcyas01o" path="res://MyResources/stats.gd" id="2_f7nbo"]
 [ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://MyResources/hurtbox.gd" id="2_qq5dj"]
 [ext_resource type="Script" uid="uid://t2h3wlp0qtus" path="res://MyResources/enemy_hitbox.gd" id="3_5xdvw"]
+
+[sub_resource type="Resource" id="Resource_cd240"]
+resource_local_to_scene = true
+script = ExtResource("2_f7nbo")
+max_health = 50
+metadata/_custom_type_script = "uid://cfv20hcyas01o"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2kqe"]
 atlas = ExtResource("1_t38nr")
@@ -143,13 +149,13 @@ height = 2
 
 [node name="PurpleSlime" type="CharacterBody2D" unique_id=1975431817]
 script = ExtResource("1_5xdvw")
-stat = ExtResource("2_f7nbo")
+stat = SubResource("Resource_cd240")
 
 [node name="PurpleSlimeBody" type="AnimatedSprite2D" parent="." unique_id=1163064836]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_rvmij")
-animation = &"shoot"
-frame = 2
+animation = &"walk"
+autoplay = "walk"
 
 [node name="Hurtbox" type="Area2D" parent="PurpleSlimeBody" unique_id=1923899752]
 visible = false
@@ -165,6 +171,8 @@ debug_color = Color(0, 0.64253855, 0.32132113, 0.41960785)
 
 [node name="EnemyHitBox" type="Area2D" parent="PurpleSlimeBody" unique_id=990344279]
 visible = false
+collision_layer = 64
+collision_mask = 8
 script = ExtResource("3_5xdvw")
 metadata/_custom_type_script = "uid://t2h3wlp0qtus"
 
@@ -177,7 +185,7 @@ debug_color = Color(0.9982843, 0, 0.15714613, 0.41960785)
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_vkbwm")
 
-[node name="Shooter" type="Node" parent="." unique_id=355285091]
+[node name="Shooter" type="Node2D" parent="." unique_id=1894327492]
 
 [node name="RightShooter" type="Marker2D" parent="Shooter" unique_id=455904424]
 position = Vector2(7, -6)
@@ -185,18 +193,18 @@ gizmo_extents = 5.0
 
 [node name="LeftShooter" type="Marker2D" parent="Shooter" unique_id=177031415]
 position = Vector2(-7, -6)
-rotation = 3.1415927
+rotation = -3.1415925
 gizmo_extents = 5.0
 
-[node name="Detector" type="Node" parent="." unique_id=677720649]
+[node name="Detector" type="Node2D" parent="." unique_id=1043350099]
 
 [node name="WallDetector" type="RayCast2D" parent="Detector" unique_id=795038654]
 position = Vector2(0, -5)
 target_position = Vector2(9, 0)
 
 [node name="LedgeDetector" type="RayCast2D" parent="Detector" unique_id=1401669371]
-position = Vector2(6, -5)
-target_position = Vector2(0, 7)
+position = Vector2(6, -6)
+target_position = Vector2(0, 8)
 
 [node name="Healthbar" type="TextureProgressBar" parent="." unique_id=1413275861]
 custom_minimum_size = Vector2(15, 3)

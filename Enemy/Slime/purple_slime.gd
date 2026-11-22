@@ -51,6 +51,7 @@ func setup_gravity(delta: float) -> void:
 
 func collision_detector() -> void:
 	if wall_detector.is_colliding():
+		print("wall detected")
 		change_direction()
 	
 	if !ledge_detector.is_colliding():
@@ -68,7 +69,7 @@ func get_damage(hit_direction : int) -> void:
 	if stat.health != 0:
 		#animation_player.play('damage')
 		print("HealthDown")
-	knock_back = 100 * hit_direction
+	knock_back = 80 * hit_direction
 	await get_tree().create_timer(0.8).timeout
 	speed = 40.0
 
