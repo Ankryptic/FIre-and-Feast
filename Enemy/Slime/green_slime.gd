@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var ledge_detector: RayCast2D = $LedgeDetector
-@onready var healthbar: TextureProgressBar = $healthbar
+@onready var healthbar: ProgressBar = $Healthbar
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox: Hurtbox = $AnimatedSprite2D/Hurtbox
 #endregion

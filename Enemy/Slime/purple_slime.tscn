@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://df704no4naf64"]
+
+[ext_resource type="Script" uid="uid://cdyeowrnytrkv" path="res://Enemy/Slime/purple_slime.gd" id="1_5xdvw"]
+[ext_resource type="Texture2D" uid="uid://c3ct42qlekxl5" path="res://Asset/sprites/slime_purple.png" id="1_t38nr"]
+[ext_resource type="Resource" uid="uid://c8ye0hwbx3yft" path="res://MyResources/Stats.tres" id="2_f7nbo"]
+[ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://MyResources/hurtbox.gd" id="2_qq5dj"]
+[ext_resource type="Script" uid="uid://t2h3wlp0qtus" path="res://MyResources/enemy_hitbox.gd" id="3_5xdvw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2kqe"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq5dj"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xdvw"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7nbo"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd240"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wccy5"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kifeo"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7i8d"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cql27"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhv65"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lujgd"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8npum"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq8hu"]
+atlas = ExtResource("1_t38nr")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvmij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2kqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq5dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xdvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7nbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd240")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wccy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kifeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7i8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cql27")
+}],
+"loop": 0,
+"name": &"spawn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhv65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lujgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8npum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq8hu")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbwm"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgrxk"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkbwm"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_5xdvw"]
+offsets = PackedFloat32Array(0.99242425, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vwdeq"]
+gradient = SubResource("Gradient_5xdvw")
+width = 15
+height = 3
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_f7nbo"]
+colors = PackedColorArray(0.7176471, 0.23921569, 0.5803922, 1, 0.9019608, 0.37254903, 0.4117647, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fu5qe"]
+gradient = SubResource("Gradient_f7nbo")
+width = 15
+height = 2
+
+[node name="PurpleSlime" type="CharacterBody2D" unique_id=1975431817]
+script = ExtResource("1_5xdvw")
+stat = ExtResource("2_f7nbo")
+
+[node name="PurpleSlimeBody" type="AnimatedSprite2D" parent="." unique_id=1163064836]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_rvmij")
+animation = &"shoot"
+frame = 2
+
+[node name="Hurtbox" type="Area2D" parent="PurpleSlimeBody" unique_id=1923899752]
+visible = false
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("2_qq5dj")
+metadata/_custom_type_script = "uid://bef6fd5blxnmc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PurpleSlimeBody/Hurtbox" unique_id=509748830]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_vkbwm")
+debug_color = Color(0, 0.64253855, 0.32132113, 0.41960785)
+
+[node name="EnemyHitBox" type="Area2D" parent="PurpleSlimeBody" unique_id=990344279]
+visible = false
+script = ExtResource("3_5xdvw")
+metadata/_custom_type_script = "uid://t2h3wlp0qtus"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PurpleSlimeBody/EnemyHitBox" unique_id=1437154993]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_mgrxk")
+debug_color = Color(0.9982843, 0, 0.15714613, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=369614305]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_vkbwm")
+
+[node name="Shooter" type="Node" parent="." unique_id=355285091]
+
+[node name="RightShooter" type="Marker2D" parent="Shooter" unique_id=455904424]
+position = Vector2(7, -6)
+gizmo_extents = 5.0
+
+[node name="LeftShooter" type="Marker2D" parent="Shooter" unique_id=177031415]
+position = Vector2(-7, -6)
+rotation = 3.1415927
+gizmo_extents = 5.0
+
+[node name="Detector" type="Node" parent="." unique_id=677720649]
+
+[node name="WallDetector" type="RayCast2D" parent="Detector" unique_id=795038654]
+position = Vector2(0, -5)
+target_position = Vector2(9, 0)
+
+[node name="LedgeDetector" type="RayCast2D" parent="Detector" unique_id=1401669371]
+position = Vector2(6, -5)
+target_position = Vector2(0, 7)
+
+[node name="Healthbar" type="TextureProgressBar" parent="." unique_id=1413275861]
+custom_minimum_size = Vector2(15, 3)
+offset_left = -8.0
+offset_top = -19.0
+offset_right = 7.0
+offset_bottom = -16.0
+value = 60.0
+rounded = true
+texture_under = SubResource("GradientTexture2D_vwdeq")
+texture_progress = SubResource("GradientTexture2D_fu5qe")
+texture_progress_offset = Vector2(0.5, 0.5)

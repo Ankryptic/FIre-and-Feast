@@ -47,7 +47,7 @@ var coin_value: int
 func _ready() -> void:
 	set_camera_limit()
 	coin_value = SaveLoad.save_data.coin_collected.size();
-	print("Coin Value: ", coin_value);
+	#print("Coin Value: ", coin_value);
 
 
 func _process(_delta: float) -> void:

@@ -2,6 +2,8 @@ class_name MainGame
 extends Node
 
 # TODO: Setup player in level 2
+# TODO: Add red Slime enemy with fire power
+# TODO: Add knockback and damage calculation in Player
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
