@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cfv20hcyas01o" path="res://MyResources/stats.gd" id="2_f7nbo"]
 [ext_resource type="Script" uid="uid://bef6fd5blxnmc" path="res://MyResources/hurtbox.gd" id="2_qq5dj"]
 [ext_resource type="Script" uid="uid://t2h3wlp0qtus" path="res://MyResources/enemy_hitbox.gd" id="3_5xdvw"]
+[ext_resource type="Script" uid="uid://neb3puwowrdp" path="res://Enemy/Slime/player_detector.gd" id="6_cd240"]
 
 [sub_resource type="Resource" id="Resource_cd240"]
 resource_local_to_scene = true
@@ -130,6 +131,9 @@ size = Vector2(12, 12)
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkbwm"]
 radius = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5r8"]
+size = Vector2(55, 12)
+
 [sub_resource type="Gradient" id="Gradient_5xdvw"]
 offsets = PackedFloat32Array(0.99242425, 1)
 
@@ -206,6 +210,17 @@ target_position = Vector2(9, 0)
 position = Vector2(6, -6)
 target_position = Vector2(0, 8)
 
+[node name="PlayerDetector" type="Area2D" parent="Detector" unique_id=1335962165]
+position = Vector2(0, -12)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_cd240")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector/PlayerDetector" unique_id=2028813332]
+position = Vector2(21.5, 6)
+shape = SubResource("RectangleShape2D_my5r8")
+debug_color = Color(0.7327416, 0.47198796, 3.85046e-07, 0.41960785)
+
 [node name="Healthbar" type="TextureProgressBar" parent="." unique_id=1413275861]
 custom_minimum_size = Vector2(15, 3)
 offset_left = -8.0
@@ -217,3 +232,5 @@ rounded = true
 texture_under = SubResource("GradientTexture2D_vwdeq")
 texture_progress = SubResource("GradientTexture2D_fu5qe")
 texture_progress_offset = Vector2(0.5, 0.5)
+
+[connection signal="body_entered" from="Detector/PlayerDetector" to="Detector/PlayerDetector" method="_on_body_entered"]

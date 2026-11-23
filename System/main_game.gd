@@ -1,9 +1,11 @@
 class_name MainGame
 extends Node
 
-# TODO: Setup player in level 2
+
+# TODO: Add player detector for Purple Slime
 # TODO: Make Purple Slime shoot
 # TODO: Add knockback and damage calculation in Player
+# TODO: Setup player in level 2
 
 signal health_Changed(curr_health: float, max_health: float)
 signal coin_changed(amount: int)
