@@ -2,15 +2,17 @@ extends CharacterBody2D
 
 ## Purple Slime Script
 
+signal change_player_detector_direction(dir: int)
 
 #region Onready variables
 @onready var body: AnimatedSprite2D = $PurpleSlimeBody
-@onready var wall_detector: RayCast2D = $Detector/WallDetector
-@onready var ledge_detector: RayCast2D = $Detector/LedgeDetector
+@onready var wall_detector: RayCast2D = $PathDetectors/WallDetector
+@onready var ledge_detector: RayCast2D = $PathDetectors/LedgeDetector
 @onready var healthbar: TextureProgressBar = $Healthbar
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox: Hurtbox = $PurpleSlimeBody/Hurtbox
 @onready var enemy_hitbox: EnemyHitBox = $PurpleSlimeBody/EnemyHitBox
+@onready var player_detector: Area2D = $PurpleSlimeBody/PlayerDetector
 #endregion
 
 #region Resource variables
@@ -51,11 +53,12 @@ func setup_gravity(delta: float) -> void:
 
 func collision_detector() -> void:
 	if wall_detector.is_colliding():
-		print("wall detected")
 		change_direction()
+		change_player_detector_direction.emit(direction)
 	
 	if !ledge_detector.is_colliding():
 		change_direction()
+		change_player_detector_direction.emit(direction)
 
 func change_direction() -> void:
 	wall_detector.target_position *= -1

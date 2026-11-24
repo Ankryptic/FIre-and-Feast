@@ -2,7 +2,7 @@ class_name MainGame
 extends Node
 
 
-# TODO: Add player detector for Purple Slime
+# TODO: Add what to do after detecting the player
 # TODO: Make Purple Slime shoot
 # TODO: Add knockback and damage calculation in Player
 # TODO: Setup player in level 2
@@ -71,13 +71,13 @@ func load_level(new_level: String) -> void:
 func _init_player() -> void:
 	var player_scene = ResourceLoader.load(player_path, "PackedScene") as PackedScene
 	if player_scene == null:
-		print("Unable to load Player Scene, ", player_path)
+		printerr("Unable to load Player Scene, ", player_path)
 		return
 	
 	player = player_scene.instantiate()
 	
 	if player == null:
-		print("Unable to Instantiate")
+		printerr("Unable to Instantiate")
 		return 
 	
 	# Making Signal connection b/w player and main

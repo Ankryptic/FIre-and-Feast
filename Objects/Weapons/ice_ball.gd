@@ -1,9 +1,9 @@
-class_name FireBall
+class_name IceShard
 extends Node2D
 
 # This is fireball script controls the direction, and spawn point  of fireball 
 
-@export var SPEED: float = 160.0
+@export var SPEED: float = 10.0
 @export var damage: int = 10
 
 var direction: int = 1
@@ -19,7 +19,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
 	if direction > 0:
 		body.flip_h = false
 	elif direction < 0:
@@ -36,6 +35,7 @@ func boom() -> void:
 
 ## Animate when collide with wall or static objects
 func collide_to_wall() -> void:
+	print("Collide to wall")
 	stop = true
 	body.play("boom")
 
