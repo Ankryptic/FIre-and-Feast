@@ -1,7 +1,7 @@
 class_name IceShard
 extends Node2D
 
-# This is fireball script controls the direction, and spawn point  of fireball 
+# This is fireball script controls the direction, and spawn point of fireball 
 
 @export var SPEED: float = 10.0
 @export var damage: int = 10

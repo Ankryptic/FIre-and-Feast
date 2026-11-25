@@ -9,7 +9,10 @@ func _ready() -> void:
 
 func on_hurtbox_enter(area : Area2D) -> void:
 	print('hurtBox -> ' ,area.name)
-	area.update_hit_direction(owner.direction)
+	
+	if area.has_method("update_hit_direction"):
+		area.update_hit_direction(owner.direction)
+		
 	owner.boom()
 
 func on_body_entered(_body : Node2D) -> void:

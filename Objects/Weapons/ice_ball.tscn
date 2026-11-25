@@ -66,17 +66,20 @@ animations = [{
 size = Vector2(96, 118)
 
 [node name="IceShard" type="Node2D" unique_id=722767220]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.04, 0.04)
 script = ExtResource("1_10ns6")
 
 [node name="IceShardBody" type="AnimatedSprite2D" parent="." unique_id=1072514354]
 sprite_frames = SubResource("SpriteFrames_m4yu4")
 animation = &"shoot"
 autoplay = "shoot"
-frame_progress = 0.27634436
+frame = 2
+frame_progress = 0.87508166
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="IceShardBody" unique_id=1354180149]
+monitoring = false
+monitorable = false
 script = ExtResource("9_lv864")
 metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
 
