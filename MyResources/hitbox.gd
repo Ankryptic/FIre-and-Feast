@@ -12,8 +12,9 @@ func on_hurtbox_enter(area : Area2D) -> void:
 	
 	if area.has_method("update_hit_direction"):
 		area.update_hit_direction(owner.direction)
-		
+	
 	owner.boom()
+	
 
 func on_body_entered(_body : Node2D) -> void:
 	#print('Body Entered -> ', body.name)

@@ -3,6 +3,7 @@ extends CharacterBody2D
 ## Purple Slime Script
 
 signal change_player_detector_direction(dir: int)
+signal player_detected;
 
 #region Onready variables
 @onready var body: AnimatedSprite2D = $PurpleSlimeBody
@@ -24,6 +25,7 @@ signal change_player_detector_direction(dir: int)
 var direction : float = 1.0
 var knock_back : float = 0.0
 var isDead := false
+var stop: bool = false
 @export var speed : float = 40.0
 #endregion
 
@@ -33,11 +35,18 @@ func _ready() -> void:
 	healthbar.value = stat.health
 	stat.updated_health.connect(update_heath_bar)
 	stat.dead.connect(play_dead)
+	player_detector.connect("player_detected", _emit_player_detected)
+
 
 func _physics_process(delta: float) -> void:
 	if isDead:
 		healthbar.visible = false
 		return
+	
+	if stop:
+		speed = 0;
+	elif !stop: 
+		speed = 40;
 	
 	setup_gravity(delta)
 	collision_detector()
@@ -93,3 +102,8 @@ func play_dead() -> void:
 	body.play("dead")
 	#await green_slime.animation_finished
 	queue_free()
+
+
+func _emit_player_detected() -> void:
+	print("Fired from Purple slime")
+	player_detected.emit();

@@ -94,6 +94,7 @@ skip_cutscene={
 2d_physics/layer_5="Hitbox"
 2d_physics/layer_6="killzone"
 2d_physics/layer_7="enemyHitbox"
+2d_physics/layer_8="enemyHurtbox"
 2d_physics/layer_10="Collectible"
 
 [rendering]

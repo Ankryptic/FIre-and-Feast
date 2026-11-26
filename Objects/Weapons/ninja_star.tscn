@@ -235,7 +235,7 @@ region_rect = Rect2(2, 2, 32, 32)
 
 [node name="Hitbox" type="Area2D" parent="Star" unique_id=116696829]
 collision_layer = 16
-collision_mask = 9
+collision_mask = 129
 script = ExtResource("3_yxm4w")
 metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
 

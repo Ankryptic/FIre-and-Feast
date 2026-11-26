@@ -14,17 +14,16 @@ var ice_shard_scene: PackedScene
 func _ready() -> void:
 	facing_towards = owner.direction
 	load_ice_shard_scene.call_deferred();
-
-
-func _process(_delta: float) -> void:
-	#load_ice_shard_scene()
-	pass
+	owner.connect("player_detected", shoot)
 
 
 func load_ice_shard_scene() -> void:
 	ice_shard_scene = ResourceLoader.load(ice_Shard_uid, "PackedScene") as PackedScene;
+
+
+func shoot() -> void:
+	print("Shooting")
 	var ice_shard = ice_shard_scene.instantiate();
-	ice_shard.stop = true
-	#ice_shard.global_position = right_shooter.global_position
-	ice_shard.global_position = left_shooter.position
-	add_child(ice_shard)
+	#ice_shard.stop = true
+	ice_shard.global_position = right_shooter.position
+	add_child(ice_shard) 

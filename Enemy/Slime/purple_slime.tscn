@@ -174,8 +174,7 @@ shape = SubResource("RectangleShape2D_my5r8")
 debug_color = Color(0.7327416, 0.47198796, 3.85046e-07, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="PurpleSlimeBody" unique_id=1923899752]
-visible = false
-collision_layer = 8
+collision_layer = 128
 collision_mask = 16
 script = ExtResource("2_qq5dj")
 metadata/_custom_type_script = "uid://bef6fd5blxnmc"
@@ -186,7 +185,6 @@ shape = SubResource("RectangleShape2D_vkbwm")
 debug_color = Color(0, 0.64253855, 0.32132113, 0.41960785)
 
 [node name="EnemyHitBox" type="Area2D" parent="PurpleSlimeBody" unique_id=990344279]
-visible = false
 collision_layer = 64
 collision_mask = 8
 script = ExtResource("3_5xdvw")

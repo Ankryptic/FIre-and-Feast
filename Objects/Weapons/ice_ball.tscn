@@ -73,18 +73,17 @@ script = ExtResource("1_10ns6")
 sprite_frames = SubResource("SpriteFrames_m4yu4")
 animation = &"shoot"
 autoplay = "shoot"
-frame = 2
-frame_progress = 0.87508166
+frame = 1
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="IceShardBody" unique_id=1354180149]
-monitoring = false
-monitorable = false
+collision_layer = 64
+collision_mask = 9
 script = ExtResource("9_lv864")
 metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IceShardBody/Hitbox" unique_id=1895970719]
-position = Vector2(53, 8)
+position = Vector2(50.000004, 0)
 shape = SubResource("RectangleShape2D_mgrxk")
 debug_color = Color(0.9988108, 0, 0.14424953, 0.41960785)
 

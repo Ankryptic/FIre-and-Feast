@@ -67,7 +67,7 @@ frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="AnimatedSprite2D" unique_id=285054913]
 collision_layer = 16
-collision_mask = 9
+collision_mask = 129
 script = ExtResource("10_nrb3v")
 metadata/_custom_type_script = "uid://b2qm8k5o1vgdj"
 
