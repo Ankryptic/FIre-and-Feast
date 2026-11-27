@@ -4,12 +4,13 @@ extends Node2D
 
 var ice_Shard_uid: String = "uid://eu458mhp0jav";
 
+
 @onready var right_shooter: Marker2D = $RightShooter
 @onready var left_shooter: Marker2D = $LeftShooter
 
 
 var facing_towards: int  # Slime facing direction left or right
-var ice_shard_scene: PackedScene
+var ice_shard_scene: PackedScene 
 
 func _ready() -> void:
 	facing_towards = owner.direction
@@ -22,8 +23,10 @@ func load_ice_shard_scene() -> void:
 
 
 func shoot() -> void:
-	print("Shooting")
+	if ice_shard_scene == null:
+		printerr("Ice Shard Scene not found!");
+		return;
+	
 	var ice_shard = ice_shard_scene.instantiate();
-	#ice_shard.stop = true
-	ice_shard.global_position = right_shooter.position
-	add_child(ice_shard) 
+	add_child.call_deferred(ice_shard);
+	ice_shard.set_deferred("global_position", right_shooter.global_position);

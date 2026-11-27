@@ -8,8 +8,6 @@ func _ready() -> void:
  
 
 func on_hurtbox_enter(area : Area2D) -> void:
-	print('hurtBox -> ' ,area.name)
-	
 	if area.has_method("update_hit_direction"):
 		area.update_hit_direction(owner.direction)
 	

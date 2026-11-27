@@ -105,5 +105,4 @@ func play_dead() -> void:
 
 
 func _emit_player_detected() -> void:
-	print("Fired from Purple slime")
 	player_detected.emit();

@@ -31,6 +31,8 @@ func _physics_process(delta: float) -> void:
 func boom() -> void:
 	stop = true
 	body.play("boom")
+	await body.animation_finished
+	queue_free();
 
 
 ## Animate when collide with wall or static objects

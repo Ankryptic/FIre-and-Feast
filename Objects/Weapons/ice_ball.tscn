@@ -71,9 +71,8 @@ script = ExtResource("1_10ns6")
 
 [node name="IceShardBody" type="AnimatedSprite2D" parent="." unique_id=1072514354]
 sprite_frames = SubResource("SpriteFrames_m4yu4")
-animation = &"shoot"
+animation = &"boom"
 autoplay = "shoot"
-frame = 1
 flip_h = true
 
 [node name="Hitbox" type="Area2D" parent="IceShardBody" unique_id=1354180149]
@@ -88,3 +87,4 @@ shape = SubResource("RectangleShape2D_mgrxk")
 debug_color = Color(0.9988108, 0, 0.14424953, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1051842524]
+rect = Rect2(-25, -50, 100, 100)
