@@ -1,9 +1,8 @@
 class_name MainGame
 extends Node
 
-
+# TODO: Fix Ice Ball shooter animation
 # TODO: Add what to do after detecting the player
-# TODO: Make Purple Slime shoot
 # TODO: Add knockback and damage calculation in Player
 # TODO: Setup player in level 2
 

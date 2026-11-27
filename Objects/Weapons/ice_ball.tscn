@@ -73,7 +73,7 @@ script = ExtResource("1_10ns6")
 sprite_frames = SubResource("SpriteFrames_m4yu4")
 animation = &"boom"
 autoplay = "shoot"
-flip_h = true
+frame = 4
 
 [node name="Hitbox" type="Area2D" parent="IceShardBody" unique_id=1354180149]
 collision_layer = 64
